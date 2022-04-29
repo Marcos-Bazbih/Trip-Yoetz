@@ -1,11 +1,10 @@
 const restaurants = require("../models/restaurant-model");
+const comments = require("../models/comment-model");
 
 module.exports = {
     GetRestaurants: async (req, res) => {
         try {
-            let data;
-            await restaurants.find().populate("comments")
-                .then(response => { console.log(response) })
+            const data = await restaurants.find().populate("comments");
             if (data && data.length >= 1) return res.status(200).json({ success: true, data });
             res.status(404).json({ success: false, message: "no restaurants found" });
         }
@@ -15,7 +14,7 @@ module.exports = {
     },
     GetRestaurantById: async (req, res) => {
         try {
-            const restaurant = await restaurants.findOne({ _id: req.params.id });
+            const restaurant = await restaurants.findOne({ _id: req.params.id }).populate("comments");
             if (restaurant) return res.status(200).json({ success: true, restaurant });
             res.status(404).json({ success: false, message: "no restaurant found" });
         }
@@ -25,8 +24,8 @@ module.exports = {
     },
     AddRestaurant: async (req, res) => {
         try {
-            const { name, city, description, images, location, phone, greenPass, link, activityHours, price } = req.body;
-            const restaurant = new restaurants({ name, city, description, images, location, phone, greenPass, link, activityHours, price });
+            const { name, city, description, location, phone, activityHours, images, greenPass, link, price } = req.body;
+            const restaurant = new restaurants({ name, city, description, location, phone, activityHours, images, greenPass, link, price });
             if (!restaurant) return res.status(400).json({ success: false, message: "restaurant not valid" })
 
             await restaurants.create(restaurant)

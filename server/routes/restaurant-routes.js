@@ -1,6 +1,6 @@
 const restaurantsRoutes = require("express").Router();
 
-const { GetRestaurants,GetRestaurantById, AddRestaurant, UpdateRestaurant, DeleteRestaurant } = require("../controllers/restaurant-controller");
+const { GetRestaurants, GetRestaurantById, AddRestaurant, UpdateRestaurant, DeleteRestaurant } = require("../controllers/restaurant-controller");
 
 restaurantsRoutes.get("/", GetRestaurants);
 restaurantsRoutes.get("/:id", GetRestaurantById);

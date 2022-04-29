@@ -1,9 +1,10 @@
 const hotels = require("../models/hotel-model");
+const comments = require("../models/comment-model");
 
 module.exports = {
     GetHotels: async (req, res) => {
         try {
-            const data = await hotels.find();
+            const data = await hotels.find().populate("comments");
             if (data && data.length >= 1) return res.status(200).json({ success: true, data });
             res.status(404).json({ success: false, message: "no hotels found" });
         }
@@ -13,7 +14,7 @@ module.exports = {
     },
     GetHotelById: async (req, res) => {
         try {
-            const hotel = await hotels.findOne({ _id: req.params.id });
+            const hotel = await hotels.findOne({ _id: req.params.id }).populate("comments");
             if (hotel) return res.status(200).json({ success: true, hotel });
             res.status(404).json({ success: false, message: "no hotel found" });
         }
@@ -23,8 +24,8 @@ module.exports = {
     },
     AddHotel: async (req, res) => {
         try {
-            const { name, location, phone, activitiesHours, description, city, comments, greenPass, images, link, price, q_a, rating } = req.body;
-            const hotel = new hotels({ name, location, phone, activitiesHours, description, city, comments, greenPass, images, link, price, q_a, rating });
+            const { name, city, description, location, phone, activityHours, images, greenPass, link, price } = req.body;
+            const hotel = new hotels({ name, city, description, location, phone, activityHours, images, greenPass, link, price });
             if (!hotel) return res.status(400).json({ success: false, message: "hotel not valid" })
 
             await hotels.create(hotel)

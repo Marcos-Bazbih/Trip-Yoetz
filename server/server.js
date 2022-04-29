@@ -4,7 +4,7 @@ require("./db")
 const express = require("express")
 const cors = require("cors");
 const path = require('path');
-const PORT = process.env.PORT || 9090;
+const port = process.env.PORT || 9090;
 const passport = require("passport");
 const app = express();
 const citiesRoutes = require("./routes/city-routes");
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.listen(PORT, () => console.log(`server up on port ${PORT}`));
+app.listen(port, () => console.log(`server up on port ${port}`));
 
 app.use(passport.initialize());
 

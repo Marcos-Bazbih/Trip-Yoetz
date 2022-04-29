@@ -1,9 +1,10 @@
 const activities = require("../models/activity-model");
+const comments = require("../models/comment-model");
 
 module.exports = {
     GetActivities: async (req, res) => {
         try {
-            const data = await activities.find();
+            const data = await activities.find().populate("comments");
             if (data && data.length >= 1) return res.status(200).json({ success: true, data });
             res.status(404).json({ success: false, message: "no activities found" });
         }
@@ -13,7 +14,7 @@ module.exports = {
     },
     GetActivityById: async (req, res) => {
         try {
-            const activity = await activities.findOne({ _id: req.params.id });
+            const activity = await activities.findOne({ _id: req.params.id }).populate("comments");
             if (activity) return res.status(200).json({ success: true, activity });
             res.status(404).json({ success: false, message: "no activity found" });
         }
@@ -23,8 +24,8 @@ module.exports = {
     },
     AddActivity: async (req, res) => {
         try {
-            const { name, city, location, phone, activitiesHours, images, comments, greenPass, rating, link, q_a, price } = req.body;
-            const activity = new activities({ name, city, location, phone, activitiesHours, images, comments, greenPass, rating, link, q_a, price });
+            const { name, city, description, location, phone, activityHours, images, greenPass, link, price } = req.body;
+            const activity = new activities({ name, city, description, location, phone, activityHours, images, greenPass, link, price });
             if (!activity) return res.status(400).json({ success: false, message: "activity not valid" })
 
             await activities.create(activity)
