@@ -1,11 +1,11 @@
 const citiesRoutes = require("express").Router();
 
-const { GetCities, GetCityByName, AddCity, UpdateCity, DeleteCity } = require("../controllers/city-controller");
+const { getCities, getCityByName, addCity, updateCity, deleteCity } = require("../controllers/city-ctrl");
 
-citiesRoutes.get("/", GetCities);
-citiesRoutes.get("/:name", GetCityByName);
-citiesRoutes.post("/", AddCity);
-citiesRoutes.put("/:id", UpdateCity);
-citiesRoutes.delete("/:id", DeleteCity);
+citiesRoutes.get("/", getCities);
+citiesRoutes.get("/:name", getCityByName);
+citiesRoutes.post("/", addCity);
+citiesRoutes.put("/:id", updateCity);
+citiesRoutes.delete("/:id", deleteCity);
 
 module.exports = citiesRoutes;

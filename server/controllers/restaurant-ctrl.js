@@ -2,7 +2,7 @@ const restaurants = require("../models/restaurant-model");
 const comments = require("../models/comment-model");
 
 module.exports = {
-    GetRestaurants: async (req, res) => {
+    getRestaurants: async (req, res) => {
         try {
             const data = await restaurants.find().populate("comments");
             if (data && data.length >= 1) return res.status(200).json({ success: true, data });
@@ -12,7 +12,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    GetRestaurantById: async (req, res) => {
+    getRestaurantById: async (req, res) => {
         try {
             const restaurant = await restaurants.findOne({ _id: req.params.id }).populate("comments");
             if (restaurant) return res.status(200).json({ success: true, restaurant });
@@ -22,7 +22,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    AddRestaurant: async (req, res) => {
+    addRestaurant: async (req, res) => {
         try {
             const { name, city, description, location, phone, activityHours, images, greenPass, link, price } = req.body;
             const restaurant = new restaurants({ name, city, description, location, phone, activityHours, images, greenPass, link, price });
@@ -36,7 +36,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    UpdateRestaurant: async (req, res) => {
+    updateRestaurant: async (req, res) => {
         try {
             if (await restaurants.exists({ _id: req.params.id })) {
                 return await restaurants.findByIdAndUpdate(req.params.id, req.body)
@@ -49,7 +49,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    DeleteRestaurant: async (req, res) => {
+    deleteRestaurant: async (req, res) => {
         try {
             if (await restaurants.exists({ _id: req.params.id })) {
                 return await restaurants.findByIdAndRemove(req.params.id)

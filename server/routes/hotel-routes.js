@@ -1,11 +1,11 @@
 const hotelsRoutes = require("express").Router();
 
-const { GetHotels, GetHotelById, UpdateHotel, DeleteHotel, AddHotel } = require("../controllers/hotel-controller");
+const { getHotels, getHotelById, updateHotel, deleteHotel, addHotel } = require("../controllers/hotel-ctrl");
 
-hotelsRoutes.get("/", GetHotels);
-hotelsRoutes.get("/:id", GetHotelById);
-hotelsRoutes.post("/", AddHotel);
-hotelsRoutes.put("/:id", UpdateHotel);
-hotelsRoutes.delete("/:id", DeleteHotel);
+hotelsRoutes.get("/", getHotels);
+hotelsRoutes.get("/:id", getHotelById);
+hotelsRoutes.post("/", addHotel);
+hotelsRoutes.put("/:id", updateHotel);
+hotelsRoutes.delete("/:id", deleteHotel);
 
 module.exports = hotelsRoutes;

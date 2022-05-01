@@ -1,7 +1,7 @@
 const cities = require("../models/city-model");
 
 module.exports = {
-    GetCities: async (req, res) => {
+    getCities: async (req, res) => {
         try {
             const data = await cities.find();
             if (data && data.length >= 1) return res.status(200).json({ success: true, data });
@@ -11,7 +11,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    GetCityByName: async (req, res) => {
+    getCityByName: async (req, res) => {
         try {
             const data = await cities.findOne({ name: req.params.name });
             if (data) return res.status(200).json({ success: true, data });
@@ -21,7 +21,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    AddCity: async (req, res) => {
+    addCity: async (req, res) => {
         try {
             const { name, description, images } = req.body;
             const city = new cities({ name, description, images });
@@ -35,7 +35,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    UpdateCity: async (req, res) => {
+    updateCity: async (req, res) => {
         try {
             if (await cities.exists({ _id: req.params.id })) {
                 return await cities.findByIdAndUpdate(req.params.id, req.body)
@@ -48,7 +48,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    DeleteCity: async (req, res) => {
+    deleteCity: async (req, res) => {
         try {
             if (await cities.exists({ _id: req.params.id })) {
                 return await cities.findByIdAndRemove(req.params.id)

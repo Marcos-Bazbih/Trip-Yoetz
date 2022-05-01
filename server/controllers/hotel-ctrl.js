@@ -2,7 +2,7 @@ const hotels = require("../models/hotel-model");
 const comments = require("../models/comment-model");
 
 module.exports = {
-    GetHotels: async (req, res) => {
+    getHotels: async (req, res) => {
         try {
             const data = await hotels.find().populate("comments");
             if (data && data.length >= 1) return res.status(200).json({ success: true, data });
@@ -12,7 +12,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    GetHotelById: async (req, res) => {
+    getHotelById: async (req, res) => {
         try {
             const hotel = await hotels.findOne({ _id: req.params.id }).populate("comments");
             if (hotel) return res.status(200).json({ success: true, hotel });
@@ -22,7 +22,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    AddHotel: async (req, res) => {
+    addHotel: async (req, res) => {
         try {
             const { name, city, description, location, phone, activityHours, images, greenPass, link, price } = req.body;
             const hotel = new hotels({ name, city, description, location, phone, activityHours, images, greenPass, link, price });
@@ -36,7 +36,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    UpdateHotel: async (req, res) => {
+    updateHotel: async (req, res) => {
         try {
             if (await hotels.exists({ _id: req.params.id })) {
                 return await hotels.findByIdAndUpdate(req.params.id, req.body)
@@ -49,7 +49,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    DeleteHotel: async (req, res) => {
+    deleteHotel: async (req, res) => {
         try {
             if (await hotels.exists({ _id: req.params.id })) {
                 return await hotels.findByIdAndRemove(req.params.id)

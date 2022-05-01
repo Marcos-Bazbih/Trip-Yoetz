@@ -1,6 +1,6 @@
 const commentsRoutes = require('express').Router();
 
-const { addComment, getComments, getCommentById, updateComment, deleteComment } = require('../controllers/comment-controller');
+const { addComment, getComments, getCommentById, updateComment, deleteComment } = require('../controllers/comment-ctrl');
 
 commentsRoutes.get('/', getComments);
 commentsRoutes.get('/:id', getCommentById);

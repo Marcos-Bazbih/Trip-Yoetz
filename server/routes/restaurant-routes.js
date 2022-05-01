@@ -1,11 +1,11 @@
 const restaurantsRoutes = require("express").Router();
 
-const { GetRestaurants, GetRestaurantById, AddRestaurant, UpdateRestaurant, DeleteRestaurant } = require("../controllers/restaurant-controller");
+const { getRestaurants, getRestaurantById, addRestaurant, updateRestaurant, deleteRestaurant } = require("../controllers/restaurant-ctrl");
 
-restaurantsRoutes.get("/", GetRestaurants);
-restaurantsRoutes.get("/:id", GetRestaurantById);
-restaurantsRoutes.post("/", AddRestaurant);
-restaurantsRoutes.put("/:id", UpdateRestaurant);
-restaurantsRoutes.delete("/:id", DeleteRestaurant);
+restaurantsRoutes.get("/", getRestaurants);
+restaurantsRoutes.get("/:id", getRestaurantById);
+restaurantsRoutes.post("/", addRestaurant);
+restaurantsRoutes.put("/:id", updateRestaurant);
+restaurantsRoutes.delete("/:id", deleteRestaurant);
 
 module.exports = restaurantsRoutes;

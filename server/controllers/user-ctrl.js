@@ -40,7 +40,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         };
     },
-    Updateuser: async (req, res) => {
+    UpdateUser: async (req, res) => {
         try {
             
             if (await users.exists({ _id: req.params.id })) {

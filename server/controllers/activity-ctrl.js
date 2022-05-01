@@ -2,7 +2,7 @@ const activities = require("../models/activity-model");
 const comments = require("../models/comment-model");
 
 module.exports = {
-    GetActivities: async (req, res) => {
+    getActivities: async (req, res) => {
         try {
             const data = await activities.find().populate("comments");
             if (data && data.length >= 1) return res.status(200).json({ success: true, data });
@@ -12,7 +12,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    GetActivityById: async (req, res) => {
+    getActivityById: async (req, res) => {
         try {
             const activity = await activities.findOne({ _id: req.params.id }).populate("comments");
             if (activity) return res.status(200).json({ success: true, activity });
@@ -22,7 +22,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    AddActivity: async (req, res) => {
+    addActivity: async (req, res) => {
         try {
             const { name, city, description, location, phone, activityHours, images, greenPass, link, price } = req.body;
             const activity = new activities({ name, city, description, location, phone, activityHours, images, greenPass, link, price });
@@ -36,7 +36,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    UpdateActivity: async (req, res) => {
+    updateActivity: async (req, res) => {
         try {
             if (await activities.exists({ _id: req.params.id })) {
                 return await activities.findByIdAndUpdate(req.params.id, req.body)
@@ -49,7 +49,7 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
-    DeleteActivity: async (req, res) => {
+    deleteActivity: async (req, res) => {
         try {
             if (await activities.exists({ _id: req.params.id })) {
                 return await activities.findByIdAndRemove(req.params.id)
