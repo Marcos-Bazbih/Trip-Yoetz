@@ -8,7 +8,7 @@ const Restaurant = new mongoose.Schema({
     activityHours: { type: String, required: true },
     images: { type: Array, required: true },
     greenPass: { type: Boolean, required: true },
-    comments: { type: mongoose.Schema.Types.ObjectId, ref: "Comment" },
+    comments: { type: [mongoose.Schema.Types.ObjectId], ref: "Comment" },
     // rating: { type: [mongoose.Schema.Types.ObjectId], ref: "Rating" },
     // q_a: { type: [mongoose.Schema.Types.ObjectId], ref: "Q_A" },
     link: { type: String, required: true },

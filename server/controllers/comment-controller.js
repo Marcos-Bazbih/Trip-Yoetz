@@ -9,7 +9,17 @@ module.exports = {
         try {
             const data = await comments.find().populate("itemRef");
             if (data && data.length >= 1) return res.status(200).json({ success: true, data });
-            res.status(404).json({ success: false, message: "no comments found" });
+            res.status(404).json({ success: true, message: "no comments found" });
+        }
+        catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
+    getCommentById: async (req, res) => {
+        try {
+            const comment = await comments.findOne({ _id: req.params.id }).populate("itemRef");
+            if (comment) return res.status(200).json({ success: true, comment });
+            res.status(404).json({ success: false, message: "no comment found" });
         }
         catch (err) {
             res.status(500).json({ success: false, message: err.message });
@@ -23,7 +33,6 @@ module.exports = {
             comment.itemRef = itemId;
             if (!comment) return res.status(400).json({ success: false, message: "comment not valid" })
 
-            console.log(comment);
             if(category === "Activity") {
                 await activities.findByIdAndUpdate(itemId, { $push: { comments: comment } })
             }
@@ -42,5 +51,25 @@ module.exports = {
         catch (err) {
             res.status(500).json({ success: false, message: err.message });
         }
+    },
+    updateComment: async (req, res) => {
+        try {
+            const comment = await comments.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+            if (comment) return res.status(200).json({ success: true, comment });
+            res.status(404).json({ success: false, message: "no comment found" });
+        }
+        catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
+    deleteComment: async (req, res) => {
+        try {
+            const comment = await comments.findOneAndDelete({ _id: req.params.id });
+            if (comment) return res.status(200).json({ success: true, message: "comment successfully deleted" });
+            res.status(404).json({ success: false, message: "no comment found" });
+        }
+        catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
     }
-}
+};

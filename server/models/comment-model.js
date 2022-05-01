@@ -12,7 +12,7 @@ const Comment = new mongoose.Schema({
     user_id: { type: String, required: true },
     user_img: { type: String, required: true },
     date: { type: Date, default: Date.now },
-    likes: { type: Number, default: 0 }
+    likes: { type: Object, default: { amount: 0, users_Id: [] } },
 },
     { timestamps: true }
 );
