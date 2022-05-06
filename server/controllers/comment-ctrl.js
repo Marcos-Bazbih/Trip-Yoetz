@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const comments = require("../models/comment-model");
 const activities = require("../models/activity-model");
 const restaurants = require("../models/restaurant-model");
 const hotels = require("../models/hotel-model");
+const comments = require("../models/comment-model");
 
 module.exports = {
     getComments: async (req, res) => {
@@ -28,8 +28,8 @@ module.exports = {
     addComment: async (req, res) => {
         try {
             const itemId = mongoose.Types.ObjectId(req.params.itemId);
-            const { body, writer, user_id, user_img, category } = req.body;
-            const comment = new comments({ body, writer, user_id, user_img, category });
+            const { category, body, writer_name, writer_id, writer_img } = req.body;
+            const comment = new comments({ category, body, writer_name, writer_id, writer_img });
             comment.itemRef = itemId;
             if (!comment) return res.status(400).json({ success: false, message: "comment not valid" })
 
@@ -42,7 +42,6 @@ module.exports = {
             else if(category === "Hotel") {
                 await hotels.findByIdAndUpdate(itemId, { $push: { comments: comment } })
             }
-            
 
             await comments.create(comment)
                 .then(() => res.status(201).json({ success: true, message: "comment successfully added" }))

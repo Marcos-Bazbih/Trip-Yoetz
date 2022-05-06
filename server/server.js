@@ -13,6 +13,7 @@ const restaurantsRoutes = require("./routes/restaurant-routes");
 const activitiesRoutes = require("./routes/activity-routes");
 const usersRoutes = require("./routes/user-routes");
 const commentsRoutes = require("./routes/comment-routes");
+const q_aRoutes = require("./routes/q_a-routes");
 require("./config/passport")(passport);
 
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use("/api/hotels", hotelsRoutes);
 app.use("/api/restaurants", restaurantsRoutes);
 app.use("/api/activities", activitiesRoutes);
 app.use("/api/comments", commentsRoutes);
+app.use("/api/q_a", q_aRoutes);
 app.use("/auth", usersRoutes);
 
 if (process.env.NODE_ENV === 'production') {

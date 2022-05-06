@@ -14,7 +14,7 @@ module.exports = {
     },
     getActivityById: async (req, res) => {
         try {
-            const activity = await activities.findOne({ _id: req.params.id }).populate("comments");
+            const activity = await activities.findOne({ _id: req.params.id }).populate();
             if (activity) return res.status(200).json({ success: true, activity });
             res.status(404).json({ success: false, message: "no activity found" });
         }

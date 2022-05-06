@@ -10,7 +10,7 @@ const Activity = new mongoose.Schema({
     greenPass: { type: Boolean, required: true },
     comments: { type: [mongoose.Schema.Types.ObjectId], ref: "Comment" },
     rating: { type: [mongoose.Schema.Types.ObjectId], ref: "Rating" },
-    // q_a: { type: [mongoose.Schema.Types.ObjectId], ref: "Q_A" },
+    q_a: { type: [mongoose.Schema.Types.ObjectId], ref: "Q_A" },
     link: { type: String, required: true },
     price: { type: Array, required: true },
     description: { type: String, required: true },
