@@ -63,8 +63,19 @@ module.exports = {
     },
     deleteQ_A: async (req, res) => {
         try {
-            const q_a = await Q_A.findByIdAndDelete({ _id: req.params.id });
-            if (q_a) return res.status(200).json({ success: true, message: "q_a successfully deleted" });
+            const q_a = await Q_A.findOneAndDelete({ _id: req.params.id });
+            if (q_a) {
+                if (q_a.category === "Activity") {
+                    await activities.findByIdAndUpdate(q_a.itemRef, { $pull: { q_a: q_a._id } })
+                }
+                else if (q_a.category === "Restaurant") {
+                    await restaurants.findByIdAndUpdate(q_a.itemRef, { $pull: { q_a: q_a._id } })
+                }
+                else if (q_a.category === "Hotel") {
+                    await hotels.findByIdAndUpdate(q_a.itemRef, { $pull: { q_a: q_a._id } })
+                }
+                return res.status(200).json({ success: true, message: "q_a successfully deleted" });
+            }
             res.status(404).json({ success: false, message: "no q_a found" });
         }
         catch (err) {

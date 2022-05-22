@@ -8,12 +8,12 @@ module.exports = {
             if (await users.exists({ email: req.body.email })) {
                 return res.status(400).json({ success: false, message: "user with that email already exists" });
             };
-            let { name, lastName, birthDate, email, password, image, isAdmin } = req.body;
+            let { firstName, lastName, birthDate, email, password, image, isAdmin } = req.body;
             bcrypt.hash(password, 10, async (err, hashPassword) => {
                 console.log(password, hashPassword);
                 if (err) return res.status(400).json({ success: false, message: err.message });
                 password = hashPassword;
-                const user = new users({ name, lastName, birthDate, email, password, image, isAdmin })
+                const user = new users({ firstName, lastName, birthDate, email, password, image, isAdmin })
                 await users.create(user)
                     .then(() => res.status(200).json({ success: true, message: "user added successfully" }))
                     .catch(err => res.status(500).json({ success: false, message: err.message }))

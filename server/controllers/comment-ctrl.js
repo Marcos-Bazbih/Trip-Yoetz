@@ -33,13 +33,13 @@ module.exports = {
             comment.itemRef = itemId;
             if (!comment) return res.status(400).json({ success: false, message: "comment not valid" })
 
-            if(category === "Activity") {
+            if (category === "Activity") {
                 await activities.findByIdAndUpdate(itemId, { $push: { comments: comment } })
             }
-            else if(category === "Restaurant") {
+            else if (category === "Restaurant") {
                 await restaurants.findByIdAndUpdate(itemId, { $push: { comments: comment } })
             }
-            else if(category === "Hotel") {
+            else if (category === "Hotel") {
                 await hotels.findByIdAndUpdate(itemId, { $push: { comments: comment } })
             }
 
@@ -64,7 +64,18 @@ module.exports = {
     deleteComment: async (req, res) => {
         try {
             const comment = await comments.findOneAndDelete({ _id: req.params.id });
-            if (comment) return res.status(200).json({ success: true, message: "comment successfully deleted" });
+            if (comment) {
+                if (comment.category === "Activity") {
+                    await activities.findByIdAndUpdate(comment.itemRef, { $pull: { comments: comment._id } })
+                }
+                else if (comment.category === "Restaurant") {
+                    await restaurants.findByIdAndUpdate(comment.itemRef, { $pull: { comments: comment._id } })
+                }
+                else if (comment.category === "Hotel") {
+                    await hotels.findByIdAndUpdate(comment.itemRef, { $pull: { comments: comment._id } })
+                }
+                return res.status(200).json({ success: true, message: "comment successfully deleted" });
+            }
             res.status(404).json({ success: false, message: "no comment found" });
         }
         catch (err) {
