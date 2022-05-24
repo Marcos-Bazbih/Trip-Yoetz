@@ -16,7 +16,6 @@ export const StyledHome = styled.section`
         top: 2%;
         left: 2%;
     }
-    
     .greet-user{
         text-transform: capitalize;
         position:absolute;

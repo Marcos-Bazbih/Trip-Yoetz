@@ -2,7 +2,7 @@ import { createContext, useEffect, useMemo, useReducer, useState } from "react";
 import hotelsReducer from "../state-management/reducers/hotels-reducer";
 import activitiesReducer from "../state-management/reducers/activities-reducer";
 import restaurantsReducer from "../state-management/reducers/restaurants-reducer";
-import { VerifyToken } from "../utils/verify-token";
+import { getUserFromLocalStorage } from "../utils/getUserFromLocalStorage";
 
 export const MainContext = createContext();
 
@@ -15,7 +15,7 @@ const DataContextProvider = ({ children }) => {
     const [loader, setLoader] = useState(false);
 
     useEffect(() => {
-        VerifyToken(setUser);
+        getUserFromLocalStorage(setUser);
         if (localStorage.city) {
             setCity(JSON.parse(localStorage.getItem('city')));
         }
@@ -29,13 +29,11 @@ const DataContextProvider = ({ children }) => {
         }
     }, [hotels, activities, restaurants, user, city, loader, setLoader]);
 
-
-
     return (
         <MainContext.Provider value={contextValue}>
             {children}
         </MainContext.Provider>
-    )
-}
+    );
+};
 
 export default DataContextProvider;

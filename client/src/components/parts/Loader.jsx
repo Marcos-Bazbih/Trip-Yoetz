@@ -1,4 +1,3 @@
-
 const Loader = () => {
     return (
         <dialog className="loader-modal">

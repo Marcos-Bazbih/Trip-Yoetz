@@ -57,7 +57,7 @@ const UserProfile = () => {
             <h1>YOUR INFORMATION</h1>
           </div>
           <div className="user-details-body">
-            <h2>Name: {`${user.name} ${user.lastName}`} </h2>
+            <h2>Name: {`${user.firstName} ${user.lastName}`} </h2>
             <h2>Age: {new Date().getFullYear() - user.birthDate.slice(0, 4)}</h2>
             <h2>Email: {user.email}</h2>
             <h2>A member since: {user.createdAt.slice(0, 10)}</h2>

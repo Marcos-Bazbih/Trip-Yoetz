@@ -23,10 +23,10 @@ export const themes = {
 };
 
 const ThemeContextProvider = ({ children }) => {
-    const [mode, modeDispatch] = useReducer(themeReducer, JSON.parse(localStorage.getItem("theme")) || themes.wheat_black);
+    const [mode, modeDispatch] = useReducer(themeReducer, JSON.parse(localStorage.getItem("tripYoetz_theme")) || themes.wheat_black);
  
     useEffect(() => {
-        localStorage.setItem('theme', JSON.stringify(mode));
+        localStorage.setItem('tripYoetz_theme', JSON.stringify(mode));
     }, [mode]);
     
     return (

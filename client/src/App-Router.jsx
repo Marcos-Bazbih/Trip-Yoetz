@@ -29,13 +29,13 @@ const AppRouter = () => {
             if (!user.isAdmin) return <UserProfile />
         }
         return <Navigate to="/" />;
-    }
+    };
     const PrivateRouteLogin = () => {
         return user.isLogin ? <PrivateRoute /> : <Login />
-    }
+    };
     const PrivateRouteRegister = () => {
         return user.isLogin ? <PrivateRoute /> : <Register />
-    }
+    };
 
     return (
         <BrowserRouter>
@@ -62,7 +62,6 @@ const AppRouter = () => {
             </Container>
             <Footer />
         </BrowserRouter>
-    )
-}
+    );
+};
 export default AppRouter;
-
