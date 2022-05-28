@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { StyledHome } from "../styles/pages/StyledHome";
 import { ThemeContext } from "../../contexts/theme-context";
-import SearchForm from "../parts/home/SearchForm.home";
+import SearchForm from "../parts/search-form/SearchForm.home";
 
 const Home = () => {
     const { mode } = useContext(ThemeContext);

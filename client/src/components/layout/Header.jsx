@@ -5,7 +5,7 @@ import { StyledHeader } from "../styles/layout/StyledHeader";
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import ProfileActions from "../parts/header/ProfileActions.header";
 import ThemeMode from "../parts/header/ThemeMode.header";
-import SearchForm from "../parts/header/SearchForm.header";
+import SearchForm from "../parts/search-form/SearchForm.header";
 
 const Header = () => {
   const { mode } = useContext(ThemeContext);

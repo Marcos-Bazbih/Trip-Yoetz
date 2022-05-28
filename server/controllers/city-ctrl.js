@@ -15,7 +15,7 @@ module.exports = {
         try {
             const data = await cities.findOne({ name: req.params.name });
             if (data) return res.status(200).json({ success: true, data });
-            res.status(404).json({ success: false, message: "no city found" });
+            res.status(404).json({ success: false, message: `${req.params.name} not found` });
         }
         catch (err) {
             res.status(500).json({ success: false, message: err.message });

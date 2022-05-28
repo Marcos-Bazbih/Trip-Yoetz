@@ -7,15 +7,6 @@ export const StyledHome = styled.section`
     justify-content:center;
     align-items:center;
 
-    .error-msg{
-        text-transform: capitalize;
-        position:absolute;
-        font-size: 2.5rem;
-        font-weight: 900;
-        color: red;
-        top: 2%;
-        left: 2%;
-    }
     .greet-user{
         text-transform: capitalize;
         position:absolute;
@@ -24,13 +15,13 @@ export const StyledHome = styled.section`
         font-size: 2.7rem;
         font-family: 'Lobster Two', cursive;
         font-weight: 900;
-    }
-    span {
-        color:${({ mode }) => mode.background};
-        background:${({ mode }) => mode.color};
-        padding: 0 5px;
-        font-family: 'Lobster Two', cursive;
-        font-weight: 900;
+        span {
+            color:${({ mode }) => mode.background};
+            background:${({ mode }) => mode.color};
+            padding: 0 5px;
+            font-family: 'Lobster Two', cursive;
+            font-weight: 900;
+        }
     }
     
     .search-form{

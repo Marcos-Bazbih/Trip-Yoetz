@@ -1,7 +1,25 @@
 import themeTypes from "../types/theme-types";
-import { themes } from "../../contexts/theme-context";
 
-const themeReducer = (state = {}, action) => {
+export const themes = {
+    wheat_black: {
+        color: "black",
+        background: "wheat"
+    },
+    black_gold: {
+        color: "#f5cb5c",
+        background: "#242423"
+    },
+    light_blue: {
+        color: "#14213d",
+        background: "#98c1d9"
+    },
+    black_purple: {
+        color: "black",
+        background: "#9896f1"
+    }
+};
+
+export const themeReducer = (state = {}, action) => {
     const { type } = action;
 
     switch (type) {
@@ -17,5 +35,3 @@ const themeReducer = (state = {}, action) => {
             return state
     };
 };
-
-export default themeReducer;
