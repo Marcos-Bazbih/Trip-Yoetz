@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../../contexts/theme-context";
-import { StyledSearchBtn } from "../../styles/parts/StyledSearchBtn";
+import { StyledSearchBtn } from "../../styles/parts/search-form/SearchBtn.styled";
+import { StyledAutocompleteForm } from "../../styles/parts/search-form/AutocompleteForm.styled";
 import useSearch from "../../../hooks/useSearch";
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
 const AutocompleteForm = () => {
     const { mode } = useContext(ThemeContext);
@@ -13,7 +13,8 @@ const AutocompleteForm = () => {
 
     return (
         <>
-            <Autocomplete
+            <StyledAutocompleteForm
+                mode={mode}
                 onChange={handleOnChange}
                 onInputChange={handleOnChange}
                 onClose={handleOnClose}
@@ -21,7 +22,7 @@ const AutocompleteForm = () => {
                 id="combo-box-demo"
                 options={cities}
                 getOptionLabel={(option) => option.name}
-                sx={{ width: "80%" }}
+                sx={{ width: "75%" }}
                 renderInput={(params) => <TextField {...params}
                     className="search-input-style"
                     variant="outlined"
@@ -30,6 +31,7 @@ const AutocompleteForm = () => {
                 />}
             />
             <StyledSearchBtn
+                className="search-btn"
                 mode={mode}
                 onClick={handleOnSubmit}
                 disabled={isDisabled}>

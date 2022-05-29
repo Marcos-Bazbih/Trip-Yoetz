@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledHeader = styled.header`
+export const StyledBigHeader = styled.header`
     background: ${({ mode }) => mode.background};
     color: ${({ mode }) => mode.color};
     height: 100%;
@@ -9,9 +9,8 @@ export const StyledHeader = styled.header`
     display:grid;
     grid-template-areas:
     'profile themes about search logo';
-    grid-template-columns:20% 15% 15% 20% 30%;
+    grid-template-columns:20% 15% 15% 22% 28%;
     grid-auto-rows: 100%;
-
 
     .profile-actions{
         height: 100%;
@@ -161,144 +160,37 @@ export const StyledHeader = styled.header`
         grid-area: search;
         width: 100%;
         height: 100%;
+        position: relative;
         display:flex;
-        justify-content:space-between;
         align-items:center;
-
-        fieldset{
-            border-color: ${({ mode }) => mode.color} !important;
-        }
-        input{
-            background: ${({ mode }) => mode.background};
-            color: ${({ mode }) => mode.color};
-        }
-        .label-icon{
-            color: ${({ mode }) => mode.color};
-            background: transparent;
-        }
     }
-
-
-
-
-
-
     .logo-wrapper{
         grid-area: logo;
         display:flex;
         justify-content: flex-end;
         padding-right:10%;
+
+        .TripYoetz-logo {
+            display:flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+            font-family: 'Lobster Two', cursive;
+            font-size:4rem;
+            font-weight:900;
+            text-decoration:none;
+            color: ${({ mode }) => mode.color};
+
+            .logo-icon{
+                border-radius:50%;
+                color: ${({ mode }) => mode.background};
+                background:${({ mode }) => mode.color};
+                font-size:3.5rem;
+            }
+        }
     }
-    .TripYoetz-logo {
-        display:flex;
-        align-items: center;
-        justify-content: flex-end;
-        height: 100%;
-        font-family: 'Lobster Two', cursive;
-        font-size:4rem;
-        font-weight:900;
-        text-decoration:none;
-        color: ${({ mode }) => mode.color};
-    }
-    .logo-icon{
-        border-radius:50%;
-        color: ${({ mode }) => mode.background};
-        background:${({ mode }) => mode.color};
-        font-size:3.5rem;
-    }
 
-
-
-
-
-
-
-
-
-    @media  only screen  and (min-width:320px) and (max-width:375px){
-     .login-register-btn{
-         width: 200%;
-         font-size: 10Px;
-         font-weight:10px;
-          padding:1px 1px;   
-     }
-     .theme-mode-wrapper{
-         margin-left: 40%;
-         
-     }
-     .about-us-wrapper{
-         margin-right: 50%;
-         width: 80%
-     }
-     .about-us-link{
-        font-size:15px;
-     }
-     .logo-icon{
-        width: 20px;
-    
-     }
-     .TripYoetz-logo{
-        font-size:1.5rem; 
-     }
-     .toggle-mode-btn{
-         border: none;
-     }
-
-    }
-    @media  only screen  and (min-width:375px) and (max-width:425px){
-        .login-register-btn{
-         width: 200%;
-         font-size: 10Px;
-         font-weight:10px;
-          padding:1px 1px;   
-     }
-
-     .theme-mode-wrapper{
-         margin-left: 50%;
-     }
-     .about-us-wrapper{
-         margin-right: 30%;
-     }
-     .about-us-link{
-        font-size:20px;
-     }
-     .logo-icon{
-        width: 20px;
-        font-size:20px;
-     }
-     .TripYoetz-logo{
-        font-size:1.5rem; 
-     }
-     .toggle-mode-btn{
-         border: none;
-     }
-
-    }
-    @media  only screen  and (min-width:425px) and (max-width:768px){
-        .login-register-btn{
-         font-size: 1.3rem;
-         font-weight:10px;
-          padding:1px 1px;   
-     }
-     .theme-mode-wrapper{
-         margin-left: 50%;
-     }
-     .about-us-wrapper{
-         margin-right: 50%;
-     }
-     .about-us-link{
-        font-size:2rem;
-     }
-     .logo-icon{
-        width: 2rem;
-        font-size:200;
-     }
-     .TripYoetz-logo{
-        font-size:2rem; 
-     }
-     .toggle-mode-btn{
-         border: none;
-     }
-     
-    }
+    /* @media only screen  and (min-width:320px) and (max-width:375px){
+      
+    } */
 `

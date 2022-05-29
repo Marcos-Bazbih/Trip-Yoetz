@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const StyledSearchBtn = styled.button`
-    width: 15%;
-    height: 50%;
+    position: absolute;
+    right: 5%;
+    width: 35px;
+    height: 35px;
     background: ${({ mode }) => mode.color};
     cursor: pointer;
     border: none;
@@ -18,6 +20,7 @@ export const StyledSearchBtn = styled.button`
     .search-icon{
         color: ${({ mode }) => mode.background};
         font-size: 2rem;
+        font-weight: 900;
         padding: 2px;
     }
 `;

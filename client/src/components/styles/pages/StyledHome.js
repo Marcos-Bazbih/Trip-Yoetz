@@ -24,7 +24,7 @@ export const StyledHome = styled.section`
         }
     }
     
-    .search-form{
+    .home-search-form{
         background: url("/homePage_search_bg.png");
         background-repeat: no-repeat;
         background-size:contain;
@@ -32,43 +32,27 @@ export const StyledHome = styled.section`
         border-radius: 10px;
         background-position: center;
         position: relative;
-        display:flex;
-        justify-content:center;
-        align-items:center;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
         width: 65%;
         height: 65%;
     }
 
-    .search-input{
-        color:${({ mode }) => mode.color};
-        background:${({ mode }) => mode.background};
-        outline: none;
-        font-size: 1.5rem;
-        font-weight: 800;
-        width: 50%;
-        height: 15%;
-        border-radius: 50px;
-        padding-left:10px;
-        border: 2px solid ${({ mode }) => mode.color};
-        transition: 0.2s ease-in-out;
-    }
-    .search-icon{
-        position: absolute;
-        right: 27.5%;
-        font-size: 2.5rem;
-        border: none;
-        color: ${({ mode }) => mode.color};
-        transition: 0.2s ease-in-out;
-    }
-    .search-input::placeholder{
-        color: ${({ mode }) => mode.color};
-    }
-    .search-input:focus{
-        width: 80%;
-    }
-    .search-input:focus ~ .search-icon{
-        right: 12.5%;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @media  only screen and (min-width:320px) and (max-width:361px){
         .search-form{
         background-size:cover;

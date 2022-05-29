@@ -1,30 +1,12 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { ThemeContext } from "../../contexts/theme-context";
-import { StyledHeader } from "../styles/layout/StyledHeader";
-import TravelExploreIcon from '@mui/icons-material/TravelExplore';
-import ProfileActions from "../parts/header/ProfileActions.header";
-import ThemeMode from "../parts/header/ThemeMode.header";
-import SearchForm from "../parts/search-form/SearchForm.header";
+import BigHeader from "../parts/header/BigHeader";
+import MiniHeader from "../parts/header/MiniHeader";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Header = () => {
-  const { mode } = useContext(ThemeContext);
+  const { width } = useWindowDimensions();
 
   return (
-    <StyledHeader mode={mode}>
-      <ProfileActions />
-      <ThemeMode />
-      <div className="about-us-wrapper">
-        <Link className="about-us-link" to={"/about"}>About us</Link>
-      </div>
-      <SearchForm />
-      <div className="logo-wrapper">
-        <Link to={"/"} className="TripYoetz-logo">
-          <TravelExploreIcon className="logo-icon" />
-          TripYoetz
-        </Link>
-      </div>
-    </StyledHeader >
+    width > 950 ? <BigHeader /> : <MiniHeader />
   );
 };
 

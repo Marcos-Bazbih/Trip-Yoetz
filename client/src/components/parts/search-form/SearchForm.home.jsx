@@ -7,7 +7,7 @@ const SearchForm = () => {
     const { user } = useContext(MainContext);
 
     return (
-        <div className="search-form">
+        <div className="home-search-form">
             {user.isLogin && <GreetUser user={user} />}
             <AutocompleteForm />
         </div>
