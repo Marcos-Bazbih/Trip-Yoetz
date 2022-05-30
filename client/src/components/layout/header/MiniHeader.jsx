@@ -1,8 +1,8 @@
-import SearchForm from "../search-form/SearchForm.header";
-import { StyledMiniHeader } from '../../styles/parts/header/MiniHeader.styled';
-import BurgerBtn from './BurgerBtn';
 import { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/theme-context';
+import SearchForm from "../../parts/search-form/SearchForm.header";
+import { StyledMiniHeader } from '../../styles/layout/header/MiniHeader.styled';
+import ResponsiveMenu from './ResponsiveMenu';
 import Logo from './Logo';
 
 const MiniHeader = () => {
@@ -12,7 +12,7 @@ const MiniHeader = () => {
         <StyledMiniHeader mode={mode}>
             <SearchForm />
             <Logo />
-            <BurgerBtn />
+            <ResponsiveMenu />
         </StyledMiniHeader>
     );
 };

@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../../contexts/theme-context";
-import { StyledBigHeader } from "../../styles/parts/header/BigHeader.styled";
+import { StyledBigHeader } from "../../styles/layout/header/BigHeader.styled";
 import ProfileActions from "./ProfileActions";
 import ThemeMode from "./ThemeMode";
-import SearchForm from "../search-form/SearchForm.header";
+import SearchForm from "../../parts/search-form/SearchForm.header";
 import Logo from './Logo';
 
 const BigHeader = () => {

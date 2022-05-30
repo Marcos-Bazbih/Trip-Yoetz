@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MainContext } from "../../../contexts/data-context";
-import ProfileImg from "../ProfileImg";
+import ProfileImg from "../../parts/ProfileImg";
 import { logoutAndClearLocalStorage } from "../../../utils/logoutAndClearLocalStorage";
 import LogoutIcon from '@mui/icons-material/Logout';
 
@@ -14,7 +14,8 @@ const ProfileActions = () => {
             {
                 user.isLogin ?
                     <>
-                        <button className="logout-btn" onClick={() => logoutAndClearLocalStorage(setUser, navigate)}>
+                        <button className="logout-btn"
+                            onClick={() => logoutAndClearLocalStorage(setUser, navigate)}>
                             <LogoutIcon className="logout-icon" />
                         </button>
                         <ProfileImg user={user} />

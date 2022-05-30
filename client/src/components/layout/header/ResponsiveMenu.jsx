@@ -3,7 +3,7 @@ import BurgerMenu from './BurgerMenu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
-const BurgerBtn = () => {
+const ResponsiveMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -27,4 +27,4 @@ const BurgerBtn = () => {
     );
 };
 
-export default BurgerBtn;
+export default ResponsiveMenu;

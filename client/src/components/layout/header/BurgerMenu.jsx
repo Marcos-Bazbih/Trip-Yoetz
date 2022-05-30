@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MainContext } from "../../../contexts/data-context";
 import { logoutAndClearLocalStorage } from "../../../utils/logoutAndClearLocalStorage";
 import ThemeMode from "./ThemeMode";
-import { StyledBurgerMenu } from "../../../components/styles/parts/header/BurgerMenu.styled";
+import { StyledBurgerMenu } from "../../../components/styles/layout/header/BurgerMenu.styled";
 import { ThemeContext } from "../../../contexts/theme-context";
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -15,13 +15,12 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
 
     useEffect(() => {
         setIsOpen(false)
-    }, [pathname]);
+    }, [pathname, setIsOpen]);
 
     return (
         <StyledBurgerMenu mode={mode} left={isOpen ? 0 : -100}>
             <div className="menu-popup">
-                <button
-                    className="menu-close-btn"
+                <button className="menu-close-btn"
                     onClick={() => { setIsOpen(false) }}>
                     <CloseIcon className="menu-close-icon" />
                 </button>
