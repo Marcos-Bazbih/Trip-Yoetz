@@ -23,63 +23,64 @@ export const StyledHome = styled.section`
             font-weight: 900;
         }
     }
-    
     .home-search-form{
-        background: url("/homePage_search_bg.png");
+        background: url("/images/homePage_search_bg.png");
         background-repeat: no-repeat;
         background-size:contain;
         border: 4px double ${({ mode }) => mode.color};
         border-radius: 10px;
-        background-position: center;
+        background-position: bottom;
         position: relative;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
         width: 65%;
         height: 65%;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @media  only screen and (min-width:320px) and (max-width:361px){
-        .search-form{
-        background-size:cover;
-        width: 80%;
-        height: 70%;
-        }
-        .search-input{
-            font-size: 1.2rem;
-            font-weight: 120;
-        }
-        .search-icon{
-            font-size: 1.5rem;
+    @media (max-width: 800px) {
+        .home-search-form{
+            .MuiAutocomplete-root{
+                width: 65%;
+            }
         }
     }
-     @media  only screen  and (min-width:361px) and (max-width:750px){
-        .search-form{
-        background-size:cover;
-        width: 80%;
-        height: 70%;
-        }
-        .search-input{
-            font-size: 1rem;
-            font-weight: 120;
-        }
-        .search-icon{
-            font-size: 1.5rem;
+    @media (max-width: 600px) {
+        .home-search-form{
+            background-size:130%;
+            width: 80%;
+            justify-content: flex-start;
+            padding-left: 5px;
+            .MuiAutocomplete-root{
+                width: 85%;
+            }
         }
     }
-
+    @media (max-width: 500px) {
+        .home-search-form{
+            width: 90%;
+            height: 60%;
+            .search-btn{
+                right: 2%;
+            }
+        }
+    }
+    @media (max-width: 400px) {
+        .home-search-form{
+            background-size:130%;
+        }
+    }
+    @media (max-width: 350px) {
+        .home-search-form{
+            background-size:130%;
+            height: 55%;
+            .search-btn{    
+                width: 30px;
+                height: 30px;
+            }
+        }
+        .greet-user{
+            font-size: 2.2rem;
+        }
+    }
 `

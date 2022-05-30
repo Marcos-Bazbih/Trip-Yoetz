@@ -22,7 +22,6 @@ const AutocompleteForm = () => {
                 id="combo-box-demo"
                 options={cities}
                 getOptionLabel={(option) => option.name}
-                sx={{ width: "75%" }}
                 renderInput={(params) => <TextField {...params}
                     className="search-input-style"
                     variant="outlined"

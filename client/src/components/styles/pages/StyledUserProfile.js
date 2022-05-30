@@ -7,7 +7,7 @@ export const StyledUserProfile = styled.section`
     .profile-banner{
         width: 100%;
         height: 35%;
-        background-image: url("/profile_banner_bg.png");
+        background-image: url("/images/profile_banner_bg.png");
         background-size: cover;
         display: flex;
         justify-content: flex-end;

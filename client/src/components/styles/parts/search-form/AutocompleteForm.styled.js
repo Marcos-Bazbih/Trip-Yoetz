@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Autocomplete from '@mui/material/Autocomplete';
 
 export const StyledAutocompleteForm = styled(Autocomplete)`
+    width: 75%;
+    background-color: rgba(0, 0, 0, 0.2);
+
     .MuiAutocomplete-popupIndicator,
     .MuiAutocomplete-clearIndicator{
         color: ${({ mode }) => mode.color};
@@ -10,7 +13,6 @@ export const StyledAutocompleteForm = styled(Autocomplete)`
         border: 2px solid ${({ mode }) => mode.color} !important;
     }
     input{
-        background: ${({ mode }) => mode.background};
         color: ${({ mode }) => mode.color};
         font-size: 1.2rem;
         font-weight: bold;

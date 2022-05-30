@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { MainContext } from "../../../contexts/data-context";
 
-const GreetUser = ({ user }) => {
+const GreetUser = () => {
     const [greetUser, setGreetUser] = useState("");
+    const { user } = useContext(MainContext);
 
     useEffect(() => {
         const hours = new Date().getHours();
@@ -14,7 +16,10 @@ const GreetUser = ({ user }) => {
     return (
         <h1 className="greet-user">
             {greetUser}
-            <span>{user.firstName} {user.lastName}</span>
+            {
+                user.isLogin &&
+                <span>{user.firstName} {user.lastName}</span>
+            }
         </h1>
     );
 };
