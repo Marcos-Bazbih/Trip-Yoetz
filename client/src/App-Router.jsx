@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MainContext } from "./contexts/data-context";
 import Header from "./components/layout/header";
 import Container from "./components/layout/Container";
-import Footer from "./components/layout/Footer";
+import Footer from "./components/layout/footer";
 import City from "./components/pages/City";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
