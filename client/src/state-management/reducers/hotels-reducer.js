@@ -9,7 +9,7 @@ const hotelsReducer = (state = [], action) => {
             return payload;
 
         case categoriesTypes.GET_DATA_BY_NAME:
-            return payload.filter(item => item.city === city.name);
+            return payload;
 
         case categoriesTypes.SORT_BY_RATING_HIGH_TO_LOW:
             const ratingHighToLow = payload.filter(item => item.city === city.name).sort((a, b) => {

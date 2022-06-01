@@ -30,7 +30,7 @@ export const StyledDeveloperInfo = styled.article`
     font-size: 1.3rem;
   }
   .developer-image{
-      width:45%;
+      width:40%;
       height: 40%;
       border-radius: 50%;
       transition: 0.2s ease-in-out;

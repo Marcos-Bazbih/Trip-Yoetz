@@ -32,11 +32,10 @@ export const SortByNameZ_A = (value, city) => {
         city: city
     }
 };
-export const GetDataByName = (value, city) => {
+export const GetDataByName = (value) => {
     return {
         type: "GET_DATA_BY_NAME",
-        payload: value,
-        city: city
+        payload: value
     }
 };
 export const SortByPriceHighToLow = (value, city) => {
