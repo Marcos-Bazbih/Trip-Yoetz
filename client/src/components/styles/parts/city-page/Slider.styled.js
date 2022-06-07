@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledCityPageSlider = styled.div`
+export const StyledSlider = styled.div`
     width: 100%;
     height: 18vh;
     display:flex;
@@ -115,6 +115,8 @@ export const StyledCityPageSlider = styled.div`
         left: 72vw;
     }
 
+    
+/* 
     @media  only screen  and (min-width:320px) and (max-width:375px){
         
     .slider-name{
@@ -246,7 +248,6 @@ export const StyledCityPageSlider = styled.div`
     }
     }
 
-   
-    
+    */
 
 `

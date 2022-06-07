@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { MainContext } from '../../../contexts/data-context';
 import { GetHotels, DeleteHotel, UpdateHotel, AddHotel } from '../../../services/hotel-services';
-import { GetData } from '../../../state-management/actions/categories-actions';
+import { getAllData } from '../../../state-management/actions/categories-actions';
 import { StyledAdmin } from '../../styles/pages/StyledAdmin';
 import { ThemeContext } from '../../../contexts/theme-context';
 import { Link } from 'react-router-dom';
@@ -65,7 +65,7 @@ const AdminHotels = () => {
         GetHotels()
             .then(res => {
                 hotelsDispatch(
-                    GetData(res.data)
+                    getAllData(res.data)
                 )
             })
     };
@@ -78,7 +78,7 @@ const AdminHotels = () => {
             GetHotels()
                 .then(res => {
                     hotelsDispatch(
-                        GetData(res.data)
+                        getAllData(res.data)
                     )
                 })
         }
@@ -116,7 +116,7 @@ const AdminHotels = () => {
         GetHotels()
             .then(res => {
                 hotelsDispatch(
-                    GetData(res.data)
+                    getAllData(res.data)
                 )
             })
     };

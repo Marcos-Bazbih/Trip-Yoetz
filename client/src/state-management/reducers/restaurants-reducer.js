@@ -5,10 +5,10 @@ const restaurantsReducer = (state = [], action) => {
     const { type, payload, city } = action;
 
     switch (type) {
-        case categoriesTypes.GET_DATA:
+        case categoriesTypes.GET_ALL_DATA:
             return payload;
 
-        case categoriesTypes.GET_DATA_BY_NAME:
+        case categoriesTypes.GET_DATA_BY_CITY:
             return payload;
 
         case categoriesTypes.SORT_BY_RATING_HIGH_TO_LOW:

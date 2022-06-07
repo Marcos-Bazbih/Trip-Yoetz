@@ -1,39 +1,28 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/theme-context';
 import Navbar from '../layout/Navbar';
-import CityImages from '../parts/CityImages';
-import CityPageSlider from '../parts/CityPageSlider';
-import { StyledCity } from '../styles/pages/StyledCity';
-import useCity from '../../hooks/useCity';
+import Images from '../parts/city-page/Images.city';
+import Sliders from '../parts/city-page/Sliders.city';
+import { StyledCity } from '../styles/pages/City.styled';
+import useCityData from '../../hooks/useCityData';
 
 const City = () => {
     const { mode } = useContext(ThemeContext);
-    const { city, hotels, activities, restaurants } = useCity();
+    const { city } = useCityData();
 
     return (
         <StyledCity mode={mode}>
-            <h1 className='city-name-h1'>Discover <span className='city-name-span'>{city.name}</span></h1>
             <Navbar />
-            <CityImages images={city.images} />
+            <h1 className='city-title'>
+                Discover <span>{city.name}</span>
+            </h1>
+            <Images images={city.images} />
             <article className="city-description">
-                <h1 className="city-description-text">{city.description}</h1>
+                <h1>{city.description}</h1>
             </article>
-            <CityPageSlider
-                category="restaurants"
-                name="Eat"
-                info={`Quintessential ${city.name} restaurants, bars, and beyond.`}
-                items={restaurants} />
-            <CityPageSlider
-                category="hotels"
-                name="Stay"
-                info={"A mix of the charming, iconic, and modern."}
-                items={hotels} />
-            <CityPageSlider
-                category="activities"
-                name="Do"
-                info={`Places to see, ways to wander, and signature experiences that define ${city.name}.`}
-                items={activities} />
+            <Sliders />
         </StyledCity >
-    )
+    );
 };
+
 export default City;

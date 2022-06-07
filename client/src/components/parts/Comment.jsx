@@ -3,7 +3,7 @@ import { MainContext } from "../../contexts/data-context";
 import { GetRestaurants, LikeCommentRestaurant, RemoveCommentFromRestaurants } from "../../services/restaurant-services";
 import { GetHotels, LikeCommentHotel, RemoveCommentFromHotels } from "../../services/hotel-services";
 import { GetActivities, LikeCommentActivity, RemoveCommentFromActivities } from "../../services/activity-service";
-import { GetDataByName } from "../../state-management/actions/categories-actions";
+import { getDataByCity } from "../../state-management/actions/categories-actions";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -25,7 +25,7 @@ const Comment = ({ currentCard, comment }) => {
                 GetRestaurants()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 break;
@@ -34,7 +34,7 @@ const Comment = ({ currentCard, comment }) => {
                 GetHotels()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 break;
@@ -43,7 +43,7 @@ const Comment = ({ currentCard, comment }) => {
                 GetActivities()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 break;
@@ -67,7 +67,7 @@ const Comment = ({ currentCard, comment }) => {
                 GetRestaurants()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 break;
@@ -76,7 +76,7 @@ const Comment = ({ currentCard, comment }) => {
                 GetHotels()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 break;
@@ -85,7 +85,7 @@ const Comment = ({ currentCard, comment }) => {
                 GetActivities()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 break;

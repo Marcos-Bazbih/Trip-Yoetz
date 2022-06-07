@@ -3,7 +3,7 @@ import { MainContext } from "../../contexts/data-context";
 import { AddCommentToRestaurants, GetRestaurants } from "../../services/restaurant-services";
 import { AddCommentToHotels, GetHotels } from "../../services/hotel-services";
 import { AddCommentToActivities, GetActivities } from "../../services/activity-service";
-import { GetDataByName } from "../../state-management/actions/categories-actions";
+import { getDataByCity } from "../../state-management/actions/categories-actions";
 import { verifyUserAccess } from "../../utils/verifyUserAccess";
 import Comment from "./Comment";
 
@@ -33,7 +33,7 @@ const CommentsSection = ({ currentCard }) => {
                 GetRestaurants()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 inputRef.current.value = "";
@@ -43,7 +43,7 @@ const CommentsSection = ({ currentCard }) => {
                 GetHotels()
                     .then(res => {
                         hotelsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 inputRef.current.value = "";
@@ -53,7 +53,7 @@ const CommentsSection = ({ currentCard }) => {
                 GetActivities()
                     .then(res => {
                         activitiesDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     }).finally(() => setLoader(false));
                 inputRef.current.value = "";

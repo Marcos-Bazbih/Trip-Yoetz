@@ -3,7 +3,7 @@ import { MainContext } from '../../contexts/data-context';
 import { AddQuestionToRestaurants, GetRestaurants } from '../../services/restaurant-services';
 import { AddQuestionToHotels, GetHotels } from '../../services/hotel-services';
 import { AddQuestionToActivities, GetActivities } from '../../services/activity-service';
-import { GetDataByName } from '../../state-management/actions/categories-actions';
+import { getDataByCity } from '../../state-management/actions/categories-actions';
 import { verifyUserAccess } from "../../utils/verifyUserAccess";
 import Q_A from './Q_A';
 
@@ -32,7 +32,7 @@ const QaSection = ({ currentCard }) => {
                 GetRestaurants()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     })
                 inputRef.current.value = "";
@@ -42,7 +42,7 @@ const QaSection = ({ currentCard }) => {
                 GetHotels()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     })
                 inputRef.current.value = "";
@@ -52,7 +52,7 @@ const QaSection = ({ currentCard }) => {
                 GetActivities()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     })
                 inputRef.current.value = "";

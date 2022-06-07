@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { MainContext } from '../../../contexts/data-context';
 import { GetRestaurants, DeleteRestaurant, UpdateRestaurant, AddRestaurant } from '../../../services/restaurant-services';
-import { GetData } from '../../../state-management/actions/categories-actions';
+import { getAllData } from '../../../state-management/actions/categories-actions';
 import { StyledAdmin } from '../../styles/pages/StyledAdmin';
 import { ThemeContext } from '../../../contexts/theme-context';
 import { Link } from 'react-router-dom';
@@ -65,7 +65,7 @@ const AdminRestaurants = () => {
         GetRestaurants()
             .then(res => {
                 restaurantsDispatch(
-                    GetData(res.data)
+                    getAllData(res.data)
                 )
             })
     };
@@ -77,7 +77,7 @@ const AdminRestaurants = () => {
             GetRestaurants()
                 .then(res => {
                     restaurantsDispatch(
-                        GetData(res.data)
+                        getAllData(res.data)
                     )
                 })
         }
@@ -110,7 +110,7 @@ const AdminRestaurants = () => {
         GetRestaurants()
             .then(res => {
                 restaurantsDispatch(
-                    GetData(res.data)
+                    getAllData(res.data)
                 )
             })
     };

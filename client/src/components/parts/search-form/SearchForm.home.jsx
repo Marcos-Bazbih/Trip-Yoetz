@@ -1,4 +1,4 @@
-import GreetUser from "../home/GreetUser.home";
+import GreetUser from "../home-page/GreetUser.home";
 import AutocompleteForm from "./AutocompleteForm";
 
 const SearchForm = () => {

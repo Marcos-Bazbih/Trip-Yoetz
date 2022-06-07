@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { MainContext } from '../../../contexts/data-context';
 import { GetActivities, DeleteActivity, UpdateActivity, AddActivity } from '../../../services/activity-service';
-import { GetData } from '../../../state-management/actions/categories-actions';
+import { getAllData } from '../../../state-management/actions/categories-actions';
 import { StyledAdmin } from '../../styles/pages/StyledAdmin';
 import { ThemeContext } from '../../../contexts/theme-context';
 import { Link } from 'react-router-dom';
@@ -64,7 +64,7 @@ const AdminActivities = () => {
         GetActivities()
             .then(res => {
                 activitiesDispatch(
-                    GetData(res.data)
+                    getAllData(res.data)
                 )
             })
     };
@@ -77,7 +77,7 @@ const AdminActivities = () => {
             GetActivities()
                 .then(res => {
                     activitiesDispatch(
-                        GetData(res.data)
+                        getAllData(res.data)
                     )
                 })
         }
@@ -115,7 +115,7 @@ const AdminActivities = () => {
         GetActivities()
             .then(res => {
                 activitiesDispatch(
-                    GetData(res.data)
+                    getAllData(res.data)
                 )
             })
     };

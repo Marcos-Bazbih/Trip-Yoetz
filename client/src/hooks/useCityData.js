@@ -1,31 +1,30 @@
 import { useEffect, useContext } from 'react';
 import { MainContext } from '../contexts/data-context';
-import { getAllDataByCity } from '../services/data-service';
-import { GetDataByName } from "../state-management/actions/categories-actions"
+import { fetchDataByCity } from '../services/data-service';
+import { getDataByCity } from "../state-management/actions/categories-actions"
 
-const useCity = () => {
+const useCityData = () => {
     const { setLoader, city, hotels,
         activities, restaurants, hotelsDispatch,
         activitiesDispatch, restaurantsDispatch } = useContext(MainContext);
 
     useEffect(() => {
         setLoader(true);
-        getAllDataByCity(city.name)
+        fetchDataByCity(city.name)
             .then((res) => {
-                hotelsDispatch(GetDataByName(res.hotels));
-                activitiesDispatch(GetDataByName(res.activities));
-                restaurantsDispatch(GetDataByName(res.restaurants));
+                hotelsDispatch(getDataByCity(res.hotels));
+                activitiesDispatch(getDataByCity(res.activities));
+                restaurantsDispatch(getDataByCity(res.restaurants));
             })
             .catch((err) => {
-                setLoader(false);
                 console.log(err);
             })
             .finally(() => {
                 setLoader(false);
             });
-    }, []);
+    }, [hotelsDispatch, activitiesDispatch, restaurantsDispatch, city.name, setLoader]);
 
     return { city, hotels, activities, restaurants };
 };
 
-export default useCity;
+export default useCityData;

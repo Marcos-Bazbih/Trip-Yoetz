@@ -11,7 +11,7 @@ const useSearch = () => {
     const [isDisabled, setIsDisabled] = useState(true);
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    
+
     useEffect(() => {
         getAllCities()
             .then((res) => {
@@ -19,14 +19,15 @@ const useSearch = () => {
                     setCities(res.data);
                 }
             })
+        return () => {
+            setCities([]);
+        }
     }, []);
     useEffect(() => {
         setIsDisabled(true);
     }, [pathname]);
     useEffect(() => {
-        if (search.length === 0) {
-            setIsDisabled(true);
-        }
+        if (search.length === 0) setIsDisabled(true);
     }, [search]);
 
     const handleOnChange = (event, value, reason) => {
@@ -51,12 +52,16 @@ const useSearch = () => {
                 if (res.success) {
                     localStorage.setItem('city', JSON.stringify(res.data));
                     setCity(res.data);
-                    navigate("/cities");
-                }
-                else {
-                    setLoader(false);
+                    navigate(`/${res.data.name}`);
+                    setIsDisabled(true);
                 }
             })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setLoader(false);
+            });
     };
     const handleOnClose = (event, reason) => {
         if (reason === "blur" && !search) {

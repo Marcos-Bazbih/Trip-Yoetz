@@ -12,7 +12,7 @@ import { MainContext } from "../../contexts/data-context";
 import { ThemeContext } from "../../contexts/theme-context";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import { GetDataByName } from "../../state-management/actions/categories-actions";
+import { getDataByCity } from "../../state-management/actions/categories-actions";
 import { StyledCommentsQa } from "../styles/parts/StyledCommentsQa";
 import Loader from "../parts/Loader";
 
@@ -68,7 +68,7 @@ const ItemPage = () => {
                 GetRestaurants()
                     .then(res => {
                         restaurantsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     });
                 break;
@@ -77,7 +77,7 @@ const ItemPage = () => {
                 GetHotels()
                     .then(res => {
                         hotelsDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     });
                 break;
@@ -86,7 +86,7 @@ const ItemPage = () => {
                 GetActivities()
                     .then(res => {
                         activitiesDispatch(
-                            GetDataByName(res.data, city)
+                            getDataByCity(res.data, city)
                         )
                     });
                 break;

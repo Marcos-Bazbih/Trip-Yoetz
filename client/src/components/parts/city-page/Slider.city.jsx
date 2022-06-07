@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { ThemeContext } from '../../contexts/theme-context';
-import { StyledCityPageSlider } from '../styles/parts/StyledCityPageSlider';
+import { ThemeContext } from '../../../contexts/theme-context';
+import { StyledSlider } from '../../styles/parts/city-page/Slider.styled';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
-const CityPageSlider = ({ category, name, info, items }) => {
+const Slider = ({ category, name, info, items }) => {
     const { mode } = useContext(ThemeContext);
     const [left, setLeft] = useState(0);
 
@@ -17,7 +17,7 @@ const CityPageSlider = ({ category, name, info, items }) => {
     }
 
     return (
-        <StyledCityPageSlider mode={mode}>
+        <StyledSlider mode={mode}>
 
             <div className='slider-info-wrapper'>
                 <h1 className='slider-name'>{name}</h1>
@@ -53,9 +53,9 @@ const CityPageSlider = ({ category, name, info, items }) => {
             <button disabled={left === 0} onClick={handleSliderPrev} className='prev-img-btn'>
                 <ArrowCircleLeftIcon className="arrow-icon" />
             </button>
-        </StyledCityPageSlider>
+        </StyledSlider>
     );
 };
 
-export default CityPageSlider;
+export default Slider;
 

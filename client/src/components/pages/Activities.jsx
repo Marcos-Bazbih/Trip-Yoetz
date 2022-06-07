@@ -3,8 +3,8 @@ import { MainContext } from '../../contexts/data-context';
 import { ThemeContext } from '../../contexts/theme-context';
 import { GetActivities } from "../../services/activity-service.js"
 import {
-    GetDataByName, SortByRatingHighToLow, SortByRatingLowToHigh,
-    SortByNameA_Z, SortByNameZ_A, SortByPriceHighToLow, SortByPriceLowToHigh
+    getDataByCity, sortByRatingHighToLow, sortByRatingLowToHigh,
+    sortByNameA_Z, sortByNameZ_A, sortByPriceHighToLow, sortByPriceLowToHigh
 } from "../../state-management/actions/categories-actions";
 import Navbar from '../layout/Navbar';
 import ItemCard from '../parts/ItemCard';
@@ -23,7 +23,7 @@ const Activities = () => {
         GetActivities()
             .then(res => {
                 activitiesDispatch(
-                    GetDataByName(res.data, city)
+                    getDataByCity(res.data, city)
                 )
             })
             .finally(() => {
@@ -42,7 +42,7 @@ const Activities = () => {
                 GetActivities()
                     .then(res => {
                         activitiesDispatch(
-                            SortByRatingHighToLow(res.data, city)
+                            sortByRatingHighToLow(res.data, city)
                         )
                     }).finally(() => {
                         setLoader(false)
@@ -52,7 +52,7 @@ const Activities = () => {
                 GetActivities()
                     .then(res => {
                         activitiesDispatch(
-                            SortByRatingLowToHigh(res.data, city)
+                            sortByRatingLowToHigh(res.data, city)
                         )
                     }).finally(() => {
                         setLoader(false)
@@ -62,7 +62,7 @@ const Activities = () => {
                 GetActivities()
                     .then(res => {
                         activitiesDispatch(
-                            SortByNameA_Z(res.data, city)
+                            sortByNameA_Z(res.data, city)
                         )
                     }).finally(() => {
                         setLoader(false)
@@ -72,7 +72,7 @@ const Activities = () => {
                 GetActivities()
                     .then(res => {
                         activitiesDispatch(
-                            SortByNameZ_A(res.data, city)
+                            sortByNameZ_A(res.data, city)
                         )
                     }).finally(() => {
                         setLoader(false)
@@ -82,7 +82,7 @@ const Activities = () => {
                 GetActivities()
                     .then(res => {
                         activitiesDispatch(
-                            SortByPriceHighToLow(res.data, city)
+                            sortByPriceHighToLow(res.data, city)
                         )
                     }).finally(() => {
                         setLoader(false)
@@ -92,7 +92,7 @@ const Activities = () => {
                 GetActivities()
                     .then(res => {
                         activitiesDispatch(
-                            SortByPriceLowToHigh(res.data, city)
+                            sortByPriceLowToHigh(res.data, city)
                         )
                     }).finally(() => {
                         setLoader(false)
