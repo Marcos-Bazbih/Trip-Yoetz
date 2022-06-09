@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import { getAvgRating } from "../../utils/getAvgRating";
 import { StyledItemInfo } from "../styles/parts/StyledItemInfo";
 import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../utils/favoritesList-functions";
-import { MainContext } from "../../contexts/data-context";
+import { DataContext } from "../../contexts/data-context";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
@@ -12,7 +12,7 @@ import MasksIcon from '@mui/icons-material/Masks';
 
 
 const ItemInfo = ({ item }) => {
-    const { user } = useContext(MainContext);
+    const { user } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const favorites = JSON.parse(localStorage.getItem("favorites"));
     const heartIcon = useRef();

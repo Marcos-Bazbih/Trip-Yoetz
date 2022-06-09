@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { MainContext } from "./contexts/data-context";
+import { DataContext } from "./contexts/data-context";
 import Header from "./components/layout/header";
 import Container from "./components/layout/Container";
 import Footer from "./components/layout/footer";
@@ -22,7 +22,7 @@ import AdminProfile from "./components/parts/admin/AdminProfile";
 import AdminActivities from "./components/parts/admin/AdminActivities";
 
 const AppRouter = () => {
-    const { user } = useContext(MainContext);
+    const { user } = useContext(DataContext);
     const PrivateRoute = () => {
         if (user.isLogin) {
             if (user.isAdmin) return <AdminRoutes />
@@ -45,9 +45,9 @@ const AppRouter = () => {
                     <Route exact path="/" element={<Home />} />
                     <Route exact path="/about" element={<About />} />
                     <Route exact path="/:city" element={<City />} />
-                    <Route exact path="/hotels" element={<Hotels />} />
-                    <Route exact path="/activities" element={<Activities />} />
-                    <Route exact path="/restaurants" element={<Restaurants />} />
+                    <Route exact path="/:city/hotels" element={<Hotels />} />
+                    <Route exact path="/:city/activities" element={<Activities />} />
+                    <Route exact path="/:city/restaurants" element={<Restaurants />} />
                     <Route exact path="/:city/:itemPage" element={<ItemPage />} />
                     <Route exact path="/register" element={<PrivateRouteRegister />} />
                     <Route exact path="/login" element={<PrivateRouteLogin />} />

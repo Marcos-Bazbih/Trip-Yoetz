@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { MainContext } from '../../../contexts/data-context';
+import { DataContext } from '../../../contexts/data-context';
 import { GetRestaurants, DeleteRestaurant, UpdateRestaurant, AddRestaurant } from '../../../services/restaurant-services';
 import { getAllData } from '../../../state-management/actions/categories-actions';
 import { StyledAdmin } from '../../styles/pages/StyledAdmin';
@@ -34,7 +34,7 @@ const columns = [
 
 const AdminRestaurants = () => {
     const { mode } = useContext(ThemeContext);
-    const { restaurantsDispatch, setLoader } = useContext(MainContext);
+    const { restaurantsDispatch, setLoader } = useContext(DataContext);
     const [updateItem, setUpdateItem] = useState({})
     const [updateImages, setUpdateImages] = useState([])
     const [updatePrice, setUpdatePrice] = useState([])

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { getAvgRating } from "../../utils/getAvgRating";
 import { StyledItemCard } from "../styles/parts/StyledItemCard";
-import { MainContext } from "../../contexts/data-context";
+import { DataContext } from "../../contexts/data-context";
 import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../utils/favoritesList-functions";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ThemeContext } from "../../contexts/theme-context";
@@ -12,7 +12,7 @@ import StarIcon from '@mui/icons-material/Star';
 
 
 const ItemCard = ({ product }) => {
-    const { user } = useContext(MainContext);
+    const { user } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const [rating, setRating] = useState(0);
     const heartIcon = useRef();

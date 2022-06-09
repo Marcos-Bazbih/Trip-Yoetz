@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { MainContext } from '../../../contexts/data-context';
+import { DataContext } from '../../../contexts/data-context';
 import { GetHotels, DeleteHotel, UpdateHotel, AddHotel } from '../../../services/hotel-services';
 import { getAllData } from '../../../state-management/actions/categories-actions';
 import { StyledAdmin } from '../../styles/pages/StyledAdmin';
@@ -42,7 +42,7 @@ const AdminHotels = () => {
     const [addPrice, setAddPrice] = useState([])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    const { hotelsDispatch } = useContext(MainContext);
+    const { hotelsDispatch } = useContext(DataContext);
     const [rows, setRows] = useState([]);
     const editDialogRef = useRef();
     const addDialogRef = useRef();

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { MainContext } from '../../../contexts/data-context';
+import { DataContext } from '../../../contexts/data-context';
 import { GetActivities, DeleteActivity, UpdateActivity, AddActivity } from '../../../services/activity-service';
 import { getAllData } from '../../../state-management/actions/categories-actions';
 import { StyledAdmin } from '../../styles/pages/StyledAdmin';
@@ -41,7 +41,7 @@ const AdminActivities = () => {
     const [addPrice, setAddPrice] = useState([])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    const { activitiesDispatch } = useContext(MainContext);
+    const { activitiesDispatch } = useContext(DataContext);
     const [rows, setRows] = useState([]);
     const editDialogRef = useRef();
     const addDialogRef = useRef();

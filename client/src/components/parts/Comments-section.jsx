@@ -1,5 +1,5 @@
 import { useContext, useState, useRef } from "react";
-import { MainContext } from "../../contexts/data-context";
+import { DataContext } from "../../contexts/data-context";
 import { AddCommentToRestaurants, GetRestaurants } from "../../services/restaurant-services";
 import { AddCommentToHotels, GetHotels } from "../../services/hotel-services";
 import { AddCommentToActivities, GetActivities } from "../../services/activity-service";
@@ -8,7 +8,7 @@ import { verifyUserAccess } from "../../utils/verifyUserAccess";
 import Comment from "./Comment";
 
 const CommentsSection = ({ currentCard }) => {
-    const { setLoader, restaurantsDispatch, hotelsDispatch, activitiesDispatch, user, city } = useContext(MainContext);
+    const { setLoader, restaurantsDispatch, hotelsDispatch, activitiesDispatch, user, city } = useContext(DataContext);
     const [comment, setComment] = useState({ likes: { amount: 0, usersId: [] } });
     const [charsLength, setCharsLength] = useState(0);
     const inputRef = useRef();

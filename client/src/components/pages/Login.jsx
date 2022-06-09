@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MainContext } from "../../contexts/data-context";
+import { DataContext } from "../../contexts/data-context";
 import { ThemeContext } from "../../contexts/theme-context"
 import { decodeAndLoginUser } from "../../utils/decodeAndLoginUser";
 import { StyledLoginPage } from "../styles/pages/StyledLoginPage";
@@ -10,7 +10,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const Login = () => {
-  const { setUser } = useContext(MainContext);
+  const { setUser } = useContext(DataContext);
   const { mode } = useContext(ThemeContext);
   const [formUser, setFormUser] = useState({});
   const [errorMsg, setErrorMsg] = useState("");

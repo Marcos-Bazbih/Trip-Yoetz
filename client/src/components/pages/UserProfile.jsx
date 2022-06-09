@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { MainContext } from "../../contexts/data-context";
+import { DataContext } from "../../contexts/data-context";
 import { StyledUserProfile } from "../styles/pages/StyledUserProfile";
 import EditIcon from "@mui/icons-material/Edit";
 import { userUpdate } from "../../services/user-service";
@@ -9,7 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { removeItemToFavorites } from '../../utils/favoritesList-functions';
 
 const UserProfile = () => {
-  const { user } = useContext(MainContext);
+  const { user } = useContext(DataContext);
   const { mode } = useContext(ThemeContext);
   const [profileInfoUpdate, SetProfileInfoUpdate] = useState({ ...user });
   const [toggleEdit, setToggleEdit] = useState(false);

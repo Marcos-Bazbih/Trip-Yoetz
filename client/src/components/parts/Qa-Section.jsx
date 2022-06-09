@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react';
-import { MainContext } from '../../contexts/data-context';
+import { DataContext } from '../../contexts/data-context';
 import { AddQuestionToRestaurants, GetRestaurants } from '../../services/restaurant-services';
 import { AddQuestionToHotels, GetHotels } from '../../services/hotel-services';
 import { AddQuestionToActivities, GetActivities } from '../../services/activity-service';
@@ -8,7 +8,7 @@ import { verifyUserAccess } from "../../utils/verifyUserAccess";
 import Q_A from './Q_A';
 
 const QaSection = ({ currentCard }) => {
-    const { user, restaurantsDispatch, city } = useContext(MainContext);
+    const { user, restaurantsDispatch, city } = useContext(DataContext);
     const [question, setQuestion] = useState({ id: null, user_id: null });
     const inputRef = useRef();
     const [charsLength, setCharsLength] = useState(0);

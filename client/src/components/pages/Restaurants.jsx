@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
-import { MainContext } from '../../contexts/data-context';
+import { DataContext } from '../../contexts/data-context';
 import { ThemeContext } from '../../contexts/theme-context';
 import { GetRestaurants } from "../../services/restaurant-services"
 import {
     getDataByCity, sortByRatingHighToLow, sortByRatingLowToHigh,
     sortByNameA_Z, sortByNameZ_A, sortByPriceHighToLow, sortByPriceLowToHigh
 } from "../../state-management/actions/categories-actions";
-import Navbar from '../layout/Navbar';
+import Navbar from '../layout/navbar';
 import ItemCard from '../parts/ItemCard';
 import Loader from '../parts/Loader';
 import { StyledCategoryPage } from '../styles/pages/StyledCategoryPage';
@@ -14,7 +14,7 @@ import { StyledItemsContainer } from '../styles/parts/StyledItemsContainer';
 
 
 const Restaurants = () => {
-    const { loader, setLoader, restaurants, restaurantsDispatch, city } = useContext(MainContext);
+    const { loader, setLoader, restaurants, restaurantsDispatch, city } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const [select, setSelect] = useState("");
 

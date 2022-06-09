@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import Navbar from "../layout/Navbar";
+import Navbar from "../layout/navbar";
 import CommentsSection from "../parts/Comments-section";
 import { useContext, useEffect, useState } from "react";
 import { GetRestaurantById, GetRestaurants, RateRestaurant } from "../../services/restaurant-services";
@@ -8,7 +8,7 @@ import { GetActivityById, GetActivities, RateActivity } from "../../services/act
 import ItemInfo from "../parts/ItemInfo";
 import QaSection from "../parts/Qa-Section";
 import { StyledItemPage } from "../styles/pages/StyledItemPage";
-import { MainContext } from "../../contexts/data-context";
+import { DataContext } from "../../contexts/data-context";
 import { ThemeContext } from "../../contexts/theme-context";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
@@ -17,7 +17,7 @@ import { StyledCommentsQa } from "../styles/parts/StyledCommentsQa";
 import Loader from "../parts/Loader";
 
 const ItemPage = () => {
-    const { loader, setLoader, restaurants, restaurantsDispatch, hotels, hotelsDispatch, activities, activitiesDispatch, user, city } = useContext(MainContext);
+    const { loader, setLoader, restaurants, restaurantsDispatch, hotels, hotelsDispatch, activities, activitiesDispatch, user, city } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const [item, setItem] = useState({});
     const [toggle, setToggle] = useState(true);

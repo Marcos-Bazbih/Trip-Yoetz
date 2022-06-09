@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { MainContext } from "../../contexts/data-context";
+import { DataContext } from "../../contexts/data-context";
 import { GetRestaurants, LikeCommentRestaurant, RemoveCommentFromRestaurants } from "../../services/restaurant-services";
 import { GetHotels, LikeCommentHotel, RemoveCommentFromHotels } from "../../services/hotel-services";
 import { GetActivities, LikeCommentActivity, RemoveCommentFromActivities } from "../../services/activity-service";
@@ -9,7 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const Comment = ({ currentCard, comment }) => {
     const [likedComment, setLikedComment] = useState({});
-    const { setLoader, user, restaurantsDispatch, city } = useContext(MainContext);
+    const { setLoader, user, restaurantsDispatch, city } = useContext(DataContext);
     const likeRef = useRef();
 
     useEffect(() => {

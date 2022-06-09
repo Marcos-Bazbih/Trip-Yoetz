@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MainContext } from '../contexts/data-context';
+import { DataContext } from '../contexts/data-context';
 import { getAllCities } from '../services/city-service';
 import { getCityByName } from '../services/city-service';
 
 const useSearch = () => {
-    const { setLoader, setCity } = useContext(MainContext);
+    const { setLoader, setCity } = useContext(DataContext);
     const [search, setSearch] = useState('');
     const [cities, setCities] = useState([]);
     const [isDisabled, setIsDisabled] = useState(true);

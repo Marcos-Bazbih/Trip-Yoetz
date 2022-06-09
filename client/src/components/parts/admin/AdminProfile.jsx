@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
-import { MainContext } from "../../../contexts/data-context";
+import { DataContext } from "../../../contexts/data-context";
 import { StyledAdminProfile } from "../../styles/pages/StyledAdminProfile";
 import EditIcon from '@mui/icons-material/Edit';
 import { ThemeContext } from "../../../contexts/theme-context";
 import { userUpdate } from "../../../services/user-service";
 
 const AdminProfile = () => {
-  const { user } = useContext(MainContext);
+  const { user } = useContext(DataContext);
   const { mode } = useContext(ThemeContext);
   const [profileInfoUpdate, SetProfileInfoUpdate] = useState({ ...user });
   const [toggleEdit, setToggleEdit] = useState(false);

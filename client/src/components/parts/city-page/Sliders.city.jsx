@@ -1,9 +1,6 @@
 import Slider from "./Slider.city";
-import { useContext } from "react";
-import { MainContext } from "../../../contexts/data-context";
-const Sliders = () => {
-    const { city, restaurants, hotels, activities } = useContext(MainContext);
 
+const Sliders = ({city, restaurants, hotels, activities}) => {
     return (
         <>
             <Slider

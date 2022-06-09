@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { MainContext } from "../../../contexts/data-context";
+import { DataContext } from "../../../contexts/data-context";
 import { logoutAndClearLocalStorage } from "../../../utils/logoutAndClearLocalStorage";
 import ThemeMode from "./ThemeMode";
 import { StyledBurgerMenu } from "../../../components/styles/layout/header/BurgerMenu.styled";
@@ -8,7 +8,7 @@ import { ThemeContext } from "../../../contexts/theme-context";
 import CloseIcon from '@mui/icons-material/Close';
 
 const BurgerMenu = ({ isOpen, setIsOpen }) => {
-    const { user, setUser } = useContext(MainContext);
+    const { user, setUser } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const navigate = useNavigate();
     const { pathname } = useLocation();

@@ -9,7 +9,7 @@ export const StyledCity = styled.section`
     gap: 5vh; 
 
     .city-title{
-        margin-top:12.5vh;
+        margin-top:15vh;
         font-size: 4rem;
         
         span{

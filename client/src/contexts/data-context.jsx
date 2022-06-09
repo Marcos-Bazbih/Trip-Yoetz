@@ -4,7 +4,7 @@ import activitiesReducer from "../state-management/reducers/activities-reducer";
 import restaurantsReducer from "../state-management/reducers/restaurants-reducer";
 import { getUserFromLocalStorage } from "../utils/getUserFromLocalStorage";
 
-export const MainContext = createContext();
+export const DataContext = createContext();
 
 const DataContextProvider = ({ children }) => {
     const [hotels, hotelsDispatch] = useReducer(hotelsReducer, []);
@@ -30,9 +30,9 @@ const DataContextProvider = ({ children }) => {
     }, [hotels, activities, restaurants, user, city, loader, setLoader]);
 
     return (
-        <MainContext.Provider value={contextValue}>
+        <DataContext.Provider value={contextValue}>
             {children}
-        </MainContext.Provider>
+        </DataContext.Provider>
     );
 };
 

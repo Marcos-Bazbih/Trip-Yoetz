@@ -1,13 +1,13 @@
 import { useContext, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { MainContext } from "../../contexts/data-context";
+import { DataContext } from "../../contexts/data-context";
 import { ThemeContext } from "../../contexts/theme-context";
 import { StyledContainer } from "../styles/layout/Container.styled";
 import Loader from "../parts/Loader";
 
 const Container = ({ children }) => {
   const { mode } = useContext(ThemeContext);
-  const { loader } = useContext(MainContext);
+  const { loader } = useContext(DataContext);
   const scrollToTopRef = useRef();
   const { pathname } = useLocation();
 

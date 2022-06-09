@@ -1,12 +1,12 @@
 import { useEffect, useContext } from 'react';
-import { MainContext } from '../contexts/data-context';
+import { DataContext } from '../contexts/data-context';
 import { fetchDataByCity } from '../services/data-service';
 import { getDataByCity } from "../state-management/actions/categories-actions"
 
 const useCityData = () => {
     const { setLoader, city, hotels,
         activities, restaurants, hotelsDispatch,
-        activitiesDispatch, restaurantsDispatch } = useContext(MainContext);
+        activitiesDispatch, restaurantsDispatch } = useContext(DataContext);
 
     useEffect(() => {
         setLoader(true);
