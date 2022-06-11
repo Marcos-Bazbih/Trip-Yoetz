@@ -59,4 +59,35 @@ export const StyledCity = styled.section`
             }
         }
     }
+
+    @media (max-width: 600px) {
+        width: 70%;
+
+        .city-title{
+            font-size: 3.5rem;
+        }
+        .city-description{
+            h1{
+                font-size: 1.8rem;
+            }
+        }
+    }
+    @media (max-width: 500px) {
+        .city-title{
+            font-size: 3.2rem;
+        }
+        .city-images-wrapper{
+            height: 35vh;
+        }
+    }
+    @media (max-width: 426px) {
+        .city-description{
+            h1{
+                font-size: 1.6rem;
+            }
+        }
+    }
+    @media (max-width: 376px) {
+        width: 80%;
+    }
 `

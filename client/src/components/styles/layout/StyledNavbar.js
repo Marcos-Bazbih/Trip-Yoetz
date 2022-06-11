@@ -28,12 +28,15 @@ export const StyledNavbar = styled.nav`
         transition: 0.2s ease-in-out;
         font-weight: 900;
         border-radius:10px;
+        font-size:1.8rem;
 
-        &.big{
-            font-size:1.8rem;
+        .navbar-icon{
+           font-size: 2.5rem;
         }
         &.mini{
-            font-size:3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         &.highlight-current-route{
             background: ${({ mode }) => mode.color};
@@ -44,26 +47,13 @@ export const StyledNavbar = styled.nav`
         background: ${({ mode }) => mode.color};
         }
     }
-    /* @media (max-width: 550px) {
-        ul{
-            gap: 5%;
-        }
-    }
-    @media (max-width: 450px) {
-        a{
-            font-size:1.6rem;
-            padding:5px;
-        }
-    }
-    @media (max-width: 390px) {
-        ul{
-            gap: 3%;
-        }
-    }
-    @media (max-width: 365px) {
-        ul{
-            gap: 1%;
-        }
-    } */
 
+    @media (max-width: 376px) {
+        a{
+            font-size: 1.5rem;
+            .navbar-icon{
+               font-size: 2rem;
+            }
+        }
+    }
 `

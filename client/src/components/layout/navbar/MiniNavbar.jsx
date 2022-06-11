@@ -14,20 +14,23 @@ const MiniNavbar = ({ city, highlightCurrentRoute }) => {
             </li>
             <li>
                 <Link to={`/${city.name}/hotels`}
+                    title="Hotels"
                     className={"mini" + highlightCurrentRoute(`/${city.name}/hotels`)}>
-                    <HotelIcon />
+                    <HotelIcon className='navbar-icon' />
                 </Link>
             </li>
             <li>
                 <Link to={`/${city.name}/restaurants`}
+                    title="Restaurants"
                     className={"mini" + highlightCurrentRoute(`/${city.name}/restaurants`)}>
-                    <RestaurantIcon />
+                    <RestaurantIcon className='navbar-icon' />
                 </Link>
             </li>
             <li>
                 <Link to={`/${city.name}/activities`}
+                    title="Activities"
                     className={"mini" + highlightCurrentRoute(`/${city.name}/activities`)}>
-                    <AttractionsIcon />
+                    <AttractionsIcon className='navbar-icon' />
                 </Link>
             </li>
         </ul>

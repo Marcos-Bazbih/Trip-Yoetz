@@ -16,8 +16,8 @@ const Navbar = () => {
 
     const highlightCurrentRoute = (route) => {
         return pathname === route ? " highlight-current-route" : "";
-    }
-    const navbarProps = { city, highlightCurrentRoute }
+    };
+    const navbarProps = { city, highlightCurrentRoute };
     
     return (
         <StyledNavbar mode={mode}>
