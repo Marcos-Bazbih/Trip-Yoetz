@@ -60,7 +60,7 @@ export const StyledCity = styled.section`
         }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
         width: 70%;
 
         .city-title{
@@ -68,7 +68,7 @@ export const StyledCity = styled.section`
         }
         .city-description{
             h1{
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
         }
     }

@@ -17,10 +17,10 @@ export const StyledSlider = styled.div`
         justify-content: space-evenly;
 
         h1{
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
         h2{
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
         a{
             font-size: 1.5rem;
@@ -60,7 +60,7 @@ export const StyledSlider = styled.div`
                     background: rgba(255, 255, 255, 0.7);
                     color: black;
                     text-align: center;
-                    font-size: 1.7rem;
+                    font-size: 1.5rem;
                     font-weight:900;
                     position: absolute;
                     z-index:2;
