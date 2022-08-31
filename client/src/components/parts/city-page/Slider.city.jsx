@@ -4,19 +4,36 @@ import { ThemeContext } from '../../../contexts/theme-context';
 import { StyledSlider } from '../../styles/parts/city-page/Slider.styled';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import useWindowDimensions from '../../../hooks/useWindowDimensions';
 
 const Slider = ({ category, name, info, items }) => {
     const { mode } = useContext(ThemeContext);
     const [left, setLeft] = useState(0);
     const { pathname } = useLocation();
+    const { width } = useWindowDimensions();
 
     useEffect(() => {
         setLeft(0);
-    }, [pathname])
+    }, [pathname]);
+
+    const disableBtn = () => {
+        if (width > 768 && left === 36) return true;
+        if (width <= 768 && left === 76) return true;
+    }
 
     const handleSliderBtn = (direction) => {
-        if (direction === 'prev') setLeft(left - 12);
-        if (direction === 'next') setLeft(left + 12);
+        if (width <= 550) {
+            if (direction === 'prev') setLeft(left - 25);
+            if (direction === 'next') setLeft(left + 25);
+        }
+        else if (width <= 768) {
+            if (direction === 'prev') setLeft(left - 19);
+            if (direction === 'next') setLeft(left + 19);
+        }
+        else {
+            if (direction === 'prev') setLeft(left - 12);
+            if (direction === 'next') setLeft(left + 12);
+        }
     }
 
     return (
@@ -48,7 +65,7 @@ const Slider = ({ category, name, info, items }) => {
                     onClick={() => handleSliderBtn("prev")}>
                     <ArrowCircleLeftIcon className="arrow-icon" />
                 </button>
-                <button disabled={left === 36}
+                <button disabled={width > 768 ? left === 36 : left === 76}
                     onClick={() => handleSliderBtn("next")}>
                     <ArrowCircleRightIcon className="arrow-icon" />
                 </button>
