@@ -160,28 +160,34 @@ export const StyledSlider = styled.div`
         }
     }
     @media (max-width: 551px) {
-    .slider-info-wrapper{
-        width: 29%;
-        h1{
-            font-size: 1.8rem;
+        .slider-info-wrapper{
+            width: 29%;
+            h1{
+                font-size: 1.8rem;
+            }
+            h2{
+                font-size: 1rem;
+            }
+            a{
+                font-size: 1.2rem;
+            }
         }
-        h2{
-            font-size: 1rem;
-        }
-        a{
-            font-size: 1.2rem;
-        }
-    }
-    .slider-box-display{
-        width: 70%;
-        .slider-images-wrapper{
-            /* gap: 2vw; */
-            .slider-card{
-                width: 22vw;
+        .slider-box-display{
+            width: 70%;
+            .slider-images-wrapper{
+                .slider-card{
+                    width: 22vw;
+                }
+                .end-slider{
+                    width: 20vw;
+                    right: -36vw;
+                }
             }
         }
     }
-    }
+
+
+
 
 
 `

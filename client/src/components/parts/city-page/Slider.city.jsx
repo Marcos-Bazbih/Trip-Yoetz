@@ -17,14 +17,16 @@ const Slider = ({ category, name, info, items }) => {
     }, [pathname]);
 
     const disableBtn = () => {
-        if (width > 768 && left === 36) return true;
+        if (width <= 551 && left === 150) return true;
         if (width <= 768 && left === 76) return true;
+        if (width > 768 && left === 36) return true;
+        return false;
     }
 
     const handleSliderBtn = (direction) => {
         if (width <= 550) {
-            if (direction === 'prev') setLeft(left - 25);
-            if (direction === 'next') setLeft(left + 25);
+            if (direction === 'prev') setLeft(left - 50);
+            if (direction === 'next') setLeft(left + 50);
         }
         else if (width <= 768) {
             if (direction === 'prev') setLeft(left - 19);
@@ -65,7 +67,7 @@ const Slider = ({ category, name, info, items }) => {
                     onClick={() => handleSliderBtn("prev")}>
                     <ArrowCircleLeftIcon className="arrow-icon" />
                 </button>
-                <button disabled={width > 768 ? left === 36 : left === 76}
+                <button disabled={disableBtn()}
                     onClick={() => handleSliderBtn("next")}>
                     <ArrowCircleRightIcon className="arrow-icon" />
                 </button>
