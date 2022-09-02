@@ -17,6 +17,7 @@ const Slider = ({ category, name, info, items }) => {
     }, [pathname]);
 
     const disableBtn = () => {
+        if (width <= 376 && left === 162) return true;
         if (width <= 551 && left === 150) return true;
         if (width <= 768 && left === 76) return true;
         if (width > 768 && left === 36) return true;
@@ -24,7 +25,11 @@ const Slider = ({ category, name, info, items }) => {
     }
 
     const handleSliderBtn = (direction) => {
-        if (width <= 550) {
+        if (width <= 376) {
+            if (direction === 'prev') setLeft(left - 54);
+            if (direction === 'next') setLeft(left + 54);
+        }
+        else if (width <= 550) {
             if (direction === 'prev') setLeft(left - 50);
             if (direction === 'next') setLeft(left + 50);
         }

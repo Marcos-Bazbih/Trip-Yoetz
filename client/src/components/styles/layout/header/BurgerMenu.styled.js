@@ -53,7 +53,7 @@ export const StyledBurgerMenu = styled.div`
         .menu-link{
             text-decoration: none;
             color: ${({ mode }) => mode.background};
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: bold;
             padding: 1rem;
             cursor: pointer;
