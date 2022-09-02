@@ -5,6 +5,7 @@ import { StyledSlider } from '../../styles/parts/city-page/Slider.styled';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import useCityData from '../../../hooks/useCityData';
 import { disableBtn, handleSliderBtn } from "./slider-actions";
 
 const Slider = ({ category, name, info, items }) => {
@@ -12,6 +13,7 @@ const Slider = ({ category, name, info, items }) => {
     const [left, setLeft] = useState(0);
     const { pathname } = useLocation();
     const { width } = useWindowDimensions();
+    const { city } = useCityData();
 
     useEffect(() => {
         setLeft(0);
@@ -22,7 +24,7 @@ const Slider = ({ category, name, info, items }) => {
             <div className='slider-info-wrapper'>
                 <h1>{name}</h1>
                 <h2>{info}</h2>
-                <Link to={`/${category}`}>view all</Link>
+                <Link to={`/${city.name}/${category}`}>view all</Link>
             </div>
             <div className='slider-box-display'>
                 <div style={{ left: `-${left}vw` }} className='slider-images-wrapper'>
@@ -37,7 +39,7 @@ const Slider = ({ category, name, info, items }) => {
                         )
                     }
                     <div className='end-slider'>
-                        <Link to={`/${category}`}>view all</Link>
+                        <Link to={`/${city.name}/${category}`}>view all</Link>
                     </div>
                 </div>
             </div>

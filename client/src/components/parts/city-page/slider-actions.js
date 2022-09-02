@@ -9,7 +9,6 @@ export const disableBtn = (width, left) => {
             return false;
     }
 };
-
 export const handleSliderBtn = (direction, width, left, setLeft) => {
     switch (true) {
         case width <= 376:

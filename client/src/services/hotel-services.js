@@ -3,14 +3,9 @@ const BASE_URL = process.env.NODE_ENV === 'production'
     : 'http://localhost:9090';
 
 export const GetHotels = async () => {
-    try {
-        return await fetch(`${BASE_URL}/api/hotels`)
-            .then((res) => res.json())
-            .catch((err) => console.log(err))
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return await fetch(`${BASE_URL}/api/hotels`)
+        .then((res) => res.json())
+        .catch((err) => console.log(err))
 };
 export const GetHotelById = async (id) => {
     try {
