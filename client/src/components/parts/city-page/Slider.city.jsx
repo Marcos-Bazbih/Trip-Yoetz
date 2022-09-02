@@ -5,6 +5,7 @@ import { StyledSlider } from '../../styles/parts/city-page/Slider.styled';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import { disableBtn, handleSliderBtn } from "./slider-actions";
 
 const Slider = ({ category, name, info, items }) => {
     const { mode } = useContext(ThemeContext);
@@ -15,33 +16,6 @@ const Slider = ({ category, name, info, items }) => {
     useEffect(() => {
         setLeft(0);
     }, [pathname]);
-
-    const disableBtn = () => {
-        if (width <= 376 && left === 162) return true;
-        if (width <= 551 && left === 150) return true;
-        if (width <= 768 && left === 76) return true;
-        if (width > 768 && left === 36) return true;
-        return false;
-    }
-
-    const handleSliderBtn = (direction) => {
-        if (width <= 376) {
-            if (direction === 'prev') setLeft(left - 54);
-            if (direction === 'next') setLeft(left + 54);
-        }
-        else if (width <= 550) {
-            if (direction === 'prev') setLeft(left - 50);
-            if (direction === 'next') setLeft(left + 50);
-        }
-        else if (width <= 768) {
-            if (direction === 'prev') setLeft(left - 19);
-            if (direction === 'next') setLeft(left + 19);
-        }
-        else {
-            if (direction === 'prev') setLeft(left - 12);
-            if (direction === 'next') setLeft(left + 12);
-        }
-    }
 
     return (
         <StyledSlider mode={mode}>
@@ -69,11 +43,11 @@ const Slider = ({ category, name, info, items }) => {
             </div>
             <div className="slider-btns-wrapper">
                 <button disabled={left === 0}
-                    onClick={() => handleSliderBtn("prev")}>
+                    onClick={() => handleSliderBtn("prev", width, left, setLeft)}>
                     <ArrowCircleLeftIcon className="arrow-icon" />
                 </button>
-                <button disabled={disableBtn()}
-                    onClick={() => handleSliderBtn("next")}>
+                <button disabled={disableBtn(width, left)}
+                    onClick={() => handleSliderBtn("next", width, left, setLeft)}>
                     <ArrowCircleRightIcon className="arrow-icon" />
                 </button>
             </div>
