@@ -11,101 +11,87 @@ import ItemCard from '../parts/ItemCard';
 import Loader from '../parts/Loader';
 import { StyledCategoryPage } from '../styles/pages/StyledCategoryPage';
 import { StyledItemsContainer } from '../styles/parts/StyledItemsContainer';
-
+import useCityData from "../../hooks/useCityData";
 
 const Hotels = () => {
-    const { loader, setLoader, hotels, hotelsDispatch, city } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const [select, setSelect] = useState("");
-
-    useEffect(() => {
-        setLoader(true);
-        GetHotels()
-            .then(res => {
-                hotelsDispatch(
-                    getDataByCity(res.data, city)
-                )
-            })
-            .finally(() => {
-                setLoader(false)
-            })
-    }, [hotelsDispatch, city, setLoader]);
+    const { city, hotels } = useCityData();
 
     const selectOnChange = (e) => {
         setSelect(e.target.value)
     }
 
-    const handleSelect = () => {
-        setLoader(true);
-        switch (select) {
-            case "sortByRatingHighToLow":
-                GetHotels()
-                    .then(res => {
-                        hotelsDispatch(
-                            sortByRatingHighToLow(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
-                break;
-            case "sortByRatingLowToHigh":
-                GetHotels()
-                    .then(res => {
-                        hotelsDispatch(
-                            sortByRatingLowToHigh(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
-                break;
-            case "sortByNameA_Z":
-                GetHotels()
-                    .then(res => {
-                        hotelsDispatch(
-                            sortByNameA_Z(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
-                break;
-            case "sortByNameZ_A":
-                GetHotels()
-                    .then(res => {
-                        hotelsDispatch(
-                            sortByNameZ_A(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
-                break;
-            case "sortByPriceHighToLow":
-                GetHotels()
-                    .then(res => {
-                        hotelsDispatch(
-                            sortByPriceHighToLow(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
-                break;
-            case "sortByPriceLowToHigh":
-                GetHotels()
-                    .then(res => {
-                        hotelsDispatch(
-                            sortByPriceLowToHigh(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
-                break;
-            default:
-                break;
-        };
-    };
+    // const handleSelect = () => {
+    //     setLoader(true);
+    //     switch (select) {
+    //         case "sortByRatingHighToLow":
+    //             GetHotels()
+    //                 .then(res => {
+    //                     hotelsDispatch(
+    //                         sortByRatingHighToLow(res.data, city)
+    //                     )
+    //                 }).finally(() => {
+    //                     setLoader(false)
+    //                 });
+    //             break;
+    //         case "sortByRatingLowToHigh":
+    //             GetHotels()
+    //                 .then(res => {
+    //                     hotelsDispatch(
+    //                         sortByRatingLowToHigh(res.data, city)
+    //                     )
+    //                 }).finally(() => {
+    //                     setLoader(false)
+    //                 });
+    //             break;
+    //         case "sortByNameA_Z":
+    //             GetHotels()
+    //                 .then(res => {
+    //                     hotelsDispatch(
+    //                         sortByNameA_Z(res.data, city)
+    //                     )
+    //                 }).finally(() => {
+    //                     setLoader(false)
+    //                 });
+    //             break;
+    //         case "sortByNameZ_A":
+    //             GetHotels()
+    //                 .then(res => {
+    //                     hotelsDispatch(
+    //                         sortByNameZ_A(res.data, city)
+    //                     )
+    //                 }).finally(() => {
+    //                     setLoader(false)
+    //                 });
+    //             break;
+    //         case "sortByPriceHighToLow":
+    //             GetHotels()
+    //                 .then(res => {
+    //                     hotelsDispatch(
+    //                         sortByPriceHighToLow(res.data, city)
+    //                     )
+    //                 }).finally(() => {
+    //                     setLoader(false)
+    //                 });
+    //             break;
+    //         case "sortByPriceLowToHigh":
+    //             GetHotels()
+    //                 .then(res => {
+    //                     hotelsDispatch(
+    //                         sortByPriceLowToHigh(res.data, city)
+    //                     )
+    //                 }).finally(() => {
+    //                     setLoader(false)
+    //                 });
+    //             break;
+    //         default:
+    //             break;
+    //     };
+    // };
 
     return (
         <StyledCategoryPage mode={mode}>
-            {loader && <Loader />}
             <Navbar />
             <h1 className='category-name-h1'>Hotels</h1>
             <div className='sort-wrapper'>
@@ -119,7 +105,8 @@ const Hotels = () => {
                         <option value={"sortByNameA_Z"}>Name A-Z</option>
                         <option value={"sortByNameZ_A"}>Name Z-A</option>
                     </select>
-                    <button className='sort-btn' onClick={handleSelect}>Sort</button>
+                    <button className='sort-btn'>Sort</button>
+                    {/* <button className='sort-btn' onClick={handleSelect}>Sort</button> */}
                 </div>
             </div>
             <StyledItemsContainer>
