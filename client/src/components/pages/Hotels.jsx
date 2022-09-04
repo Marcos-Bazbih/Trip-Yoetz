@@ -1,94 +1,50 @@
-import { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../../contexts/data-context';
+import { useContext, useState } from 'react';
 import { ThemeContext } from '../../contexts/theme-context';
-import { GetHotels } from "../../services/hotel-services"
 import {
-    getDataByCity, sortByRatingHighToLow, sortByRatingLowToHigh,
+    sortByRatingHighToLow, sortByRatingLowToHigh,
     sortByNameA_Z, sortByNameZ_A, sortByPriceHighToLow, sortByPriceLowToHigh
 } from "../../state-management/actions/categories-actions";
 import Navbar from '../layout/navbar';
 import ItemCard from '../parts/ItemCard';
-import Loader from '../parts/Loader';
 import { StyledCategoryPage } from '../styles/pages/StyledCategoryPage';
 import { StyledItemsContainer } from '../styles/parts/StyledItemsContainer';
-import useCityData from "../../hooks/useCityData";
+import { DataContext } from '../../contexts/data-context';
+import useCityData from '../../hooks/useCityData';
 
 const Hotels = () => {
     const { mode } = useContext(ThemeContext);
+    const { hotelsDispatch } = useContext(DataContext);
+    const { hotels } = useCityData();
     const [select, setSelect] = useState("");
-    const { city, hotels } = useCityData();
 
     const selectOnChange = (e) => {
         setSelect(e.target.value)
     }
 
-    // const handleSelect = () => {
-    //     setLoader(true);
-    //     switch (select) {
-    //         case "sortByRatingHighToLow":
-    //             GetHotels()
-    //                 .then(res => {
-    //                     hotelsDispatch(
-    //                         sortByRatingHighToLow(res.data, city)
-    //                     )
-    //                 }).finally(() => {
-    //                     setLoader(false)
-    //                 });
-    //             break;
-    //         case "sortByRatingLowToHigh":
-    //             GetHotels()
-    //                 .then(res => {
-    //                     hotelsDispatch(
-    //                         sortByRatingLowToHigh(res.data, city)
-    //                     )
-    //                 }).finally(() => {
-    //                     setLoader(false)
-    //                 });
-    //             break;
-    //         case "sortByNameA_Z":
-    //             GetHotels()
-    //                 .then(res => {
-    //                     hotelsDispatch(
-    //                         sortByNameA_Z(res.data, city)
-    //                     )
-    //                 }).finally(() => {
-    //                     setLoader(false)
-    //                 });
-    //             break;
-    //         case "sortByNameZ_A":
-    //             GetHotels()
-    //                 .then(res => {
-    //                     hotelsDispatch(
-    //                         sortByNameZ_A(res.data, city)
-    //                     )
-    //                 }).finally(() => {
-    //                     setLoader(false)
-    //                 });
-    //             break;
-    //         case "sortByPriceHighToLow":
-    //             GetHotels()
-    //                 .then(res => {
-    //                     hotelsDispatch(
-    //                         sortByPriceHighToLow(res.data, city)
-    //                     )
-    //                 }).finally(() => {
-    //                     setLoader(false)
-    //                 });
-    //             break;
-    //         case "sortByPriceLowToHigh":
-    //             GetHotels()
-    //                 .then(res => {
-    //                     hotelsDispatch(
-    //                         sortByPriceLowToHigh(res.data, city)
-    //                     )
-    //                 }).finally(() => {
-    //                     setLoader(false)
-    //                 });
-    //             break;
-    //         default:
-    //             break;
-    //     };
-    // };
+    const handleSelect = () => {
+        switch (select) {
+            case "sortByRatingHighToLow":
+                hotelsDispatch(sortByRatingHighToLow(hotels))
+                break;
+            case "sortByRatingLowToHigh":
+                hotelsDispatch(sortByRatingLowToHigh(hotels))
+                break;
+            case "sortByNameA_Z":
+                hotelsDispatch(sortByNameA_Z(hotels))
+                break;
+            case "sortByNameZ_A":
+                hotelsDispatch(sortByNameZ_A(hotels))
+                break;
+            case "sortByPriceHighToLow":
+                hotelsDispatch(sortByPriceHighToLow(hotels))
+                break;
+            case "sortByPriceLowToHigh":
+                hotelsDispatch(sortByPriceLowToHigh(hotels))
+                break;
+            default:
+                break;
+        };
+    };
 
     return (
         <StyledCategoryPage mode={mode}>
@@ -105,8 +61,7 @@ const Hotels = () => {
                         <option value={"sortByNameA_Z"}>Name A-Z</option>
                         <option value={"sortByNameZ_A"}>Name Z-A</option>
                     </select>
-                    <button className='sort-btn'>Sort</button>
-                    {/* <button className='sort-btn' onClick={handleSelect}>Sort</button> */}
+                    <button className='sort-btn' onClick={handleSelect}>Sort</button>
                 </div>
             </div>
             <StyledItemsContainer>

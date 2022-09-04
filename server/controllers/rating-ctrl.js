@@ -15,6 +15,16 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
+    getRatingsByItemId: async (req, res) => {
+        try {
+            const ratingsOfItem = await ratings.find({ itemRef: req.params.itemId });
+            if (ratingsOfItem) return res.status(200).json({ success: true, ratingsOfItem });
+            res.status(404).json({ success: false, message: "no ratings found" });
+        }
+        catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
     getRatingById: async (req, res) => {
         try {
             const rating = await ratings.findOne({ _id: req.params.id }).populate("itemRef");

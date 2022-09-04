@@ -10,11 +10,10 @@ export const getDataByCity = (value) => {
         payload: value
     }
 };
-export const sortByRatingHighToLow = (value, city) => {
+export const sortByRatingHighToLow = (value) => {
     return {
         type: "SORT_BY_RATING_HIGH_TO_LOW",
         payload: value,
-        city: city
     }
 };
 export const sortByRatingLowToHigh = (value, city) => {

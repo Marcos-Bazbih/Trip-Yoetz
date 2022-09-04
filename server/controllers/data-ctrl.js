@@ -6,9 +6,12 @@ module.exports = {
     getAllDataByCity: async (req, res) => {
         try {
             const { city } = req.params;
-            const hotelsData = await hotels.find({ city });
-            const activitiesData = await activities.find({ city });
-            const restaurantsData = await restaurants.find({ city });
+            const hotelsData = await hotels.find({ city })
+                .populate("comments").populate("q_a").populate("rating");
+            const activitiesData = await activities.find({ city })
+                .populate("comments").populate("q_a").populate("rating");
+            const restaurantsData = await restaurants.find({ city })
+                .populate("comments").populate("q_a").populate("rating");
 
             return res.status(200).json({
                 success: true,

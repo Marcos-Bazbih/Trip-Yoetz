@@ -11,6 +11,16 @@ module.exports = {
             res.status(500).json({ success: false, message: err.message });
         }
     },
+    getHotelsByCity: async (req, res) => {
+        try {
+            const data = await hotels.find({ city: req.params.city }).populate("comments").populate("q_a").populate("rating");
+            if (data && data.length >= 1) return res.status(200).json({ success: true, data });
+            res.status(404).json({ success: true, message: "no hotels found" });
+        }
+        catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
     getHotelById: async (req, res) => {
         try {
             const hotel = await hotels.findOne({ _id: req.params.id }).populate("q_a");
