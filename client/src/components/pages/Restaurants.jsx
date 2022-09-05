@@ -1,137 +1,55 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react';
 import { DataContext } from '../../contexts/data-context';
-import { ThemeContext } from '../../contexts/theme-context';
-import { GetRestaurants } from "../../services/restaurant-services"
 import {
-    getDataByCity, sortByRatingHighToLow, sortByRatingLowToHigh,
+    sortByRatingHighToLow, sortByRatingLowToHigh,
     sortByNameA_Z, sortByNameZ_A, sortByPriceHighToLow, sortByPriceLowToHigh
 } from "../../state-management/actions/categories-actions";
-import Navbar from '../layout/navbar';
-import ItemCard from '../parts/ItemCard';
-import Loader from '../parts/Loader';
-import { StyledCategoryPage } from '../styles/pages/StyledCategoryPage';
-import { StyledItemsContainer } from '../styles/parts/StyledItemsContainer';
-
+import useCityData from '../../hooks/useCityData';
+import { selectOptions } from "../parts/category-page/selectedOptions"
+import CategoryPage from '../parts/category-page';
 
 const Restaurants = () => {
-    const { loader, setLoader, restaurants, restaurantsDispatch, city } = useContext(DataContext);
-    const { mode } = useContext(ThemeContext);
-    const [select, setSelect] = useState("");
-
-    useEffect(() => {
-        setLoader(true);
-        GetRestaurants()
-            .then(res => {
-                restaurantsDispatch(
-                    getDataByCity(res.data, city)
-                )
-            })
-            .finally(() => {
-                setLoader(false)
-            })
-    }, [restaurantsDispatch, city, setLoader]);
+    const { restaurantsDispatch } = useContext(DataContext);
+    const { restaurants } = useCityData();
+    const [selected, setSelected] = useState(selectOptions[0].value);
 
     const selectOnChange = (e) => {
-        setSelect(e.target.value)
+        setSelected(e.target.value);
+        handleSelect(e.target.value);
     }
-
-    const handleSelect = () => {
-        setLoader(true);
-        switch (select) {
+    const handleSelect = (selectOption) => {
+        switch (selectOption) {
             case "sortByRatingHighToLow":
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            sortByRatingHighToLow(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
+                restaurantsDispatch(sortByRatingHighToLow(restaurants))
                 break;
             case "sortByRatingLowToHigh":
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            sortByRatingLowToHigh(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
+                restaurantsDispatch(sortByRatingLowToHigh(restaurants))
                 break;
             case "sortByNameA_Z":
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            sortByNameA_Z(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
+                restaurantsDispatch(sortByNameA_Z(restaurants))
                 break;
             case "sortByNameZ_A":
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            sortByNameZ_A(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
+                restaurantsDispatch(sortByNameZ_A(restaurants))
                 break;
             case "sortByPriceHighToLow":
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            sortByPriceHighToLow(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
+                restaurantsDispatch(sortByPriceHighToLow(restaurants))
                 break;
             case "sortByPriceLowToHigh":
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            sortByPriceLowToHigh(res.data, city)
-                        )
-                    }).finally(() => {
-                        setLoader(false)
-                    });
+                restaurantsDispatch(sortByPriceLowToHigh(restaurants))
                 break;
             default:
                 break;
         };
     };
+    const categoryInfo = {
+        categoryName: "Restaurants",
+        categoryArray: restaurants,
+        selected,
+        selectOnChange  
+    }
 
     return (
-        <StyledCategoryPage mode={mode}>
-            {loader && <Loader />}
-            <Navbar />
-            <h1 className='category-name-h1'>Restaurants</h1>
-            <div className='sort-wrapper'>
-                <div className='sort-fixed'>
-                    <select className='sort-select' value={select} onChange={selectOnChange}>
-                        <option disabled value="" hidden>Sort By</option>
-                        <option value={"sortByRatingHighToLow"}>rating high to low</option>
-                        <option value={"sortByRatingLowToHigh"}>rating low to high</option>
-                        <option value={"sortByPriceHighToLow"}>price high to low</option>
-                        <option value={"sortByPriceLowToHigh"}>price low to high</option>
-                        <option value={"sortByNameA_Z"}>Name A-Z</option>
-                        <option value={"sortByNameZ_A"}>Name Z-A</option>
-                    </select>
-                    <button className='sort-btn' onClick={handleSelect}>Sort</button>
-                </div>
-            </div>
-            <StyledItemsContainer>
-                {restaurants.length >= 1 ?
-                    restaurants.map(product =>
-                        <ItemCard product={product} key={product._id} />
-                    )
-                    :
-                    <h1>No restaurants found</h1>
-                }
-            </StyledItemsContainer>
-        </StyledCategoryPage>
+        <CategoryPage {...categoryInfo} />
     );
 };
 

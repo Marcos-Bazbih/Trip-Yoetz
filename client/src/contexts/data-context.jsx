@@ -1,15 +1,13 @@
 import { createContext, useEffect, useMemo, useReducer, useState } from "react";
-import hotelsReducer from "../state-management/reducers/hotels-reducer";
-import activitiesReducer from "../state-management/reducers/activities-reducer";
-import restaurantsReducer from "../state-management/reducers/restaurants-reducer";
+import categoriesReducer from "../state-management/reducers/categories-reducer";
 import { getUserFromLocalStorage } from "../utils/getUserFromLocalStorage";
 
 export const DataContext = createContext();
 
 const DataContextProvider = ({ children }) => {
-    const [hotels, hotelsDispatch] = useReducer(hotelsReducer, []);
-    const [activities, activitiesDispatch] = useReducer(activitiesReducer, []);
-    const [restaurants, restaurantsDispatch] = useReducer(restaurantsReducer, []);
+    const [hotels, hotelsDispatch] = useReducer(categoriesReducer, []);
+    const [activities, activitiesDispatch] = useReducer(categoriesReducer, []);
+    const [restaurants, restaurantsDispatch] = useReducer(categoriesReducer, []);
     const [user, setUser] = useState({});
     const [city, setCity] = useState({});
     const [loader, setLoader] = useState(false);
