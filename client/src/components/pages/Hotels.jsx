@@ -11,18 +11,28 @@ import { StyledItemsContainer } from '../styles/parts/StyledItemsContainer';
 import { DataContext } from '../../contexts/data-context';
 import useCityData from '../../hooks/useCityData';
 
+const selectOptions = [
+    { value: '', text: '-- Sort by --' },
+    { value: 'sortByRatingHighToLow', text: 'rating high to low' },
+    { value: 'sortByRatingLowToHigh', text: 'rating low to high' },
+    { value: 'sortByPriceHighToLow', text: 'price high to low' },
+    { value: 'sortByPriceLowToHigh', text: 'price low to high' },
+    { value: 'sortByNameA_Z', text: 'Name A-Z' },
+    { value: 'sortByNameZ_A', text: 'Name Z-A' }
+];
+
 const Hotels = () => {
     const { mode } = useContext(ThemeContext);
     const { hotelsDispatch } = useContext(DataContext);
     const { hotels } = useCityData();
-    const [select, setSelect] = useState("");
+    const [selected, setSelected] = useState(selectOptions[0].value);
 
     const selectOnChange = (e) => {
-        setSelect(e.target.value)
+        setSelected(e.target.value);
+        handleSelect(e.target.value);
     }
-
-    const handleSelect = () => {
-        switch (select) {
+    const handleSelect = (selectOption) => {
+        switch (selectOption) {
             case "sortByRatingHighToLow":
                 hotelsDispatch(sortByRatingHighToLow(hotels))
                 break;
@@ -52,16 +62,13 @@ const Hotels = () => {
             <h1 className='category-name-h1'>Hotels</h1>
             <div className='sort-wrapper'>
                 <div className='sort-fixed'>
-                    <select className='sort-select' value={select} onChange={selectOnChange}>
-                        <option disabled value="" hidden>Sort By</option>
-                        <option value={"sortByRatingHighToLow"}>rating high to low</option>
-                        <option value={"sortByRatingLowToHigh"}>rating low to high</option>
-                        <option value={"sortByPriceHighToLow"}>price high to low</option>
-                        <option value={"sortByPriceLowToHigh"}>price low to high</option>
-                        <option value={"sortByNameA_Z"}>Name A-Z</option>
-                        <option value={"sortByNameZ_A"}>Name Z-A</option>
+                    <select className='sort-select' value={selected} onChange={selectOnChange}>
+                        {selectOptions.map(option => (
+                            <option key={option.value} value={option.value}>
+                                {option.text}
+                            </option>
+                        ))}
                     </select>
-                    <button className='sort-btn' onClick={handleSelect}>Sort</button>
                 </div>
             </div>
             <StyledItemsContainer>

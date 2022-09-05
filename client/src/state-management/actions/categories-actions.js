@@ -16,38 +16,33 @@ export const sortByRatingHighToLow = (value) => {
         payload: value,
     }
 };
-export const sortByRatingLowToHigh = (value, city) => {
+export const sortByRatingLowToHigh = (value) => {
     return {
         type: "SORT_BY_RATING_LOW_TO_HIGH",
-        payload: value,
-        city: city
+        payload: value
     }
 };
-export const sortByNameA_Z = (value, city) => {
+export const sortByNameA_Z = (value) => {
     return {
         type: "SORT_BY_NAME_A_Z",
-        payload: value,
-        city: city
+        payload: value
     }
 };
-export const sortByNameZ_A = (value, city) => {
+export const sortByNameZ_A = (value) => {
     return {
         type: "SORT_BY_NAME_Z_A",
-        payload: value,
-        city: city
+        payload: value
     }
 };
-export const sortByPriceHighToLow = (value, city) => {
+export const sortByPriceHighToLow = (value) => {
     return {
         type: "SORT_BY_PRICE_HIGH_TO_LOW",
-        payload: value,
-        city: city
+        payload: value
     }
 };
-export const sortByPriceLowToHigh = (value, city) => {
+export const sortByPriceLowToHigh = (value) => {
     return {
         type: "SORT_BY_PRICE_LOW_TO_HIGH",
-        payload: value,
-        city: city
+        payload: value
     }
 };
