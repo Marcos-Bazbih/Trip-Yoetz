@@ -10,9 +10,9 @@ export const StyledCategoryPage = styled.section`
     'title title title'
     'cards cards sort'
     ;
-    grid-template-rows: 10vh 7.5vh auto;
+    grid-template-rows: 10vh auto auto;
     grid-template-columns: 40% 40% 20%;
-    gap: 5vh; 
+    gap: 5vh 2vh; 
 
     .category-name-h1{
         grid-area: title;
@@ -20,44 +20,30 @@ export const StyledCategoryPage = styled.section`
     }
     .sort-wrapper{
         grid-area: sort;
+
+        .sort-sticky{
+            width: 100%;
+            height: 8vh;
+            position: sticky;
+            top: 11vh;
+
+            select{
+                cursor: pointer;
+                background: ${({mode}) => mode.color};
+                color: ${({mode}) => mode.background};
+                border: 2px solid ${({mode}) => mode.color};
+                font-size: 1.5rem;
+                height: 100%;
+                width: 100%;
+                outline: none;
+            }
+        }
     }
-    .sort-fixed{
-        width: 15vw;
-        height: 10vh;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        position: fixed;
-        top:20vh;
-    }
-    .sort-select{
-        cursor: pointer;
-        background: ${({mode}) => mode.color};
-        color: ${({mode}) => mode.background};
-        border: 2px solid ${({mode}) => mode.color};
-        font-size: 1.5rem;
-        height: 50%;
-        width: 75%;
-        outline: none;
-    }
-    .sort-btn{
-        cursor: pointer;
-        background: ${({mode}) => mode.background};
-        color: ${({mode}) => mode.color};
-        font-size: 1.5rem;
-        height: 50%;
-        width:20%;
-        border: 2px solid ${({mode}) => mode.color};
-        transition: 0.2s ease-in-out;
-    }
-    .sort-btn:hover{
-        background: ${({mode}) => mode.color};
-        color: ${({mode}) => mode.background};
-    }
+
 
 
     
-    @media  only screen  and (min-width:320px) and (max-width:375px){
+    /* @media  only screen  and (min-width:320px) and (max-width:375px){
         .sort-fixed{
         width: 15vw;
         height: 10vh;
@@ -158,5 +144,5 @@ export const StyledCategoryPage = styled.section`
         margin-left: -2%;
     }
 
-    }
+    } */
 `

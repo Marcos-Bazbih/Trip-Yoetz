@@ -16,7 +16,7 @@ const Hotels = () => {
     const selectOnChange = (e) => {
         setSelected(e.target.value);
         handleSelect(e.target.value);
-    }
+    };
     const handleSelect = (selectOption) => {
         switch (selectOption) {
             case "sortByRatingHighToLow":
@@ -46,7 +46,7 @@ const Hotels = () => {
         categoryArray: hotels,
         selected,
         selectOnChange
-    }
+    };
 
     return (
         <CategoryPage {...categoryInfo} />

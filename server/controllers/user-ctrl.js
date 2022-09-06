@@ -10,7 +10,6 @@ module.exports = {
             };
             let { firstName, lastName, birthDate, email, password, image, isAdmin } = req.body;
             bcrypt.hash(password, 10, async (err, hashPassword) => {
-                console.log(password, hashPassword);
                 if (err) return res.status(400).json({ success: false, message: err.message });
                 password = hashPassword;
                 const user = new users({ firstName, lastName, birthDate, email, password, image, isAdmin })

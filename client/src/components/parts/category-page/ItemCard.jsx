@@ -1,22 +1,20 @@
 import { useEffect, useState, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
-import { getAvgRating } from "../../utils/getAvgRating";
-import { StyledItemCard } from "../styles/parts/StyledItemCard";
-import { DataContext } from "../../contexts/data-context";
-import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../utils/favoritesList-functions";
+import { getAvgRating } from "../../../utils/getAvgRating";
+import { StyledItemCard } from "../../styles/parts/StyledItemCard";
+import { DataContext } from "../../../contexts/data-context";
+import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../../utils/favoritesList-functions";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { ThemeContext } from "../../contexts/theme-context";
+import { ThemeContext } from "../../../contexts/theme-context";
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-
 
 const ItemCard = ({ product }) => {
     const { user } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const [rating, setRating] = useState(0);
     const heartIcon = useRef();
-
     const favorites = JSON.parse(localStorage.getItem("favorites"));
 
     useEffect(() => {

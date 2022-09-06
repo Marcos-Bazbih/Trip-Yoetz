@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../../contexts/theme-context";
 import Navbar from "../../layout/navbar";
-import { StyledCategoryPage } from "../../styles/pages/StyledCategoryPage";
+import { StyledCategoryPage } from "../../styles/pages/CategoryPage.styled";
 import { StyledItemsContainer } from "../../styles/parts/StyledItemsContainer";
-import ItemCard from "../ItemCard";
+import ItemCard from "./ItemCard";
 import { selectOptions } from "./selectedOptions";
 
 const CategoryPage = (categoryInfo) => {
@@ -15,8 +15,8 @@ const CategoryPage = (categoryInfo) => {
             <Navbar />
             <h1 className='category-name-h1'>{categoryName}</h1>
             <div className='sort-wrapper'>
-                <div className='sort-fixed'>
-                    <select className='sort-select' value={selected} onChange={selectOnChange}>
+                <div className='sort-sticky'>
+                    <select value={selected} onChange={selectOnChange}>
                         {selectOptions.map(option => (
                             <option key={option.value} value={option.value}>
                                 {option.text}
