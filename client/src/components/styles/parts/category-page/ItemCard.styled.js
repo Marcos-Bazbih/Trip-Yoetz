@@ -10,7 +10,7 @@ export const StyledItemCard = styled.article`
     
     .heart-btn{
         cursor: pointer;
-        z-index: 10;
+        z-index: 1;
         position: absolute;
         padding:8px;
         left: 10px;
@@ -61,18 +61,20 @@ export const StyledItemCard = styled.article`
         flex-wrap: wrap;
         justify-content: space-evenly;
         align-items: center;
-        font-size:1.5rem;
+        font-size:1.3rem;
         font-weight: 900;
-
+        text-align: center;
+        
         .card-price{
             position: absolute;
             right: 10px;
             top: 10px;
-            border-bottom: 1px solid ${({ mode }) => mode.color};
-            padding: 2px;
+            background-color: ${({ mode }) => mode.color};
+            color: ${({ mode }) => mode.background};
+            padding: 4px;
 
             p{
-                font-size: 1.7rem;
+                font-size: 1.5rem;
                 font-weight: 900;
             }
         }
@@ -80,19 +82,12 @@ export const StyledItemCard = styled.article`
             text-align: center;
             font-size:2.2rem;
         }
-        address{
-            font-weight: lighter;
-            font-size: 1.5rem;
-        }
         .rating-wrapper{
             display: flex;
             justify-content: center;
             align-items: center;
             gap:2rem;
             
-            p{
-                font-size: 1.3rem;
-            }
             .rating-stars{
                 font-size: 2rem;
             }
@@ -115,5 +110,10 @@ export const StyledItemCard = styled.article`
                 transform: scale(1.1);
             }
         }
+    }
+
+
+    @media (max-width: 768px) {
+        height: 28vh;
     }
 `

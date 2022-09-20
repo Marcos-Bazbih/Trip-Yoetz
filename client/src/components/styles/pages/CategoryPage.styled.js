@@ -20,7 +20,7 @@ export const StyledCategoryPage = styled.section`
     }
     .sort-wrapper{
         grid-area: sort;
-
+        
         .sort-sticky{
             width: 100%;
             height: 8vh;
@@ -39,9 +39,26 @@ export const StyledCategoryPage = styled.section`
             }
         }
     }
-
+    .items-container{
+        grid-area: cards;
+        width: 100%;
+        height: 100%;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-evenly;
+        gap: 3rem;
+    }
 
     @media (max-width: 768px) {
         width: 70%;
+        grid-template-areas:
+        '. . .'
+        'title title sort'
+        'cards cards cards'
+        ;
+        grid-template-columns: 35% 35% 30%;
+        gap: 5vh 0; 
+
+
     }
 `

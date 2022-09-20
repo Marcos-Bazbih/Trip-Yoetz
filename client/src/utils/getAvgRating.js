@@ -8,4 +8,5 @@ export const getAvgRating = (ratingArray) => {
         avg = sum / ratingArray.length;
         return avg.toString().substring(0,3);
     }
+    return 0;
 }

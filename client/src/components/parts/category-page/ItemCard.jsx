@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import { getAvgRating } from "../../../utils/getAvgRating";
-import { StyledItemCard } from "../../styles/parts/StyledItemCard";
+import { StyledItemCard } from "../../styles/parts/category-page/ItemCard.styled";
 import { DataContext } from "../../../contexts/data-context";
 import { ThemeContext } from "../../../contexts/theme-context";
 import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../../utils/favoritesList-functions";
