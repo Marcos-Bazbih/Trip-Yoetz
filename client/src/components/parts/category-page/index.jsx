@@ -2,19 +2,12 @@ import { useContext } from "react";
 import { ThemeContext } from "../../../contexts/theme-context";
 import Navbar from "../../layout/navbar";
 import { StyledCategoryPage } from "../../styles/pages/CategoryPage.styled";
-import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import ItemCard from "./ItemCard";
 import { selectOptions } from "./selectedOptions";
 
 const CategoryPage = (categoryInfo) => {
     const { mode } = useContext(ThemeContext);
     const { categoryName, categoryArray, selected, selectOnChange } = categoryInfo;
-    // const { width } = useWindowDimensions();
-
-    // const checkScreenForSortIcon = (i, option) => {
-    //     if (i === 0) return width <= 768 ? "Sort" : option.text
-    //     return option.text
-    // }
 
     return (
         <StyledCategoryPage mode={mode}>
@@ -42,6 +35,6 @@ const CategoryPage = (categoryInfo) => {
             </section>
         </StyledCategoryPage>
     )
-}
+};
 
 export default CategoryPage;

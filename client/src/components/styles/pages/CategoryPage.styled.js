@@ -7,12 +7,12 @@ export const StyledCategoryPage = styled.section`
     display: grid;
     grid-template-areas:
     '. . .'
-    'title title title'
-    'cards cards sort'
+    'title title sort'
+    'cards cards cards'
     ;
     grid-template-rows: 10vh auto auto;
-    grid-template-columns: 40% 40% 20%;
-    gap: 5vh 2vh; 
+    grid-template-columns: 35% 35% 30%;
+    gap: 5vh 0; 
 
     .category-name-h1{
         grid-area: title;
@@ -24,14 +24,12 @@ export const StyledCategoryPage = styled.section`
         .sort-sticky{
             width: 100%;
             height: 8vh;
-            position: sticky;
-            top: 11vh;
 
             select{
                 cursor: pointer;
-                background: ${({mode}) => mode.color};
-                color: ${({mode}) => mode.background};
-                border: 2px solid ${({mode}) => mode.color};
+                background: ${({ mode }) => mode.color};
+                color: ${({ mode }) => mode.background};
+                border: 2px solid ${({ mode }) => mode.color};
                 font-size: 1.5rem;
                 height: 100%;
                 width: 100%;
@@ -49,16 +47,9 @@ export const StyledCategoryPage = styled.section`
         gap: 3rem;
     }
 
+    
+
     @media (max-width: 768px) {
         width: 70%;
-        grid-template-areas:
-        '. . .'
-        'title title sort'
-        'cards cards cards'
-        ;
-        grid-template-columns: 35% 35% 30%;
-        gap: 5vh 0; 
-
-
     }
 `

@@ -23,6 +23,7 @@ export const StyledSlider = styled.div`
             font-size: 1.2rem;
         }
         a{
+            width: fit-content;
             font-size: 1.5rem;
             font-weight: 900;
             text-decoration: underline;
