@@ -12,19 +12,19 @@ const CategoryPage = (categoryInfo) => {
     return (
         <StyledCategoryPage mode={mode}>
             <Navbar />
-            <h1 className='category-name-h1'>{categoryName}</h1>
-            <div className='sort-wrapper'>
-                <div className='sort-sticky'>
-                    <select value={selected} onChange={selectOnChange}>
-                        {selectOptions.map((option, i) => (
-                            <option key={i} value={option.value} hidden={i === 0}>
-                                {option.text}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+            <div className="category-name-grid">
+                <h1>{categoryName}</h1>
             </div>
-            <section className='items-container'>
+            <div className='sort-grid'>
+                <select value={selected} onChange={selectOnChange}>
+                    {selectOptions.map((option, i) => (
+                        <option key={i} value={option.value} hidden={i === 0}>
+                            {option.text}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <section className='items-container-grid'>
                 {categoryArray.length >= 1 ?
                     categoryArray.map(product =>
                         <ItemCard product={product} key={product._id} />

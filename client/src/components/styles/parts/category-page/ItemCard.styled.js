@@ -112,8 +112,44 @@ export const StyledItemCard = styled.article`
         }
     }
 
-
     @media (max-width: 768px) {
         height: 28vh;
+    }
+    @media (max-width: 600px) {
+        height: 45vh;
+        flex-direction: column-reverse;
+
+        .card-info{
+            width: 100%;
+            height: 40%;
+            h1{
+                align-self: flex-start;
+                margin-left: 10px;
+            }
+        }
+        .card-link{
+            width: 100%;
+            height: 60%;
+            border-radius: 5px 5px 0 0;
+        }
+    }
+    @media (max-width: 376px) {
+        .card-info{
+            font-size:1.2rem;
+            h1{
+                font-size:2rem;
+            }
+            .card-price{
+                right: 5px;
+                top: 5px;
+                p{
+                    font-size: 1.3rem;
+                    font-weight: 900;
+                }
+            }
+        }
+    }
+    @media (max-width: 325px) {
+        height: 42.5vh;
     }
 `

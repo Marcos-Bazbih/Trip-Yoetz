@@ -10,22 +10,25 @@ export const StyledCategoryPage = styled.section`
     'title title sort'
     'cards cards cards'
     ;
-    grid-template-rows: 10vh auto auto;
+    grid-template-rows: 10vh 8vh auto;
     grid-template-columns: 35% 35% 30%;
     gap: 5vh 0; 
 
-    .category-name-h1{
+    .category-name-grid{
         grid-area: title;
-        font-size: 4rem;
+        display: flex;
+        align-items: flex-end;
+
+        h1{
+            font-size: 4rem;
+        }
     }
-    .sort-wrapper{
+    .sort-grid{
         grid-area: sort;
-        
-        .sort-sticky{
-            width: 100%;
-            height: 8vh;
 
             select{
+                width: 100%;
+                height: 100%;
                 cursor: pointer;
                 background: ${({ mode }) => mode.color};
                 color: ${({ mode }) => mode.background};
@@ -35,9 +38,8 @@ export const StyledCategoryPage = styled.section`
                 width: 100%;
                 outline: none;
             }
-        }
     }
-    .items-container{
+    .items-container-grid{
         grid-area: cards;
         width: 100%;
         height: 100%;
@@ -47,9 +49,37 @@ export const StyledCategoryPage = styled.section`
         gap: 3rem;
     }
 
-    
-
     @media (max-width: 768px) {
         width: 70%;
     }
+    @media (max-width: 600px) {
+        grid-template-columns: 50% 0% 50%;
+        grid-template-rows: 10vh 6vh auto;
+
+        .category-name-grid{
+            h1{
+                font-size: 3rem;
+            }
+        }
+    }
+    @media (max-width: 500px) {
+        width: 80%;
+    }
+    @media (max-width: 426px) {
+        grid-template-columns: 50% 10% 40%;
+    }
+    @media (max-width: 376px) {
+        .category-name-grid{
+            h1{
+                font-size: 2.7rem;
+            }
+        }
+    } 
+    @media (max-width: 325px) {
+        .category-name-grid{
+            h1{
+                font-size: 2.4rem;
+            }
+        }
+    } 
 `

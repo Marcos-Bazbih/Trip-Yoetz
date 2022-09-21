@@ -20,14 +20,29 @@ export const StyledContainer = styled.section`
         border-radius: 50%;
         display: none;
         transition: 0.2s ease-in-out;
+        color: ${({mode})=> mode.background};
+        background: ${({mode})=> mode.color};
         
         &:hover{
-            color: ${({mode})=> mode.background};
-            background: ${({mode})=> mode.color};
+            color: ${({mode})=> mode.color};
+            background: ${({mode})=> mode.background};
         }
 
         &.active{
             display: block;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .back-to-top-arrow{
+            right: 7vw;
+            font-size: 3.5rem; 
+        }
+    }
+    @media (max-width: 500px) {
+        .back-to-top-arrow{
+            right: 5vw;
+            font-size: 3rem; 
         }
     }
 `
