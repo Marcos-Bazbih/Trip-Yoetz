@@ -54,7 +54,12 @@ module.exports = {
             }
 
             await ratings.create(ratingObj)
-                .then(() => res.status(201).json({ success: true, message: "rating successfully added" }))
+                .then(() => res.status(201).json(
+                    {
+                        success: true, message: "rating successfully added",
+                        rating: ratingObj, 
+                    }
+                ))
                 .catch((err) => res.status(400).json({ success: false, message: err.message }))
         }
         catch (err) {

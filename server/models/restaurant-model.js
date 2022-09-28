@@ -14,7 +14,7 @@ const Restaurant = new mongoose.Schema({
     link: { type: String, required: true },
     price: { type: Array, required: true },
     description: { type: String, required: true },
-    category: { type: String, default: "restaurant" },
+    category: { type: String, default: "Restaurant" },
 },
     { timestamps: true }
 );

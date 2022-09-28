@@ -14,7 +14,7 @@ const Activity = new mongoose.Schema({
     link: { type: String, required: true },
     price: { type: Array, required: true },
     description: { type: String, required: true },
-    category: { type: String, default: "activity" }
+    category: { type: String, default: "Activity" }
 },
     { timestamps: true }
 );

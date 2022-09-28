@@ -11,7 +11,7 @@ import { ThemeContext } from "../../../contexts/theme-context";
 import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../../utils/favoritesList-functions";
 
 const ItemCard = ({ product }) => {
-    const { user } = useContext(DataContext);
+    const { user, city } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const [rating, setRating] = useState(0);
     const heartIcon = useRef();
@@ -41,7 +41,7 @@ const ItemCard = ({ product }) => {
                             <Rating className="rating-stars" name="text-feedback" value={Number(rating)} precision={0.5} readOnly emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />} />
                         </Box>
                     </div>
-                    <Link className="card-link" to={`/${product.name}`} state={product}>
+                    <Link className="card-link" to={`/${city.name}/${product.name}`} state={product}>
                         <img src={product.images[0]} alt={product.name} />
                     </Link>
                 </>

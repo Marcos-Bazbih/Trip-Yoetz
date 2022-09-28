@@ -32,7 +32,7 @@ const Slider = ({ category, name, info, items }) => {
                         items && items.length >= 1 &&
                         items.map((item, i) =>
                             i < 6 &&
-                            <Link className='slider-card' to={`/${item.name}`} state={item} key={item._id}>
+                            <Link className='slider-card' to={`/${city.name}/${item.name}`} state={item} key={item._id}>
                                 <h1>{item.name}</h1>
                                 <img key={item._id} src={item.images[0]} alt="img" />
                             </Link>
