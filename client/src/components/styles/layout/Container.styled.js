@@ -45,4 +45,9 @@ export const StyledContainer = styled.section`
             font-size: 3rem; 
         }
     }
+    @media (max-width: 325px) {
+        .back-to-top-arrow{
+            font-size: 2.5rem; 
+        }
+    }
 `

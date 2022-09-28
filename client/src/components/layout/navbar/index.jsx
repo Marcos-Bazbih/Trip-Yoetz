@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { DataContext } from "../../../contexts/data-context";
 import { ThemeContext } from "../../../contexts/theme-context";
-import { StyledNavbar } from "../../styles/layout/StyledNavbar";
+import { StyledNavbar } from "../../styles/layout/Navbar.styled";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import BigNavbar from "./BigNavbar";
 import MiniNavbar from "./MiniNavbar";
