@@ -6,17 +6,17 @@ import { AddRating } from '../../../services/rating-service';
 
 const RatingStars = ({ rating, category, itemId }) => {
     const { user } = useContext(DataContext);
-    const [userRate, setUserRate] = useState({});
+    const [rateToDisplay, setRateToDisplay] = useState(0);
 
     useEffect(() => {
         if (rating && rating.length >= 1) {
             for (const rate of rating) {
                 if (rate.user_id === user._id) {
-                    setUserRate({ ...rate });
+                    setRateToDisplay(rate.rating);
                 }
             };
         };
-    }, [rating, user._id, setUserRate]);
+    }, [rating, user._id, setRateToDisplay]);
 
     const checkIfUserRated = () => {
         if (!user.isLogin) return true;
@@ -35,15 +35,10 @@ const RatingStars = ({ rating, category, itemId }) => {
             category,
             rating: e.target.value,
             user_id: user._id
-        }
-        // setUserRate({
-        //     category,
-        //     rating: e.target.value,
-        //     user_id: user._id
-        // });
+        };
+
         AddRating(addRatingParams, itemId)
             .then((res) => {
-                setUserRate({ ...res.rating })
                 console.log(res)
             })
             .catch(err => console.log(err))
@@ -53,8 +48,7 @@ const RatingStars = ({ rating, category, itemId }) => {
         <Stack spacing={1} className="rating-stars">
             <Rating readOnly={checkIfUserRated()}
                 className="rating-stars-select" name="half-rating" precision={0.5}
-                value={userRate.rating ? Number(userRate.rating) : 0}
-                onChange={sendRateForm}
+                value={rateToDisplay} onChange={sendRateForm}
             />
         </Stack>
     );

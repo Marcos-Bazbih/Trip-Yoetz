@@ -38,7 +38,15 @@ const ItemCard = ({ product }) => {
                         <address>{product.location}</address>
                         <Box className="rating-wrapper" sx={{ '& > legend': { mt: 2 } }}>
                             <p>{rating ? `${product.rating.length} reviews` : "no reviews yet"}</p>
-                            <Rating className="rating-stars" name="text-feedback" value={Number(rating)} precision={0.5} readOnly emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />} />
+                            <Rating
+                                className="rating-stars"
+                                name="text-feedback"
+                                readOnly
+                                fontSize="inherit"
+                                value={Number(rating)}
+                                precision={0.5}
+                                emptyIcon={<StarIcon style={{ opacity: 0.55 }}
+                                />} />
                         </Box>
                     </div>
                     <Link className="card-link" to={`/${city.name}/${product.name}`} state={product}>

@@ -7,27 +7,10 @@ export const GetHotels = async () => {
         .then((res) => res.json())
         .catch((err) => console.log(err))
 };
-export const GetHotelsByCity = async () => {
-    return await fetch(`${BASE_URL}/api/hotels/hotelsByCity/london`)
-        .then((res) => res.json())
-        .catch((err) => console.log(err))
-};
-export const GetRatings = async () => {
-    // return await fetch(`${BASE_URL}/api/ratings`)
-    // return await fetch(`${BASE_URL}/api/ratings/itemRatings/6297b307b766d75e8697e2a1`)
-    return await fetch(`${BASE_URL}/api/ratings`)
-        .then((res) => res.json())
-        .catch((err) => console.log(err))
-};
 export const GetHotelById = async (id) => {
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`)
-            .then((res) => res.json())
-            .catch((err) => console.log(err))
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return await fetch(`${BASE_URL}/api/hotels/${id}`)
+        .then(res => res.json())
+        .catch(err => err)
 };
 export const AddHotel = async (Hotel) => {
     const options = {
