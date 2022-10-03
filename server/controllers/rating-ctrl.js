@@ -41,6 +41,7 @@ module.exports = {
             const { category, rating, user_id } = req.body;
             const ratingObj = new ratings({ category, rating, user_id });
             ratingObj.itemRef = itemId;
+            
             if (!ratingObj) return res.status(400).json({ success: false, message: "rating not valid" })
 
             if (category === "Activity") {
@@ -54,7 +55,7 @@ module.exports = {
             }
 
             await ratings.create(ratingObj)
-                .then(() => res.status(201).json({ success: true, message: "rating successfully added" }))
+                .then((result) => res.status(201).json({ success: true, message: "rating successfully added", result }))
                 .catch((err) => res.status(400).json({ success: false, message: err.message }))
         }
         catch (err) {

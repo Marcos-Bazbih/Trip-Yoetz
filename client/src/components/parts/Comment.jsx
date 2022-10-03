@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { DataContext } from "../../contexts/data-context";
 import { GetRestaurants, LikeCommentRestaurant, RemoveCommentFromRestaurants } from "../../services/restaurant-services";
 import { GetHotels, LikeCommentHotel, RemoveCommentFromHotels } from "../../services/hotel-services";
-import { GetActivities, LikeCommentActivity, RemoveCommentFromActivities } from "../../services/activity-service";
+import { GetActivities, LikeCommentActivity, RemoveCommentFromActivities } from "../../services/activity-services";
 import { getDataByCity } from "../../state-management/actions/categories-actions";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import DeleteIcon from '@mui/icons-material/Delete';

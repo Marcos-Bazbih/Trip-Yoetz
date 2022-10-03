@@ -53,37 +53,4 @@ export const StyledItemPage = styled.section`
         background: ${({ mode }) => mode.color};
         color: ${({ mode }) => mode.background};
     }
-@media  only screen  and (min-width:320px) and (max-width:375px){
-    width: 65%;
-
-    .rating-stars-select{
-        font-size:3rem;
-    }
-    .toggle-btn{
-        font-size: 0.8rem;
-       
-    }
-}
-@media  only screen  and (min-width:375px) and (max-width:425px){
-    width: 65%;
-
-.rating-stars-select{
-    font-size:3rem;
-}
-.toggle-btn{
-    font-size: 0.8rem;
-   
-}
-}
-@media  only screen  and (min-width:425px) and (max-width:768px){
-    width: 65%;
-
-.rating-stars-select{
-    font-size:3rem;
-}
-.toggle-btn{
-    font-size: 0.8rem;
-   
-}
-}
 `

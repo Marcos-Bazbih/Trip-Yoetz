@@ -2,7 +2,7 @@ import { useContext, useState, useRef } from "react";
 import { DataContext } from "../../contexts/data-context";
 import { AddCommentToRestaurants, GetRestaurants } from "../../services/restaurant-services";
 import { AddCommentToHotels, GetHotels } from "../../services/hotel-services";
-import { AddCommentToActivities, GetActivities } from "../../services/activity-service";
+import { AddCommentToActivities, GetActivities } from "../../services/activity-services";
 import { getDataByCity } from "../../state-management/actions/categories-actions";
 import { verifyUserAccess } from "../../utils/verifyUserAccess";
 import Comment from "./Comment";

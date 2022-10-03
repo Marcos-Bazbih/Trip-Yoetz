@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
@@ -9,11 +9,13 @@ import { StyledItemCard } from "../../styles/parts/category-page/ItemCard.styled
 import { DataContext } from "../../../contexts/data-context";
 import { ThemeContext } from "../../../contexts/theme-context";
 import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../../utils/favoritesList-functions";
+import { navigateToItemPage } from "../../../utils/navigateToItemPage";
 
 const ItemCard = ({ product }) => {
-    const { user, city } = useContext(DataContext);
+    const { user, city, setItem, setLoader } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const [rating, setRating] = useState(0);
+    const navigate = useNavigate();
     const heartIcon = useRef();
     const favorites = JSON.parse(localStorage.getItem("favorites"));
 
@@ -49,9 +51,10 @@ const ItemCard = ({ product }) => {
                                 />} />
                         </Box>
                     </div>
-                    <Link className="card-link" to={`/${city.name}/${product.name}`} state={product}>
+                    <div className="card-link"
+                        onClick={() => navigateToItemPage(navigate, city.name, product, setItem, setLoader)}>
                         <img src={product.images[0]} alt={product.name} />
-                    </Link>
+                    </div>
                 </>
             }
         </StyledItemCard>

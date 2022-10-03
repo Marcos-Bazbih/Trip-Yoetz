@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { DataContext } from '../../../contexts/data-context';
-import { GetActivities, DeleteActivity, UpdateActivity, AddActivity } from '../../../services/activity-service';
+import { GetActivities, DeleteActivity, UpdateActivity, AddActivity } from '../../../services/activity-services';
 import { getAllData } from '../../../state-management/actions/categories-actions';
 import { StyledAdmin } from '../../styles/pages/StyledAdmin';
 import { ThemeContext } from '../../../contexts/theme-context';

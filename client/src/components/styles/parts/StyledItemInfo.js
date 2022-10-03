@@ -199,7 +199,7 @@ export const StyledItemInfo = styled.section`
         height: 15%;
         border-bottom: 2px solid black;
     }
-@media  only screen  and (min-width:320px) and (max-width:375px){
+/* @media  only screen  and (min-width:320px) and (max-width:375px){
     .info-part{
         font-size: 0.7rem;
     }
@@ -325,6 +325,5 @@ export const StyledItemInfo = styled.section`
       flex-direction: column;
        }
    
-}
-
+} */
 `

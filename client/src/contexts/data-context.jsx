@@ -10,6 +10,7 @@ const DataContextProvider = ({ children }) => {
     const [restaurants, restaurantsDispatch] = useReducer(categoriesReducer, []);
     const [user, setUser] = useState({});
     const [city, setCity] = useState({});
+    const [item, setItem] = useState({});
     const [loader, setLoader] = useState(false);
 
     useEffect(() => {
@@ -23,9 +24,9 @@ const DataContextProvider = ({ children }) => {
         return {
             hotels, hotelsDispatch, activities, activitiesDispatch,
             restaurants, restaurantsDispatch, user, setUser,
-            city, setCity, loader, setLoader
+            city, setCity, loader, setLoader, item, setItem
         }
-    }, [hotels, activities, restaurants, user, city, loader, setLoader]);
+    }, [hotels, activities, restaurants, user, city, loader, setLoader, item, setItem]);
 
     return (
         <DataContext.Provider value={contextValue}>

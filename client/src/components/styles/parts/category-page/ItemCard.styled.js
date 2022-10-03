@@ -87,19 +87,15 @@ export const StyledItemCard = styled.article`
             justify-content: center;
             align-items: center;
             gap:2rem;
-            
-            .rating-stars{
-                font-size: 2rem;
-            }
         }
     }
     .card-link{
         border-radius: 0 5px 5px 0;
-        text-decoration: none;
         width: 30%;
         height: 100%;
         overflow: hidden;
-
+        cursor: pointer;
+        
         img{
             transition: 0.2s ease-in-out;
             width: 100%;
