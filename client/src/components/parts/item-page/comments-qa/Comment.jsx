@@ -1,9 +1,9 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { DataContext } from "../../contexts/data-context";
-import { GetRestaurants, LikeCommentRestaurant, RemoveCommentFromRestaurants } from "../../services/restaurant-services";
-import { GetHotels, LikeCommentHotel, RemoveCommentFromHotels } from "../../services/hotel-services";
-import { GetActivities, LikeCommentActivity, RemoveCommentFromActivities } from "../../services/activity-services";
-import { getDataByCity } from "../../state-management/actions/categories-actions";
+import { DataContext } from "../../../../contexts/data-context";
+import { GetRestaurants, LikeCommentRestaurant, RemoveCommentFromRestaurants } from "../../../../services/restaurant-services";
+import { GetHotels, LikeCommentHotel, RemoveCommentFromHotels } from "../../../../services/hotel-services";
+import { GetActivities, LikeCommentActivity, RemoveCommentFromActivities } from "../../../../services/activity-services";
+import { getDataByCity } from "../../../../state-management/actions/categories-actions";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -12,10 +12,13 @@ const Comment = ({ currentCard, comment }) => {
     const { setLoader, user, restaurantsDispatch, city } = useContext(DataContext);
     const likeRef = useRef();
 
-    useEffect(() => {
-        let likesAmount = Number(comment.likes.amount + 1);
-        setLikedComment({ ...comment, likes: { amount: likesAmount, usersId: [...comment.likes.usersId, user._id] } });
-    }, [comment, user._id])
+    // useEffect(() => {
+    //     let likesAmount = Number(comment.likes.amount + 1);
+    //     setLikedComment({ ...comment, likes: { amount: likesAmount, usersId: [...comment.likes.usersId, user._id] } });
+    // }, [comment, user._id])
+
+
+
     const likeComment = () => {
         likeRef.current.classList.toggle('liked');
         setLoader(true);
@@ -54,7 +57,7 @@ const Comment = ({ currentCard, comment }) => {
     const verifyAccessToLike = () => {
         if (!user.isLogin) return true;
         if (user.isAdmin) return true;
-        for (const userId of comment.likes.usersId) {
+        for (const userId of comment.likes.users_Id) {
             if (userId === user._id) return true;
         }
         return false;
@@ -98,21 +101,21 @@ const Comment = ({ currentCard, comment }) => {
     return (
         <article className="comment-box">
             {
-                comment.user_id === user._id || user.isAdmin ?
+                comment.writer_id === user._id || user.isAdmin ?
                     <button className="remove-comment-btn" onClick={removeComment}>
                         <DeleteIcon className="remove-comment-icon" />
                     </button>
                     : null
             }
             <div className="comment-header">
-                <h1 className="comment-writer">{comment.writer}</h1>
-                <img className="comment-img" src={comment.user_img} alt={`${comment.writer} img`} />
+                <h1 className="comment-writer">{comment.writer_name}</h1>
+                <img className="comment-img" src={comment.writer_img} alt={`${comment.writer_name} img`} />
             </div>
             <div className="comment-body">
                 <p className="comment-body-text">{comment.body}</p>
             </div>
             <div className="comment-footer">
-                <span className="comment-time">{comment.date.substr(0, 10)}
+                <span className="comment-time">{comment.updatedAt.substr(0, 10)}
                 </span>
                 <span className="comment-likes-amount">{comment.likes.amount}</span>
                 <button className="comment-likes-btn" disabled={verifyAccessToLike()} onClick={likeComment}>

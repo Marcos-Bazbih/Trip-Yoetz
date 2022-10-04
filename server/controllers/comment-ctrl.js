@@ -29,22 +29,30 @@ module.exports = {
         try {
             const itemId = mongoose.Types.ObjectId(req.params.itemId);
             const { category, body, writer_name, writer_id, writer_img } = req.body;
-            const comment = new comments({ category, body, writer_name, writer_id, writer_img });
-            comment.itemRef = itemId;
-            if (!comment) return res.status(400).json({ success: false, message: "comment not valid" })
+            const commentObj = new comments({ category, body, writer_name, writer_id, writer_img });
+            commentObj.itemRef = itemId;
+            if (!commentObj) return res.status(400).json({ success: false, message: "comment not valid" })
 
             if (category === "Activity") {
-                await activities.findByIdAndUpdate(itemId, { $push: { comments: comment } })
+                await activities.findByIdAndUpdate(itemId, { $push: { comments: commentObj } })
             }
             else if (category === "Restaurant") {
-                await restaurants.findByIdAndUpdate(itemId, { $push: { comments: comment } })
+                await restaurants.findByIdAndUpdate(itemId, { $push: { comments: commentObj } })
             }
             else if (category === "Hotel") {
-                await hotels.findByIdAndUpdate(itemId, { $push: { comments: comment } })
+                await hotels.findByIdAndUpdate(itemId, { $push: { comments: commentObj } })
             }
-
-            await comments.create(comment)
-                .then(() => res.status(201).json({ success: true, message: "comment successfully added" }))
+            let newComment = await comments.create(commentObj);
+            newComment = await newComment.populate([
+                {
+                    path: "itemRef",
+                    populate: {
+                        path: 'comments',
+                        model: 'Comment',
+                    }
+                },
+            ])
+                .then((result) => res.status(201).json({ success: true, comment: result }))
                 .catch((err) => res.status(400).json({ success: false, message: err.message }))
         }
         catch (err) {
