@@ -1,21 +1,20 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-import { getAvgRating } from "../../../utils/getAvgRating";
-import { StyledItemCard } from "../../styles/parts/category-page/ItemCard.styled";
+import useItemData from "../../../hooks/useItemData";
 import { DataContext } from "../../../contexts/data-context";
 import { ThemeContext } from "../../../contexts/theme-context";
+import { getAvgRating } from "../../../utils/getAvgRating";
 import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../../utils/favoritesList-functions";
-import { navigateToItemPage } from "../../../utils/navigateToItemPage";
+import { StyledItemCard } from "../../styles/parts/category-page/ItemCard.styled";
 
 const ItemCard = ({ product }) => {
-    const { user, city, setItem, setLoader } = useContext(DataContext);
+    const { user, city } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
+    const { navigateToItemPage } = useItemData();
     const [rating, setRating] = useState(0);
-    const navigate = useNavigate();
     const heartIcon = useRef();
     const favorites = JSON.parse(localStorage.getItem("favorites"));
 
@@ -52,7 +51,7 @@ const ItemCard = ({ product }) => {
                         </Box>
                     </div>
                     <div className="card-link"
-                        onClick={() => navigateToItemPage(navigate, city.name, product, setItem, setLoader)}>
+                        onClick={() => navigateToItemPage(city.name, product)}>
                         <img src={product.images[0]} alt={product.name} />
                     </div>
                 </>

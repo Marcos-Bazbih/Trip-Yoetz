@@ -1,40 +1,35 @@
+import { useContext, useEffect, useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
-import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../../contexts/data-context';
 import { AddRating, UpdateRating } from '../../../services/rating-service';
+import useItemData from '../../../hooks/useItemData';
 
-const RatingStars = ({ rating, category, itemId }) => {
+const RatingStars = () => {
     const { user } = useContext(DataContext);
+    const { item, updateItemLocalStorage } = useItemData();
     const [rateToDisplay, setRateToDisplay] = useState(0);
     const [existedRate, setExistedRate] = useState(null);
 
     useEffect(() => {
-        if (rating && rating.length >= 1) {
-            for (const rate of rating) {
+        if (item.rating && item.rating.length >= 1) {
+            for (const rate of item.rating) {
                 if (rate.user_id === user._id) {
                     setRateToDisplay(rate.rating);
                     setExistedRate(rate);
                 }
             };
         };
-    }, [rating, user._id, setRateToDisplay]);
+    }, [item.rating, user._id]);
 
     const checkIfUserRated = () => {
         if (!user.isLogin) return true;
         if (user.isAdmin) return true;
         return false;
-        // if (rating && rating.length >= 1) {
-        //     for (const rate of rating) {
-        //         if (rate.user_id === user._id) return true
-        //     };
-        //     return false;
-        // };
     };
-
     const sendRate = (e) => {
         const addRatingParams = {
-            category,
+            category: item.category,
             rating: e.target.value,
             user_id: user._id
         };
@@ -42,14 +37,16 @@ const RatingStars = ({ rating, category, itemId }) => {
         if (existedRate) {
             UpdateRating(addRatingParams, existedRate._id)
                 .then((res) => {
+                    updateItemLocalStorage(res.rating.itemRef)
                     console.log(res)
                 })
                 .then(() => { setRateToDisplay(Number(addRatingParams.rating)) })
                 .catch(err => console.log(err))
         }
         else {
-            AddRating(addRatingParams, itemId)
+            AddRating(addRatingParams, item._id)
                 .then((res) => {
+                    updateItemLocalStorage(res.rating.itemRef)
                     console.log(res)
                 })
                 .then(() => { setRateToDisplay(Number(addRatingParams.rating)) })

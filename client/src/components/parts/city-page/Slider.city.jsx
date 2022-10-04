@@ -7,13 +7,15 @@ import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import useCityData from '../../../hooks/useCityData';
 import { disableBtn, handleSliderBtn } from "./slider-actions";
+import useItemData from '../../../hooks/useItemData';
 
 const Slider = ({ category, name, info, items }) => {
     const { mode } = useContext(ThemeContext);
+    const { navigateToItemPage } = useItemData();
+    const { city } = useCityData();
     const [left, setLeft] = useState(0);
     const { pathname } = useLocation();
     const { width } = useWindowDimensions();
-    const { city } = useCityData();
 
     useEffect(() => {
         setLeft(0);
@@ -32,10 +34,11 @@ const Slider = ({ category, name, info, items }) => {
                         items && items.length >= 1 &&
                         items.map((item, i) =>
                             i < 6 &&
-                            <Link className='slider-card' to={`/${city.name}/${item.name}`} state={item} key={item._id}>
+                            <div className='slider-card' key={item._id}
+                                onClick={() => navigateToItemPage(city.name, item)}>
                                 <h1>{item.name}</h1>
                                 <img key={item._id} src={item.images[0]} alt="img" />
-                            </Link>
+                            </div>
                         )
                     }
                     <div className='end-slider'>

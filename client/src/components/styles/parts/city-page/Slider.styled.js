@@ -45,6 +45,7 @@ export const StyledSlider = styled.div`
             transition: 0.2s ease-in-out;
 
             .slider-card{
+                cursor: pointer;
                 width: 11vw;
                 height: 100%;
                 border-radius: 5px;
@@ -54,7 +55,7 @@ export const StyledSlider = styled.div`
                 display: flex;
                 justify-content: center;
                 overflow: hidden;
-
+                
                 h1{
                     width: 100%;
                     min-height: 30%;

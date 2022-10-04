@@ -18,6 +18,9 @@ const DataContextProvider = ({ children }) => {
         if (localStorage.city) {
             setCity(JSON.parse(localStorage.getItem('city')));
         }
+        if (localStorage.item) {
+            setItem(JSON.parse(localStorage.getItem('item')));
+        }
     }, []);
 
     const contextValue = useMemo(() => {
