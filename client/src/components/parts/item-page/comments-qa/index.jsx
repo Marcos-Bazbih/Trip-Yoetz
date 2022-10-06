@@ -25,7 +25,7 @@ const CommentsQa = () => {
             <StyledCommentsQa mode={mode} className="comments-qa">
                 {toggle
                     ?
-                    <CommentsSection currentCard={item} />
+                    <CommentsSection />
                     :
                     <QaSection currentCard={item} />
                 }

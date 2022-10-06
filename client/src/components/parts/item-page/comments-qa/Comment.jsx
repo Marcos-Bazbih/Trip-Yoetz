@@ -31,10 +31,11 @@ const Comment = ({ comment }) => {
             }
         }
         else {
+            let filteredLikesArray = comment.likes.users_Id.filter((userId) => userId !== user._id);
             return {
                 likes: {
                     amount: Number(comment.likes.amount - 1),
-                    users_Id: [comment.likes.users_Id.filter((userId) => userId !== user._id)]
+                    users_Id: filteredLikesArray.length >= 1 ? [filteredLikesArray] : []
                 }
             }
         }
