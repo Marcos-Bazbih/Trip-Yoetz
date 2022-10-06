@@ -307,6 +307,7 @@ export const StyledCommentsQa = styled.section`
         animation-name: like;
         animation-duration: 1s;
         animation-fill-mode: forwards;
+        color: red;
     }
     @keyframes like {
         50% {

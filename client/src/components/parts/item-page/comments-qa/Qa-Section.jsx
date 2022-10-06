@@ -5,7 +5,7 @@ import { AddQuestionToHotels, GetHotels } from '../../../../services/hotel-servi
 import { AddQuestionToActivities, GetActivities } from '../../../../services/activity-services';
 import { getDataByCity } from '../../../../state-management/actions/categories-actions';
 import { verifyUserAccess } from "../../../../utils/verifyUserAccess";
-import Q_A from '../../Q_A';
+import Q_A from './Q_A';
 
 const QaSection = ({ currentCard }) => {
     const { user, restaurantsDispatch, city } = useContext(DataContext);

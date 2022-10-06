@@ -1,9 +1,9 @@
 import { useContext, useRef, useState } from "react"
-import { DataContext } from "../../contexts/data-context"
-import { AnswerToQuestionRestaurants, GetRestaurants, RemoveQuestionFromRestaurants } from "../../services/restaurant-services";
-import { AnswerToQuestionHotels, GetHotels, RemoveQuestionFromHotels } from "../../services/hotel-services";
-import { AnswerToQuestionActivities, GetActivities, RemoveQuestionFromActivities } from "../../services/activity-services";
-import { getDataByCity } from "../../state-management/actions/categories-actions";
+import { DataContext } from "../../../../contexts/data-context"
+import { AnswerToQuestionRestaurants, GetRestaurants, RemoveQuestionFromRestaurants } from "../../../../services/restaurant-services";
+import { AnswerToQuestionHotels, GetHotels, RemoveQuestionFromHotels } from "../../../../services/hotel-services";
+import { AnswerToQuestionActivities, GetActivities, RemoveQuestionFromActivities } from "../../../../services/activity-services";
+import { getDataByCity } from "../../../../state-management/actions/categories-actions";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const Q_A = ({ currentCard, item }) => {

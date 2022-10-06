@@ -7,7 +7,7 @@ import useItemData from "../../../../hooks/useItemData";
 
 const CommentsSection = () => {
     const { user } = useContext(DataContext);
-    const { item, updateItemLocalStorage } = useItemData();
+    const { item, updateCommentsLocalStorage } = useItemData();
     const [comment, setComment] = useState({});
     const [charsLength, setCharsLength] = useState(0);
     const inputRef = useRef();
@@ -26,7 +26,7 @@ const CommentsSection = () => {
 
         addComment(comment, item._id)
             .then((res) => {
-                updateItemLocalStorage(res.comment.itemRef)
+                updateCommentsLocalStorage(res.comment.itemRef)
                 console.log(res)
             })
             .then(() => {
@@ -45,7 +45,7 @@ const CommentsSection = () => {
                         ?
                         "How was your experience here ?"
                         :
-                        "Plese login or register to comment"}
+                        "Please login or register to comment"}
                     onChange={handleCommentOnChange} name="body"
                     className="comment-body-input"
                     required>
@@ -65,8 +65,8 @@ const CommentsSection = () => {
             <section className="comments-section">
                 {
                     item.comments && item.comments.length >= 1 ?
-                        item.comments.map((item, i) =>
-                            <Comment currentCard={item} comment={item} key={i} />
+                        item.comments.map((commentItem, i) =>
+                            <Comment comment={commentItem} key={i} />
                         )
                         :
                         <h1 className="empty-comments">No comments yet</h1>

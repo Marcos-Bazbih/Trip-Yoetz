@@ -1,101 +1,59 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { DataContext } from "../../../../contexts/data-context";
-import { GetRestaurants, LikeCommentRestaurant, RemoveCommentFromRestaurants } from "../../../../services/restaurant-services";
-import { GetHotels, LikeCommentHotel, RemoveCommentFromHotels } from "../../../../services/hotel-services";
-import { GetActivities, LikeCommentActivity, RemoveCommentFromActivities } from "../../../../services/activity-services";
-import { getDataByCity } from "../../../../state-management/actions/categories-actions";
+import { useContext, useRef, useEffect, useState } from "react";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { DataContext } from "../../../../contexts/data-context";
+import { updateComment, deleteComment } from "../../../../services/comment-service";
+import useItemData from "../../../../hooks/useItemData";
+import { verifyUserAccess } from "../../../../utils/verifyUserAccess";
 
-const Comment = ({ currentCard, comment }) => {
-    const [likedComment, setLikedComment] = useState({});
-    const { setLoader, user, restaurantsDispatch, city } = useContext(DataContext);
+const Comment = ({ comment }) => {
+    const [isUserLikedComment, setIsUserLikedComment] = useState(false);
+    const { updateCommentsLocalStorage, deleteCommentLocalStorage } = useItemData();
+    const { user, item } = useContext(DataContext);
     const likeRef = useRef();
 
-    // useEffect(() => {
-    //     let likesAmount = Number(comment.likes.amount + 1);
-    //     setLikedComment({ ...comment, likes: { amount: likesAmount, usersId: [...comment.likes.usersId, user._id] } });
-    // }, [comment, user._id])
+    useEffect(() => {
+        for (const userId of comment.likes.users_Id) {
+            if (userId === user._id) {
+                setIsUserLikedComment(true);
+                likeRef.current.classList.add('liked');
+            }
+        }
+    }, [comment.likes.users_Id, user._id])
 
-
-
+    const getUpdatedLikes = () => {
+        if (!isUserLikedComment) {
+            return {
+                likes: {
+                    amount: Number(comment.likes.amount + 1),
+                    users_Id: [...comment.likes.users_Id, user._id]
+                }
+            }
+        }
+        else {
+            return {
+                likes: {
+                    amount: Number(comment.likes.amount - 1),
+                    users_Id: [comment.likes.users_Id.filter((userId) => userId !== user._id)]
+                }
+            }
+        }
+    };
     const likeComment = () => {
         likeRef.current.classList.toggle('liked');
-        setLoader(true);
-        switch (currentCard.category) {
-            case "restaurant":
-                LikeCommentRestaurant(currentCard._id, currentCard, currentCard.comments, comment.id, likedComment)
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    }).finally(() => setLoader(false));
-                break;
-            case "hotel":
-                LikeCommentHotel(currentCard._id, currentCard, currentCard.comments, comment.id, likedComment)
-                GetHotels()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    }).finally(() => setLoader(false));
-                break;
-            case "activity":
-                LikeCommentActivity(currentCard._id, currentCard, currentCard.comments, comment.id, likedComment)
-                GetActivities()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    }).finally(() => setLoader(false));
-                break;
-            default:
-                break;
-        }
-    };
-    const verifyAccessToLike = () => {
-        if (!user.isLogin) return true;
-        if (user.isAdmin) return true;
-        for (const userId of comment.likes.users_Id) {
-            if (userId === user._id) return true;
-        }
-        return false;
+        updateComment(getUpdatedLikes(), comment._id)
+            .then((res) => {
+                setIsUserLikedComment(!isUserLikedComment)
+                updateCommentsLocalStorage(res.comment.itemRef)
+                console.log(res)
+            })
     };
     const removeComment = () => {
-        setLoader(true);
-        switch (currentCard.category) {
-            case "restaurant":
-                RemoveCommentFromRestaurants(currentCard._id, currentCard, currentCard.comments, comment)
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    }).finally(() => setLoader(false));
-                break;
-            case "hotel":
-                RemoveCommentFromHotels(currentCard._id, currentCard, currentCard.comments, comment)
-                GetHotels()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    }).finally(() => setLoader(false));
-                break;
-            case "activity":
-                RemoveCommentFromActivities(currentCard._id, currentCard, currentCard.comments, comment)
-                GetActivities()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    }).finally(() => setLoader(false));
-                break;
-
-            default:
-                break;
-        };
+        deleteComment(comment._id)
+            .then((res) => {
+                deleteCommentLocalStorage(item, comment)
+                console.log(res);
+            })
     };
 
     return (
@@ -118,7 +76,7 @@ const Comment = ({ currentCard, comment }) => {
                 <span className="comment-time">{comment.updatedAt.substr(0, 10)}
                 </span>
                 <span className="comment-likes-amount">{comment.likes.amount}</span>
-                <button className="comment-likes-btn" disabled={verifyAccessToLike()} onClick={likeComment}>
+                <button className="comment-likes-btn" disabled={verifyUserAccess(user)} onClick={likeComment}>
                     <ThumbUpIcon ref={likeRef} className="comment-likes-icon" />
                 </button>
             </div>

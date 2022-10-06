@@ -9,4 +9,4 @@ export const getAvgRating = (ratingArray) => {
         return avg.toString().substring(0,3);
     }
     return 0;
-}
+};

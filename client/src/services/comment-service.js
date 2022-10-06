@@ -12,12 +12,19 @@ export const addComment = async (comment, itemId) => {
         .then(res => res.json())
         .catch(err => err)
 };
-
 export const updateComment = async (newComment, commentId) => {
     const options = {
         method: "PUT",
         body: JSON.stringify({ ...newComment }),
         headers: { 'Content-Type': 'application/json' }
+    };
+    return await fetch(`${BASE_URL}/${commentId}`, options)
+        .then(res => res.json())
+        .catch(err => err)
+};
+export const deleteComment = async (commentId) => {
+    const options = {
+        method: "DELETE"
     };
     return await fetch(`${BASE_URL}/${commentId}`, options)
         .then(res => res.json())

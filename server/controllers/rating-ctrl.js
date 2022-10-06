@@ -60,7 +60,7 @@ module.exports = {
                     path: "itemRef",
                     populate: {
                         path: 'rating',
-                        model: 'Rating',
+                        model: 'Rating'
                     }
                 },
             ])

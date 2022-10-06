@@ -4,10 +4,11 @@ import Rating from '@mui/material/Rating';
 import { DataContext } from '../../../contexts/data-context';
 import { AddRating, UpdateRating } from '../../../services/rating-service';
 import useItemData from '../../../hooks/useItemData';
+import { verifyUserAccess } from "../../../utils/verifyUserAccess";
 
 const RatingStars = () => {
     const { user } = useContext(DataContext);
-    const { item, updateItemLocalStorage } = useItemData();
+    const { item, updateRatingLocalStorage } = useItemData();
     const [rateToDisplay, setRateToDisplay] = useState(0);
     const [existedRate, setExistedRate] = useState(null);
 
@@ -22,11 +23,6 @@ const RatingStars = () => {
         };
     }, [item.rating, user._id]);
 
-    const checkIfUserRated = () => {
-        if (!user.isLogin) return true;
-        if (user.isAdmin) return true;
-        return false;
-    };
     const sendRate = (e) => {
         const addRatingParams = {
             category: item.category,
@@ -37,7 +33,7 @@ const RatingStars = () => {
         if (existedRate) {
             UpdateRating(addRatingParams, existedRate._id)
                 .then((res) => {
-                    updateItemLocalStorage(res.rating.itemRef)
+                    updateRatingLocalStorage(res.rating.itemRef)
                     console.log(res)
                 })
                 .then(() => { setRateToDisplay(Number(addRatingParams.rating)) })
@@ -46,7 +42,7 @@ const RatingStars = () => {
         else {
             AddRating(addRatingParams, item._id)
                 .then((res) => {
-                    updateItemLocalStorage(res.rating.itemRef)
+                    updateRatingLocalStorage(res.rating.itemRef)
                     console.log(res)
                 })
                 .then(() => { setRateToDisplay(Number(addRatingParams.rating)) })
@@ -56,7 +52,7 @@ const RatingStars = () => {
 
     return (
         <Stack spacing={1} className="rating-stars">
-            <Rating readOnly={checkIfUserRated()}
+            <Rating readOnly={verifyUserAccess(user)}
                 className="rating-stars-select" name="half-rating" precision={0.5}
                 value={rateToDisplay} onChange={sendRate}
             />

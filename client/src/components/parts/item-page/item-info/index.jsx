@@ -13,7 +13,7 @@ const ItemInfo = () => {
 
     return (
         <StyledItemInfo mode={mode}>
-            <ItemDetails item={item} />
+            <ItemDetails />
             <ItemImages images={item.images} name={item.name} />
             <ItemActivityHours activityHours={item.activityHours} price={item.price} />
             <ItemDescription description={item.description} />

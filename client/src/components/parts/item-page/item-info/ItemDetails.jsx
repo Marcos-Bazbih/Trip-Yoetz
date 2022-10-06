@@ -8,8 +8,8 @@ import { DataContext } from "../../../../contexts/data-context";
 import { activateHeartIcon, addClassToHeart, verifyUserFavorites } from "../../../../utils/favoritesList-functions";
 import { getAvgRating } from "../../../../utils/getAvgRating";
 
-const ItemDetails = ({ item }) => {
-    const { user } = useContext(DataContext);
+const ItemDetails = () => {
+    const { user, item } = useContext(DataContext);
     const heartIcon = useRef();
     const favorites = JSON.parse(localStorage.getItem("favorites"));
 
@@ -23,7 +23,9 @@ const ItemDetails = ({ item }) => {
             <h1 className="item-name-h1">{item.name}</h1>
             <div className="item-info">
                 <Box className="rating-wrapper info-part" sx={{ '& > legend': { mt: 2 } }}>
-                    <p className="reviews">{item.rating && item.rating.length >= 1 ? `${item.rating.length} reviews` : "no reviews yet"}</p>
+                    <p className="reviews">
+                        {item.rating && item.rating.length >= 1 ? `${item.rating.length} reviews` : "no reviews yet"}
+                    </p>
                     <Rating className="rating-stars" name="text-feedback" value={Number(getAvgRating(item.rating))}
                         readOnly
                         precision={0.5}

@@ -9,10 +9,23 @@ const useItemData = () => {
     const { setLoader, item, setItem } = useContext(DataContext);
     const navigate = useNavigate();
 
-    const updateItemLocalStorage = (product) => {
+    const updateRatingLocalStorage = (product) => {
         setLoader(true);
-        setItem(product);
-        localStorage.setItem("item", JSON.stringify(product));
+        setItem({ ...item, rating: product.rating });
+        localStorage.setItem("item", JSON.stringify({ ...item, rating: product.rating }));
+        setLoader(false);
+    };
+    const updateCommentsLocalStorage = (product) => {
+        setLoader(true);
+        setItem({ ...item, comments: product.comments });
+        localStorage.setItem("item", JSON.stringify({ ...item, comments: product.comments }));
+        setLoader(false);
+    };
+    const deleteCommentLocalStorage = (product, deletedComment) => {
+        setLoader(true);
+        let filteredComments = product.comments.filter((com) => com._id !== deletedComment._id);
+        setItem({ ...item, comments: filteredComments });
+        localStorage.setItem("item", JSON.stringify({ ...item, comments: filteredComments }));
         setLoader(false);
     };
     const navigateToItemPage = (cityName, product) => {
@@ -50,7 +63,11 @@ const useItemData = () => {
         };
     };
 
-    return { item, setItem, updateItemLocalStorage, navigateToItemPage };
+    return {
+        item, setItem, navigateToItemPage,
+        updateRatingLocalStorage, updateCommentsLocalStorage,
+        deleteCommentLocalStorage
+    };
 };
 
 export default useItemData;

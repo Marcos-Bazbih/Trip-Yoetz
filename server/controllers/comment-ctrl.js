@@ -48,7 +48,7 @@ module.exports = {
                     path: "itemRef",
                     populate: {
                         path: 'comments',
-                        model: 'Comment',
+                        model: 'Comment'
                     }
                 },
             ])
@@ -61,7 +61,16 @@ module.exports = {
     },
     updateComment: async (req, res) => {
         try {
-            const comment = await comments.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+            const comment = await comments.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+                .populate([
+                    {
+                        path: "itemRef",
+                        populate: {
+                            path: 'comments',
+                            model: 'Comment',
+                        }
+                    },
+                ])
             if (comment) return res.status(200).json({ success: true, comment });
             res.status(404).json({ success: false, message: "no comment found" });
         }
