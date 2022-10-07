@@ -1,9 +1,9 @@
 import { useContext, useState, useRef } from "react";
 import { DataContext } from "../../../../contexts/data-context";
 import { addComment } from "../../../../services/comment-service";
+import useItemData from "../../../../hooks/useItemData";
 import { verifyUserAccess } from "../../../../utils/verifyUserAccess";
 import Comment from "./Comment";
-import useItemData from "../../../../hooks/useItemData";
 
 const CommentsSection = () => {
     const { user } = useContext(DataContext);

@@ -1,65 +1,38 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { DataContext } from '../../../../contexts/data-context';
-import { AddQuestionToRestaurants, GetRestaurants } from '../../../../services/restaurant-services';
-import { AddQuestionToHotels, GetHotels } from '../../../../services/hotel-services';
-import { AddQuestionToActivities, GetActivities } from '../../../../services/activity-services';
-import { getDataByCity } from '../../../../state-management/actions/categories-actions';
+import { addQuestion } from "../../../../services/qa-service";
+import useItemData from '../../../../hooks/useItemData';
 import { verifyUserAccess } from "../../../../utils/verifyUserAccess";
 import Q_A from './Q_A';
 
-const QaSection = ({ currentCard }) => {
-    const { user, restaurantsDispatch, city } = useContext(DataContext);
-    const [question, setQuestion] = useState({ id: null, user_id: null });
-    const inputRef = useRef();
+const QaSection = () => {
+    const { user } = useContext(DataContext);
+    const { item, updateQuestionsLocalStorage } = useItemData();
+    const [question, setQuestion] = useState({});
     const [charsLength, setCharsLength] = useState(0);
+    const inputRef = useRef();
 
-    const handleFormOnInput = (event) => {
-        question[event.target.name] = event.target.value;
+    const handleQuestionOnChange = (event) => {
+        question.question = event.target.value;
         setCharsLength(event.target.value.length);
     };
     const sendQuestionForm = (event) => {
         event.preventDefault();
-        question.qDate = new Date();
-        question.id = currentCard.q_a.length + 1;
-        question.writer = `${user.name} ${user.lastName}`;
-        question.user_img = user.image;
-        question.user_id = user._id;
+        question.category = item.category;
+        question.writer_name = `${user.firstName} ${user.lastName}`;
+        question.writer_id = user._id;
+        question.writer_img = user.image;
         setQuestion(question);
 
-        switch (currentCard.category) {
-            case "restaurant":
-                AddQuestionToRestaurants(currentCard._id, currentCard, currentCard.q_a, question)
-                GetRestaurants()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    })
+        addQuestion(question, item._id)
+            .then((res) => {
+                updateQuestionsLocalStorage(res.q_a.itemRef)
+                console.log(res)
+            })
+            .then(() => {
                 inputRef.current.value = "";
-                break;
-            case "hotel":
-                AddQuestionToHotels(currentCard._id, currentCard, currentCard.q_a, question)
-                GetHotels()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    })
-                inputRef.current.value = "";
-                break;
-            case "activity":
-                AddQuestionToActivities(currentCard._id, currentCard, currentCard.q_a, question)
-                GetActivities()
-                    .then(res => {
-                        restaurantsDispatch(
-                            getDataByCity(res.data, city)
-                        )
-                    })
-                inputRef.current.value = "";
-                break;
-            default:
-                break;
-        }
+                setCharsLength(0);
+            })
     };
 
     return (
@@ -72,8 +45,8 @@ const QaSection = ({ currentCard }) => {
                         ?
                         "What do you want to know ?"
                         :
-                        "Plese login or register to ask"}
-                    onChange={handleFormOnInput} name="q"
+                        "Please login or register to ask"}
+                    onChange={handleQuestionOnChange} name="question"
                     className="comment-body-input"
                     required>
                 </textarea>
@@ -84,16 +57,16 @@ const QaSection = ({ currentCard }) => {
                 </div>
             </form>
             {
-                currentCard.q_a && currentCard.q_a.length >= 1
+                item.q_a && item.q_a.length >= 1
                     ?
-                    <h1 className="comments-amount">{currentCard.q_a.length} Questions</h1>
+                    <h1 className="comments-amount">{item.q_a.length} Questions</h1>
                     : null
             }
             <section className="comments-section">
                 {
-                    currentCard.q_a && currentCard.q_a.length >= 1 ?
-                        currentCard.q_a.map((item, i) =>
-                            <Q_A currentCard={currentCard} item={item} key={i} />
+                    item.q_a && item.q_a.length >= 1 ?
+                        item.q_a.map((qaItem, i) =>
+                            <Q_A qa={qaItem} key={i} />
                         )
                         :
                         <h1 className="empty-comments">No questions yet</h1>

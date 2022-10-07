@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../../../contexts/theme-context";
-import useItemData from "../../../../hooks/useItemData";
 import { StyledCommentsQa } from "../../../styles/parts/StyledCommentsQa";
 import CommentsSection from "./Comments-section";
 import QaSection from "./Qa-Section";
@@ -8,7 +7,6 @@ import QaSection from "./Qa-Section";
 const CommentsQa = () => {
     const { mode } = useContext(ThemeContext);
     const [toggle, setToggle] = useState(true);
-    const { item } = useItemData();
 
     return (
         <>
@@ -27,7 +25,7 @@ const CommentsQa = () => {
                     ?
                     <CommentsSection />
                     :
-                    <QaSection currentCard={item} />
+                    <QaSection />
                 }
             </StyledCommentsQa>
         </>

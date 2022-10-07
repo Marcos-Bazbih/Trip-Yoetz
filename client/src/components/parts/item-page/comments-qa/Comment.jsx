@@ -7,9 +7,9 @@ import useItemData from "../../../../hooks/useItemData";
 import { verifyUserAccess } from "../../../../utils/verifyUserAccess";
 
 const Comment = ({ comment }) => {
-    const [isUserLikedComment, setIsUserLikedComment] = useState(false);
-    const { updateCommentsLocalStorage, deleteCommentLocalStorage } = useItemData();
     const { user, item } = useContext(DataContext);
+    const { updateCommentsLocalStorage, deleteCommentLocalStorage } = useItemData();
+    const [isUserLikedComment, setIsUserLikedComment] = useState(false);
     const likeRef = useRef();
 
     useEffect(() => {
@@ -74,7 +74,7 @@ const Comment = ({ comment }) => {
                 <p className="comment-body-text">{comment.body}</p>
             </div>
             <div className="comment-footer">
-                <span className="comment-time">{comment.updatedAt.substr(0, 10)}
+                <span className="comment-time">{comment.createdAt.substr(0, 10)}
                 </span>
                 <span className="comment-likes-amount">{comment.likes.amount}</span>
                 <button className="comment-likes-btn" disabled={verifyUserAccess(user)} onClick={likeComment}>

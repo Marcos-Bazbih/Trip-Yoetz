@@ -29,22 +29,30 @@ module.exports = {
         try {
             const itemId = mongoose.Types.ObjectId(req.params.itemId);
             const { category, writer_name, writer_id, writer_img, question } = req.body;
-            const q_a = new Q_A({ category, writer_name, writer_id, writer_img, question });
-            q_a.itemRef = itemId;
-            if (!q_a) return res.status(400).json({ success: false, message: "q_a not valid" })
+            const q_aObj = new Q_A({ category, writer_name, writer_id, writer_img, question });
+            q_aObj.itemRef = itemId;
+            if (!q_aObj) return res.status(400).json({ success: false, message: "q_a not valid" })
 
-            if(category === "Activity") {
-                await activities.findByIdAndUpdate(itemId, { $push: { q_a: q_a } })
+            if (category === "Activity") {
+                await activities.findByIdAndUpdate(itemId, { $push: { q_a: q_aObj } })
             }
-            else if(category === "Restaurant") {
-                await restaurants.findByIdAndUpdate(itemId, { $push: { q_a: q_a } })
+            else if (category === "Restaurant") {
+                await restaurants.findByIdAndUpdate(itemId, { $push: { q_a: q_aObj } })
             }
-            else if(category === "Hotel") {
-                await hotels.findByIdAndUpdate(itemId, { $push: { q_a: q_a } })
+            else if (category === "Hotel") {
+                await hotels.findByIdAndUpdate(itemId, { $push: { q_a: q_aObj } })
             }
-
-            await Q_A.create(q_a)
-                .then(() => res.status(201).json({ success: true, message: "q_a successfully added" }))
+            let newQuestion = await Q_A.create(q_aObj);
+            newQuestion = await newQuestion.populate([
+                {
+                    path: "itemRef",
+                    populate: {
+                        path: 'q_a',
+                        model: 'Q_A'
+                    }
+                },
+            ])
+                .then((result) => res.status(201).json({ success: true, q_a: result }))
                 .catch((err) => res.status(400).json({ success: false, message: err.message }))
         }
         catch (err) {
@@ -53,7 +61,16 @@ module.exports = {
     },
     updateQ_A: async (req, res) => {
         try {
-            const q_a = await Q_A.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+            const q_a = await Q_A.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+            .populate([
+                {
+                    path: "itemRef",
+                    populate: {
+                        path: 'q_a',
+                        model: 'Q_A',
+                    }
+                },
+            ])
             if (q_a) return res.status(200).json({ success: true, q_a });
             res.status(404).json({ success: false, message: "no q_a found" });
         }

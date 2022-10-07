@@ -28,6 +28,19 @@ const useItemData = () => {
         localStorage.setItem("item", JSON.stringify({ ...item, comments: filteredComments }));
         setLoader(false);
     };
+    const updateQuestionsLocalStorage = (product) => {
+        setLoader(true);
+        setItem({ ...item, q_a: product.q_a });
+        localStorage.setItem("item", JSON.stringify({ ...item, q_a: product.q_a }));
+        setLoader(false);
+    };
+    const deleteQuestionLocalStorage = (product, deletedQuestion) => {
+        setLoader(true);
+        let filteredQuestions = product.q_a.filter((question) => question._id !== deletedQuestion._id);
+        setItem({ ...item, q_a: filteredQuestions });
+        localStorage.setItem("item", JSON.stringify({ ...item, q_a: filteredQuestions }));
+        setLoader(false);
+    };
     const navigateToItemPage = (cityName, product) => {
         setLoader(true)
         switch (product.category) {
@@ -65,8 +78,9 @@ const useItemData = () => {
 
     return {
         item, setItem, navigateToItemPage,
-        updateRatingLocalStorage, updateCommentsLocalStorage,
-        deleteCommentLocalStorage
+        updateRatingLocalStorage,
+        updateCommentsLocalStorage, deleteCommentLocalStorage,
+        updateQuestionsLocalStorage, deleteQuestionLocalStorage
     };
 };
 
