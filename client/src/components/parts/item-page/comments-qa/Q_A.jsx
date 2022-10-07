@@ -77,7 +77,7 @@ const Q_A = ({ qa }) => {
                     <form className="insert-answer-form" onSubmit={sendAnswerForm}>
                         <input ref={inputRef} placeholder="answer here..."
                             className="answer-input" name="answer" type="text"
-                            onChange={handleAnswerOnChange} />
+                            required onChange={handleAnswerOnChange} />
                         <button className="answer-send-btn">SEND</button>
                     </form>
                     :

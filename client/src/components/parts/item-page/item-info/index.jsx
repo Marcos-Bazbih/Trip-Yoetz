@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StyledItemInfo } from "../../../styles/parts/StyledItemInfo";
+import { StyledItemInfo } from "../../../styles/parts/item-page/ItemInfo.styled";
 import { ThemeContext } from "../../../../contexts/theme-context";
 import ItemDetails from "./ItemDetails";
 import ItemImages from "./ItemImages";

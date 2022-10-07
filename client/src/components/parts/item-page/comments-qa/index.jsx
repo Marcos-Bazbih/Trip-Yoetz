@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../../../contexts/theme-context";
-import { StyledCommentsQa } from "../../../styles/parts/StyledCommentsQa";
+import { StyledCommentsQa } from "../../../styles/parts/item-page/CommentsQa.styled";
 import CommentsSection from "./Comments-section";
 import QaSection from "./Qa-Section";
 

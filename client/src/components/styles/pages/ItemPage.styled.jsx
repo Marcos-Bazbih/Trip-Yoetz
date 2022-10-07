@@ -6,14 +6,14 @@ export const StyledItemPage = styled.section`
     height: fit-content;
     display: grid;
     grid-template-areas:
-    'nav nav'
-    'info info'
-    'rating rating'
-    'toggle toggle'
-    'comments-qa comments-qa';
+    'nav'
+    'info'
+    'rating'
+    'toggle'
+    'comments-qa';
     grid-template-rows:10vh 90vh 5vh 10vh auto;
-    grid-template-columns:50% 50%;
-    gap: 5vh; 
+    grid-template-columns:100%;
+    gap: 5vh 0; 
 
     .rating-stars{
         grid-area: rating;

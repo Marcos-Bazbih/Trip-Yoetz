@@ -8,50 +8,6 @@ export const StyledItemCard = styled.article`
     border-radius:5px;
     border: 1px solid ${({ mode }) => mode.color};
     
-    .heart-btn{
-        cursor: pointer;
-        z-index: 1;
-        position: absolute;
-        padding:8px;
-        left: 10px;
-        top: 10px;
-        border-radius:50%;
-        background:white;
-        border:2px solid black;
-        display: flex;
-        justify-content:center;
-        align-items: center;
-
-        &:disabled{
-            border-color: gray;
-        }
-        &:disabled> .heart-icon{
-            color:gray;
-        }
-
-        .heart-icon {
-            font-size:1.5rem;
-            color:black;
-            transition: 0.1s ease-in-out;
-
-            &.item-liked{
-                color: red;
-                animation-name: heart;
-                animation-duration: 0.5s;
-                animation-fill-mode: forwards;
-            }
-
-            @keyframes heart {
-                50% {
-                    transform: scale(2);
-                }
-                100% {
-                    transform: scale(1);
-                    color: red;
-                }
-            }
-        }
-    }
     .card-info{
         width: 70%;
         height: 100%;

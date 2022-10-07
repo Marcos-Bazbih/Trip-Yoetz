@@ -23,7 +23,7 @@ const ItemActivityHours = ({ activityHours, price }) => {
                 }
             </h1>
         </div>
-    )
-}
+    );
+};
 
-export default ItemActivityHours
+export default ItemActivityHours;

@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
@@ -7,30 +6,33 @@ import useItemData from "../../../hooks/useItemData";
 import { DataContext } from "../../../contexts/data-context";
 import { ThemeContext } from "../../../contexts/theme-context";
 import { getAvgRating } from "../../../utils/getAvgRating";
-import { verifyUserFavorites, activateHeartIcon, addClassToHeart } from "../../../utils/favoritesList-functions";
 import { StyledItemCard } from "../../styles/parts/category-page/ItemCard.styled";
+import HeartIcon from "../HeartIcon";
 
 const ItemCard = ({ product }) => {
-    const { user, city } = useContext(DataContext);
+    const { city } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
     const { navigateToItemPage } = useItemData();
     const [rating, setRating] = useState(0);
-    const heartIcon = useRef();
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    const heartIconRef = useRef();
 
     useEffect(() => {
         setRating(getAvgRating(product.rating))
     }, [product.rating]);
 
+    const positionProps = {
+        left: "10px",
+        top: "10px"
+    };
+
     return (
         <StyledItemCard mode={mode}>
             {product &&
                 <>
-                    <button className="heart-btn" disabled={verifyUserFavorites(user)}
-                        onClick={() => activateHeartIcon(heartIcon, product)}>
-                        <FavoriteIcon ref={heartIcon} className={`heart-icon ${addClassToHeart(user, favorites, product)}`}>
-                        </FavoriteIcon>
-                    </button>
+                    <HeartIcon
+                        positionProps={positionProps}
+                        heartIconRef={heartIconRef}
+                        item={product} />
                     <div className="card-info">
                         <div className="card-price">
                             <p>{product.price[0]}$ - {product.price[1]}$</p>

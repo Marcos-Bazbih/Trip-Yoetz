@@ -1,31 +1,30 @@
 import { useContext, useRef } from "react";
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import MasksIcon from '@mui/icons-material/Masks';
 import { DataContext } from "../../../../contexts/data-context";
-import { activateHeartIcon, addClassToHeart, verifyUserFavorites } from "../../../../utils/favoritesList-functions";
 import { getAvgRating } from "../../../../utils/getAvgRating";
+import HeartIcon from "../../HeartIcon";
 
 const ItemDetails = () => {
-    const { user, item } = useContext(DataContext);
-    const heartIcon = useRef();
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    const { item } = useContext(DataContext);
+    const heartIconRef = useRef();
+
+    const positionProps = {
+        right: "0",
+        top: "0"
+    };
 
     return (
         <div className="item-details">
-            <button className="heart-icon-btn" disabled={verifyUserFavorites(user)}
-                onClick={() => activateHeartIcon(heartIcon, item)}>
-                <FavoriteIcon ref={heartIcon} className={`heart-icon ${addClassToHeart(user, favorites, item)}`}>
-                </FavoriteIcon>
-            </button>
-            <h1 className="item-name-h1">{item.name}</h1>
+            <HeartIcon
+                positionProps={positionProps}
+                heartIconRef={heartIconRef} item={item} />
+            <h1>{item.name}</h1>
             <div className="item-info">
-                <Box className="rating-wrapper info-part" sx={{ '& > legend': { mt: 2 } }}>
-                    <p className="reviews">
-                        {item.rating && item.rating.length >= 1 ? `${item.rating.length} reviews` : "no reviews yet"}
-                    </p>
+                <Box className="info-part rating-wrapper" sx={{ '& > legend': { mt: 2 } }}>
+                    <p>{item.rating && item.rating.length >= 1 ? `${item.rating.length} reviews` : "no reviews yet"}</p>
                     <Rating className="rating-stars" name="text-feedback" value={Number(getAvgRating(item.rating))}
                         readOnly
                         precision={0.5}
@@ -39,7 +38,7 @@ const ItemDetails = () => {
                 </div>
                 <div className="info-part green-pass">
                     <MasksIcon className="green-pass-icon" />
-                    <h1>{item.greenPass ? 'green pass required' : 'no green pass required'}</h1>
+                    <p>{item.greenPass ? 'green pass required' : 'no green pass required'}</p>
                 </div>
             </div>
         </div>

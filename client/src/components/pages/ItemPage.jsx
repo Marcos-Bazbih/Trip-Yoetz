@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/theme-context";
-import { StyledItemPage } from "../styles/pages/StyledItemPage";
+import { StyledItemPage } from "../styles/pages/ItemPage.styled";
 import Navbar from "../layout/navbar";
 import ItemInfo from "../parts/item-page/item-info";
 import RatingStars from "../parts/item-page/RatingStars";

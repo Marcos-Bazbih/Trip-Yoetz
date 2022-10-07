@@ -41,14 +41,15 @@ const CommentsSection = () => {
                 <label className="comment-body-label" htmlFor="body">Comment here</label>
                 <textarea ref={inputRef} disabled={verifyUserAccess(user)}
                     maxLength="180" rows="5" cols="60"
+                    className="comment-body-input"
+                    name="body" required
+                    onChange={handleCommentOnChange}
                     placeholder={!verifyUserAccess(user)
                         ?
                         "How was your experience here ?"
                         :
                         "Please login or register to comment"}
-                    onChange={handleCommentOnChange} name="body"
-                    className="comment-body-input"
-                    required>
+                >
                 </textarea>
                 <button className="comment-send-btn" disabled={verifyUserAccess(user)}>SEND</button>
                 <div className="comment-count-wrapper">

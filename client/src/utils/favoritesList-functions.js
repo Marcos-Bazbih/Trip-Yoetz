@@ -1,7 +1,3 @@
-export const verifyUserFavorites = (user) => {
-    if (!user.isLogin || user.isAdmin) return true;
-    return false;
-};
 export const addClassToHeart = (user, favorites, item) => {
     if (!user.isLogin) return '';
     if (favorites && favorites.length >= 1) {

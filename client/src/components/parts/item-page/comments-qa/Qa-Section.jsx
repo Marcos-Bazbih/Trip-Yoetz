@@ -40,20 +40,21 @@ const QaSection = () => {
             <form className="insert-comment-form" onSubmit={sendQuestionForm}>
                 <label className="comment-body-label" htmlFor="body">Ask here</label>
                 <textarea ref={inputRef} disabled={verifyUserAccess(user)}
-                    maxLength="200" rows="5" cols="60"
+                    maxLength="180" rows="5" cols="60"
+                    className="comment-body-input"
+                    name="question" required
+                    onChange={handleQuestionOnChange}
                     placeholder={!verifyUserAccess(user)
                         ?
                         "What do you want to know ?"
                         :
                         "Please login or register to ask"}
-                    onChange={handleQuestionOnChange} name="question"
-                    className="comment-body-input"
-                    required>
+                >
                 </textarea>
                 <button className="comment-send-btn" disabled={verifyUserAccess(user)}>SEND</button>
                 <div className="comment-count-wrapper">
                     <span className="comment-count-current">{charsLength}/</span>
-                    <span className="comment-count-maximum">200</span>
+                    <span className="comment-count-maximum">180</span>
                 </div>
             </form>
             {
@@ -73,7 +74,7 @@ const QaSection = () => {
                 }
             </section>
         </>
-    )
-}
+    );
+};
 
 export default QaSection;
