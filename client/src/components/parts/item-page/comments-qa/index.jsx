@@ -11,11 +11,11 @@ const CommentsQa = () => {
     return (
         <>
             <div className="toggle-btns-wrapper">
-                <button className={`toggle-btn ${toggle ? 'toggle-active' : ''}`}
+                <button className={toggle ? 'toggle-active' : ''}
                     disabled={toggle} onClick={() => setToggle(true)}>
                     Comments
                 </button>
-                <button className={`toggle-btn ${!toggle ? 'toggle-active' : ''}`}
+                <button className={!toggle ? 'toggle-active' : ''}
                     disabled={!toggle} onClick={() => setToggle(false)}>
                     Q&A
                 </button>

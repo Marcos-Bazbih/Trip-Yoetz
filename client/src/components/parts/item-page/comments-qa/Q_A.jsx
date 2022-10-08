@@ -39,35 +39,35 @@ const Q_A = ({ qa }) => {
         <div className="q_a_wrapper">
             {
                 qa.writer_id === user._id || user.isAdmin ?
-                    <button className="remove-comment-btn" onClick={removeQuestion}>
-                        <DeleteIcon className="remove-comment-icon" />
+                    <button className="remove-article-btn" onClick={removeQuestion}>
+                        <DeleteIcon className="remove-article-icon" />
                     </button>
                     : null
             }
-            <article className="question-box">
-                <div className="q_a-header">
-                    <h1 className="q_a-writer">{qa.writer_name}</h1>
-                    <img className="q_a-img" src={qa.writer_img} alt={`${qa.writer_name} img`} />
+            <article className="article-box question">
+                <div className="article-header">
+                    <h1>{qa.writer_name}</h1>
+                    <img src={qa.writer_img} alt={`${qa.writer_name} img`} />
                 </div>
-                <div className="q_a-body">
-                    <p className="q_a-body-text">{qa.question}</p>
+                <div className="article-body">
+                    <p>{qa.question}</p>
                 </div>
-                <div className="q_a-footer">
-                    <span className="q_a-time">{qa.q_date.substr(0, 10)}</span>
+                <div className="article-footer">
+                    <span className="article-time">{qa.q_date.substr(0, 10)}</span>
                 </div>
             </article>
             {
                 qa.answer &&
-                <article className="answer-box">
-                    <div className="q_a-header">
-                        <h1 className="q_a-writer admin-writer">{qa.admin_name}</h1>
-                        <img className="q_a-img" src={qa.admin_img} alt={`${qa.admin_name} img`} />
+                <article className="article-box answer">
+                    <div className="article-header">
+                        <h1>{qa.admin_name}</h1>
+                        <img src={qa.admin_img} alt={`${qa.admin_name} img`} />
                     </div>
-                    <div className="q_a-body">
-                        <p className="q_a-body-text">{qa.answer}</p>
+                    <div className="article-body">
+                        <p>{qa.answer}</p>
                     </div>
-                    <div className="q_a-footer">
-                        <span className="q_a-time">{qa.a_date.substr(0, 10)}</span>
+                    <div className="article-footer">
+                        <span className="article-time">{qa.a_date.substr(0, 10)}</span>
                     </div>
                 </article>
             }
@@ -76,9 +76,10 @@ const Q_A = ({ qa }) => {
                     ?
                     <form className="insert-answer-form" onSubmit={sendAnswerForm}>
                         <input ref={inputRef} placeholder="answer here..."
-                            className="answer-input" name="answer" type="text"
+                            name="answer" type="text"
+                            maxLength={180}
                             required onChange={handleAnswerOnChange} />
-                        <button className="answer-send-btn">SEND</button>
+                        <button>SEND</button>
                     </form>
                     :
                     null

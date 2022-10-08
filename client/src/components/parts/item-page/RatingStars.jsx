@@ -51,7 +51,7 @@ const RatingStars = () => {
     };
 
     return (
-        <Stack spacing={1} className="rating-stars">
+        <Stack spacing={1} className="rating-stars-wrapper">
             <Rating readOnly={verifyUserAccess(user)}
                 className="rating-stars-select" name="half-rating" precision={0.5}
                 value={rateToDisplay} onChange={sendRate}

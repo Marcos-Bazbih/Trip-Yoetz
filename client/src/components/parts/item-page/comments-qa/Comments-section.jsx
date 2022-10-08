@@ -37,11 +37,10 @@ const CommentsSection = () => {
 
     return (
         <>
-            <form className="insert-comment-form" onSubmit={sendCommentForm}>
-                <label className="comment-body-label" htmlFor="body">Comment here</label>
+            <form className="form" onSubmit={sendCommentForm}>
+                <label htmlFor="body">Comment here</label>
                 <textarea ref={inputRef} disabled={verifyUserAccess(user)}
                     maxLength="180" rows="5" cols="60"
-                    className="comment-body-input"
                     name="body" required
                     onChange={handleCommentOnChange}
                     placeholder={!verifyUserAccess(user)
@@ -51,26 +50,26 @@ const CommentsSection = () => {
                         "Please login or register to comment"}
                 >
                 </textarea>
-                <button className="comment-send-btn" disabled={verifyUserAccess(user)}>SEND</button>
+                <button disabled={verifyUserAccess(user)}>SEND</button>
                 <div className="comment-count-wrapper">
-                    <span className="comment-count-current">{charsLength}/</span>
-                    <span className="comment-count-maximum">180</span>
+                    <span>{charsLength}/</span>
+                    <span>180</span>
                 </div>
             </form>
             {
                 item.comments && item.comments.length >= 1
                     ?
-                    <h1 className="comments-amount">{item.comments.length} comments</h1>
+                    <h1 className="comments-qa-amount">{item.comments.length} comments</h1>
                     : null
             }
-            <section className="comments-section">
+            <section className="articles-section">
                 {
                     item.comments && item.comments.length >= 1 ?
                         item.comments.map((commentItem, i) =>
                             <Comment comment={commentItem} key={i} />
                         )
                         :
-                        <h1 className="empty-comments">No comments yet</h1>
+                        <h1 className="comments-qa-amount">No comments yet</h1>
                 }
             </section>
         </>

@@ -58,26 +58,26 @@ const Comment = ({ comment }) => {
     };
 
     return (
-        <article className="comment-box">
+        <article className="article-box">
             {
                 comment.writer_id === user._id || user.isAdmin ?
-                    <button className="remove-comment-btn" onClick={removeComment}>
-                        <DeleteIcon className="remove-comment-icon" />
+                    <button className="remove-article-btn" onClick={removeComment}>
+                        <DeleteIcon className="remove-article-icon" />
                     </button>
                     : null
             }
-            <div className="comment-header">
-                <h1 className="comment-writer">{comment.writer_name}</h1>
-                <img className="comment-img" src={comment.writer_img} alt={`${comment.writer_name} img`} />
+            <div className="article-header">
+                <h1>{comment.writer_name}</h1>
+                <img src={comment.writer_img} alt={`${comment.writer_name} img`} />
             </div>
-            <div className="comment-body">
-                <p className="comment-body-text">{comment.body}</p>
+            <div className="article-body">
+                <p>{comment.body}</p>
             </div>
-            <div className="comment-footer">
-                <span className="comment-time">{comment.createdAt.substr(0, 10)}
+            <div className="article-footer comment">
+                <span className="article-time">{comment.createdAt.substr(0, 10)}
                 </span>
                 <span className="comment-likes-amount">{comment.likes.amount}</span>
-                <button className="comment-likes-btn" disabled={verifyUserAccess(user)} onClick={likeComment}>
+                <button disabled={verifyUserAccess(user)} onClick={likeComment}>
                     <ThumbUpIcon ref={likeRef} className="comment-likes-icon" />
                 </button>
             </div>

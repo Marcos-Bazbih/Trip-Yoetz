@@ -11,19 +11,20 @@ export const StyledItemPage = styled.section`
     'rating'
     'toggle'
     'comments-qa';
-    grid-template-rows:10vh 90vh 5vh 10vh auto;
+    grid-template-rows:10vh 90vh 10vh 10vh auto;
     grid-template-columns:100%;
     gap: 5vh 0; 
 
-    .rating-stars{
+    .rating-stars-wrapper{
         grid-area: rating;
         display: flex;
         align-items: center;
-    }
-    .rating-stars-select{
-        font-size:5rem;
-    }
+        height: 100%;
 
+        .rating-stars-select{
+            font-size:5rem;
+        }
+    }
     .toggle-btns-wrapper{
         grid-area:toggle;
         display:flex;
@@ -32,33 +33,53 @@ export const StyledItemPage = styled.section`
         height: 100%;
         width: 50%;
         margin: 0 auto;
-    }
-    .toggle-btn{
-        background: ${({ mode }) => mode.background};
-        color: ${({ mode }) => mode.color};
-        cursor: pointer;
-        width: 40%;
-        height: 100%;
-        font-size: 2.5rem;
-        border-top: none;
-        border-left: 2px solid transparent;
-        border-right: 2px solid transparent;
-        border-bottom: 2px solid ${({ mode }) => mode.color};
-        transition: 0.2s ease-in-out;
-    }
-    .toggle-active{
-        border-left-color: black;
-        border-right-color: black;
-        border-bottom-color: transparent;
-        background: ${({ mode }) => mode.color};
-        color: ${({ mode }) => mode.background};
+
+        button{
+            background: ${({ mode }) => mode.background};
+            color: ${({ mode }) => mode.color};
+            cursor: pointer;
+            width: 50%;
+            height: 100%;
+            font-size: 2.2rem;
+            border-top: none;
+            border-left: 2px solid transparent;
+            border-right: 2px solid transparent;
+            border-bottom: 2px solid ${({ mode }) => mode.color};
+            transition: 0.2s ease-in-out;
+
+            &.toggle-active{
+                border-left-color: black;
+                border-right-color: black;
+                border-bottom-color: transparent;
+                background: ${({ mode }) => mode.color};
+                color: ${({ mode }) => mode.background};
+            }
+        }
     }
 
     @media (max-width: 768px) {
         width: 70%;
-        grid-template-rows:10vh 150vh 5vh 10vh auto;
+        grid-template-rows: 10vh 150vh 10vh 10vh auto;
+        .toggle-btns-wrapper{
+            width: 70%;
+        }
+    }
+    @media (max-width: 500px) {
+        .toggle-btns-wrapper{
+            width: 100%;
+        }
     }
     @media (max-width: 376px) {
         width: 80%;
+        .rating-stars-wrapper{
+            .rating-stars-select{
+                font-size: 4.5rem;
+            }
+        }
+        .toggle-btns-wrapper{
+            button{
+                font-size: 1.8rem;
+            }
+        }
     }
 `
