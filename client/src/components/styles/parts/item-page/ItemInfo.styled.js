@@ -11,7 +11,6 @@ export const StyledItemInfo = styled.section`
     'description description';
     grid-template-rows: 20% 50% 30%;
     grid-template-columns: 70% 30%;
-    
 
     .item-details{
         grid-area: details;
@@ -40,7 +39,7 @@ export const StyledItemInfo = styled.section`
                 display :flex;
                 justify-content: center;
                 align-items: center;
-                background: linear-gradient(0deg,black,black);
+                background: linear-gradient(0deg,${({ mode }) => mode.color},${({ mode }) => mode.color});
                 background-size: 2px 50%;
                 background-repeat: no-repeat;
                 background-position: right;
@@ -77,223 +76,158 @@ export const StyledItemInfo = styled.section`
             }
         }
     }
-    
-
-    
-
-
-
-
     .item-images-wrapper{
         grid-area: images;
         display:grid;
         grid-template-areas:
-        'item-main-img item-one'
-        'item-main-img item-two';
+        'main-img second-img'
+        'main-img third-img';
         grid-template-columns: 60% 40%;
         grid-template-rows: 50% 50%;
-    }
-    .item-main-img {
-        width: 100%;
-        height: 100%;
-        grid-area: item-main-img;
-        border-radius:5px;
-        border:1px solid white;
-    }
-    .item-one {
-        width: 100%;
-        height: 100%;
-        grid-area: item-one;
-        border-radius:5px;
-        border:1px solid white;
-    }
-    .item-two {
-        width: 100%;
-        height: 100%;
-        grid-area: item-two;
-        border-radius:5px;
-        border:1px solid white;
-    }
 
+        img{
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            border-radius:5px;
+            border:1px solid white;
+        }
 
+        .main-img {
+            grid-area: main-img;
+        }
+        .second-img {
+            grid-area: second-img;
+        }
+        .third-img {
+            grid-area: third-img;
+        }
+    }
+    .image-modal{
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        background-color: rgba(0,0,0,0.5);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            width: 80%;
+            height: 80%;
+            border-radius: 10px;
+        }
+        button{
+            color: ${({mode})=> mode.color};
+            background: ${({mode})=> mode.background};
+            border: 2px solid ${({mode})=> mode.color};
+            cursor: pointer;
+            position: absolute;
+            top: 10%;
+            font-size: 3rem;
+            font-weight: 900;
+            border-radius: 50%;
+            padding: 5px 10px;
+            transition: 0.1s ease-in-out;
+
+            &:hover{
+                color: ${({mode})=> mode.background};
+                background: ${({mode})=> mode.color};
+            }
+        }
+    }
     .activities-hours-wrapper{
         grid-area: hours;
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-    .activities-hours-title{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        font-size: 2.5rem;
-        height: 25%;
-    }
-    .activities-hours{
-        width: 100%;
-        height: 55%;
-        display: flex;
-        flex-direction:column;
-        align-items: center;
-        font-size: 1.5rem;
-        font-weight: 900;
-    }
-    .item-prices{
-        font-size: 2.5rem;
-    }
+        justify-content: space-between;
 
+        h1{
+            font-size: 2.5rem;
+            height: fit-content;
+        }
+        .activities-hours{
+            width: 100%;
+            height: 60%;
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: space-evenly;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+    }
     .item-description-wrapper{
         grid-area: description;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-between;
-        width: 100%;
-        
-    }
-    .item-description{
-        font-size: 1.8rem;
-        font-weight: 900;
-        width: 100%;
-        height: 75%;
-        overflow: auto;
-    }
-    .item-description-title{
-        display: flex;
-        align-items: center;
-        font-size: 2rem;
-        width: fit-content;
-        height: 15%;
-        border-bottom: 2px solid black;
-    }
+        padding-top: 1vh;
 
+        h2{
+            font-size: 2rem;
+            width: fit-content;
+            height: fit-content;
+            border-bottom: 2px solid ${({ mode }) => mode.color};
+        }
+        p{
+            font-size: 1.8rem;
+            font-weight: 900;
+            width: 100%;
+            height: 75%;
+            overflow: auto;
+        }
+    }
     
-/* @media  only screen  and (min-width:320px) and (max-width:375px){
-    .info-part{
-        font-size: 0.7rem;
-    }
-    .item-name-h1{
-        font-size:1.5rem;
-    }
-    .heart-icon-btn{
-        padding:0.5px;
-    }
-    .green-pass-icon{
-        display: none;
-    }
-    .activities-hours-title{
-        font-size: 1.5rem;
-        margin-left: 50px;
+    @media (max-width: 768px) {
+        grid-template-areas:
+        'details'
+        'images'
+        'hours'
+        'description';
+        grid-template-rows: 20% 30% 30% 20%;
+        grid-template-columns: 100%;
 
+        .item-details{
+            h1{
+                font-size:2.7rem;
+            }
+            .item-info{
+                flex-wrap: wrap;
+                .info-part{
+                    font-size: 1.2rem;
+                    width: 50%;
+                    height: 33%;
+                }
+            }
+        }
     }
-    .activities-hours{
-        font-size: 1rem;
-        overflow: auto;
-        margin-left: 50px;
+    @media (max-width: 426px) {
+        grid-template-rows: 20% 25% 30% 25%;
     }
-    .item-prices{
-        font-size: 1rem;
-        margin-top: 20px;
+    @media (max-width: 376px) {
+        grid-template-rows: 25% 25% 25% 25%;
+        .activities-hours-wrapper{
+            h1{
+                font-size: 2rem;
+            }
+            .activities-hours{
+                font-size: 1.3rem;
+            }
+        }
+        .item-description-wrapper{
+            h2{
+                font-size: 1.8rem;
+            }
+            p{
+                font-size: 1.5rem;
+            }
+        }
     }
-    .item-description-title{
-        font-size: 1.5rem;
-    }
-    .item-description{
-        font-size: 1rem;
-    }
-    .rating-stars{
-        font-size: 0.7rem;
-    
-    }
-    .rating-wrapper{
-      flex-direction: column;
-       }
-   
-
-}
-@media  only screen  and (min-width:375px) and (max-width:425px){
-    .info-part{
-        font-size: 0.7rem;
-    }
-    .item-name-h1{
-        font-size:1.5rem;
-    }
-    .heart-icon-btn{
-        padding:0.5px;
-    }
-    .green-pass-icon{
-        display: none;
-    }
-    .activities-hours-title{
-        font-size: 1.5rem;
-        margin-left: 50px;
-
-    }
-    .activities-hours{
-        font-size: 1rem;
-        overflow: auto;
-        margin-left: 50px;
-    }
-    .item-prices{
-        font-size: 1rem;
-        margin-top: 20px;
-    }
-    .item-description-title{
-        font-size: 1.5rem;
-    }
-    .item-description{
-        font-size: 1rem;
-    }
-    .rating-stars{
-        font-size: 0.7rem;
-    
-    }
-    .rating-wrapper{
-      flex-direction: column;
-       }
-   
-}
-@media  only screen  and (min-width:425px) and (max-width:768px){
-    .info-part{
-        font-size: 1rem;
-    }
-    .item-name-h1{
-        font-size:1.5rem;
-    }
-    .heart-icon-btn{
-        padding:0.5px;
-    }
-    .green-pass-icon{
-        display: none;
-    }
-    .activities-hours-title{
-        font-size: 1.5rem;
-        margin-left: 50px;
-
-    }
-    .activities-hours{
-        font-size: 1rem;
-        overflow: auto;
-        margin-left: 50px;
-    }
-    .item-prices{
-        font-size: 1rem;
-        margin-top: 20px;
-    }
-    .item-description-title{
-        font-size: 1.5rem;
-    }
-    .item-description{
-        font-size: 1.5rem;
-    }
-    .rating-stars{
-        font-size: 1rem;
-    
-    }
-    .rating-wrapper{
-      flex-direction: column;
-       }
-   
-} */
 `

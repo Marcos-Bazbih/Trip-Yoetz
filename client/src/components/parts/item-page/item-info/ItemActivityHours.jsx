@@ -1,19 +1,18 @@
 const ItemActivityHours = ({ activityHours, price }) => {
     return (
         <div className="activities-hours-wrapper">
-            <h1 className="activities-hours-title">Activity Hours</h1>
+            <h1>Activity Hours</h1>
             <div className="activities-hours">
                 {
                     activityHours ?
                         activityHours.split("PM").map((item, i) =>
-                            i < 7 &&
-                            <p key={i}>{item} PM</p>
+                            i < 7 && <p key={i}>{item} PM</p>
                         )
                         :
                         null
                 }
             </div>
-            <h1 className="item-prices">
+            <h1>
                 {
                     price && price.length >= 1
                         ?

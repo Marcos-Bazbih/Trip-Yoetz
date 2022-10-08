@@ -53,4 +53,12 @@ export const StyledItemPage = styled.section`
         background: ${({ mode }) => mode.color};
         color: ${({ mode }) => mode.background};
     }
+
+    @media (max-width: 768px) {
+        width: 70%;
+        grid-template-rows:10vh 150vh 5vh 10vh auto;
+    }
+    @media (max-width: 376px) {
+        width: 80%;
+    }
 `
