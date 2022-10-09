@@ -3,7 +3,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { ThemeContext } from "../../contexts/theme-context";
 import { StyledRegisterPage } from "../styles/pages/RegisterPage.styled";
-import useLoginRegister from "../../hooks/useLoginRegister";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
   const { mode } = useContext(ThemeContext);
@@ -13,7 +13,7 @@ const Register = () => {
     errorMsg, setErrorMsg,
     formUser, setFormUser,
     visiblePasswordHandle, handleOnChange
-  } = useLoginRegister();
+  } = useAuth();
 
   const submitRegisterForm = (event) => {
     event.preventDefault();

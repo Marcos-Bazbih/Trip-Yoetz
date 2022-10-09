@@ -5,14 +5,14 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { ThemeContext } from "../../contexts/theme-context"
 import { StyledLoginPage } from "../styles/pages/LoginPage.styled";
-import useLoginRegister from "../../hooks/useLoginRegister";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { mode } = useContext(ThemeContext);
   const { decodeAndLoginUser, navigate, visiblePassword,
     errorMsg, formUser, setFormUser,
     visiblePasswordHandle, handleOnChange
-  } = useLoginRegister();
+  } = useAuth();
 
   const submitLoginForm = (event) => {
     event.preventDefault();

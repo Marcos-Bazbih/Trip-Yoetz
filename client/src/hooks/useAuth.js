@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { login, register } from '../services/user-service';
 import { DataContext } from '../contexts/data-context';
 
-const useLoginRegister = () => {
+const useAuth = () => {
     const { setUser } = useContext(DataContext);
     const [formUser, setFormUser] = useState({});
     const [errorMsg, setErrorMsg] = useState("");
@@ -54,4 +54,4 @@ const useLoginRegister = () => {
     }
 };
 
-export default useLoginRegister;
+export default useAuth;
