@@ -59,7 +59,7 @@ const CommentsSection = () => {
             {
                 item.comments && item.comments.length >= 1
                     ?
-                    <h1 className="comments-qa-amount">{item.comments.length} comments</h1>
+                    <h1 className="comments-qa-amount">{item.comments.length} Comments</h1>
                     : null
             }
             <section className="articles-section">

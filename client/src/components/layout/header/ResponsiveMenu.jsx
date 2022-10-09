@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import BurgerMenu from './BurgerMenu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import BurgerMenu from './BurgerMenu';
 
 const ResponsiveMenu = () => {
     const [isOpen, setIsOpen] = useState(false);

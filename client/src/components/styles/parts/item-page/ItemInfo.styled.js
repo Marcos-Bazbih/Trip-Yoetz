@@ -210,6 +210,11 @@ export const StyledItemInfo = styled.section`
     }
     @media (max-width: 426px) {
         grid-template-rows: 20% 25% 30% 25%;
+        .image-modal{
+            img{
+                height: 60%;
+            }
+        }
     }
     @media (max-width: 376px) {
         grid-template-rows: 25% 25% 25% 25%;
@@ -227,6 +232,11 @@ export const StyledItemInfo = styled.section`
             }
             p{
                 font-size: 1.5rem;
+            }
+        }
+        .image-modal{
+            img{
+                width: 90%;
             }
         }
     }

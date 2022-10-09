@@ -30,5 +30,5 @@ export const userUpdate = async (id, user, newUser) => {
   }
   return await fetch(`${BASE_URL}/${id}`, options)
     .then(res => res.json())
-    .catch(err => console.log(err))
+    .catch(err => err)
 };
