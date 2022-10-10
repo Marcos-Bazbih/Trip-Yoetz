@@ -1,5 +1,5 @@
 const BASE_URL = process.env.NODE_ENV === "production"
-    ? "https://trip-yoetz.herokuapp.com"
+    ? "https://trip-yoetz-app.herokuapp.com"
     : "http://localhost:9090";
 
 export const getActivities = async () => {

@@ -1,5 +1,5 @@
 const BASE_URL_DATA = process.env.NODE_ENV === "production"
-    ? "https://trip-yoetz.herokuapp.com/api/data"
+    ? "https://trip-yoetz-app.herokuapp.com/api/data"
     : "http://localhost:9090/api/data";
 
 export const fetchDataByCity = async (city) => {

@@ -1,5 +1,5 @@
 const BASE_URL_CITIES = process.env.NODE_ENV === "production"
-  ? "https://trip-yoetz.herokuapp.com/api/cities"
+  ? "https://trip-yoetz-app.herokuapp.com/api/cities"
   : "http://localhost:9090/api/cities";
 
 export const getAllCities = async () => {
