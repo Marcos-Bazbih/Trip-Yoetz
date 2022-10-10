@@ -5,6 +5,10 @@
   "main": "server/server.js",
   "author": "marcos bazbih",
   "license": "ISC",
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "concurrently": "^7.0.0",
