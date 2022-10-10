@@ -37,6 +37,7 @@ app.use("/api/ratings", ratingsRoutes);
 app.use("/api/data", dataRoutes);
 app.use("/auth", usersRoutes);
 
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
     app.get('*', (req, res) => {
