@@ -1,20 +1,21 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { DataContext } from "../../contexts/data-context";
-import { StyledUserProfile } from "../styles/pages/StyledUserProfile";
 import EditIcon from "@mui/icons-material/Edit";
-import { userUpdate } from "../../services/user-service";
-import { ThemeContext } from '../../contexts/theme-context'
 import DeleteIcon from '@mui/icons-material/Delete';
+import { DataContext } from "../../contexts/data-context";
+import { ThemeContext } from '../../contexts/theme-context'
+import { userUpdate } from "../../services/user-service";
+import { StyledProfilePage } from "../styles/pages/ProfilePage.styled";
 import { removeItemToFavorites } from '../../utils/favoritesList-functions';
+import useItemData from "../../hooks/useItemData";
 
 const UserProfile = () => {
   const { user } = useContext(DataContext);
   const { mode } = useContext(ThemeContext);
+  const { navigateToItemPage } = useItemData();
   const [profileInfoUpdate, SetProfileInfoUpdate] = useState({ ...user });
   const [toggleEdit, setToggleEdit] = useState(false);
   const [favorites, setFavorites] = useState([]);
-
+  
   useEffect(() => {
     setFavorites(JSON.parse(localStorage.getItem("favorites")))
   }, [])
@@ -22,7 +23,7 @@ const UserProfile = () => {
 
   const handleToggleEdit = () => {
     setToggleEdit(!toggleEdit)
-  }
+  };
   const handleOnChange = (event) => {
     profileInfoUpdate[event.target.name] = event.target.value;
   };
@@ -31,27 +32,24 @@ const UserProfile = () => {
     SetProfileInfoUpdate({ ...profileInfoUpdate });
     userUpdate(user._id, user, profileInfoUpdate)
       .then(() => alert("changed successfully, please log in again to see the changes"));
-  }
+  };
   const handleDelete = (favorite) => {
-    console.log(favorite);
     removeItemToFavorites(favorite);
     setFavorites(JSON.parse(localStorage.getItem("favorites")));
-  }
+  };
 
 
   return (
-    <StyledUserProfile mode={mode}>
+    <StyledProfilePage mode={mode}>
       <div className="profile-banner">
-        <div className="profile-img_edit-wrapper">
-          <img className="profile-img" src={user.image} alt={`${user.name} profile`} />
-          <button onClick={handleToggleEdit} className="edit-user-btn">
+        <div>
+          <img src={user.image} alt={`${user.name} profile`} />
+          <button onClick={handleToggleEdit}>
             <EditIcon className="edit-user-icon" /> Edit profile
           </button>
         </div>
       </div>
-
       <section className={`user-info-wrapper ${toggleEdit ? 'responsive' : ''}`}>
-
         <div className="user-details">
           <div className="user-details-header">
             <h1>YOUR INFORMATION</h1>
@@ -63,14 +61,13 @@ const UserProfile = () => {
             <h2>A member since: {user.createdAt.slice(0, 10)}</h2>
           </div>
         </div>
-
         <div className="user-favorites">
           <div className="user-favorites-header">
             <h1>YOUR FAVORITES</h1>
           </div>
           {
             favorites && favorites.length >= 1 ?
-              <table className="favorites-table">
+              <table>
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -87,7 +84,7 @@ const UserProfile = () => {
                         <td>{favorite.name}</td>
                         <td>{favorite.city}</td>
                         <td>{favorite.category}</td>
-                        <td><Link to={`/${favorite.name}`} state={favorite} className="favorite-link">View more</Link></td>
+                        <td className="favorite-link" onClick={() => navigateToItemPage(favorite.city, favorite)}>View more</td>
                         <td>
                           <DeleteIcon className="delete-favorite"
                             onClick={() => handleDelete(favorite)} />
@@ -101,39 +98,35 @@ const UserProfile = () => {
               <h1 className="no-favorites-msg">No favorites yet</h1>
           }
         </div>
-
         {
-          toggleEdit
-            ?
-            <div className="user-update-wrapper">
-              <h1>Edit Your Profile</h1>
-              <form className="user-update-form" onSubmit={handleSubmit}>
-                <input defaultValue={user.name} name="name" type="text"
-                  onChange={handleOnChange} placeholder="first name"
-                  minLength={2} maxLength={10} />
+          toggleEdit &&
+          <div className="user-update-wrapper">
+            <h1>Edit Your Profile</h1>
+            <form onSubmit={handleSubmit}>
+              <input defaultValue={user.firstName} name="firstName" type="text"
+                onChange={handleOnChange} placeholder="first name"
+                minLength={2} maxLength={10} />
 
-                <input defaultValue={user.lastName} name="lastName" type="text"
-                  onChange={handleOnChange} placeholder="last name"
-                  minLength={2} maxLength={10} />
+              <input defaultValue={user.lastName} name="lastName" type="text"
+                onChange={handleOnChange} placeholder="last name"
+                minLength={2} maxLength={10} />
 
-                <input defaultValue={user.email} name="email" type="email"
-                  onChange={handleOnChange} placeholder="email" />
+              <input defaultValue={user.email} name="email" type="email"
+                onChange={handleOnChange} placeholder="email" />
 
-                <input defaultValue={user.birthDate.slice(0, 10)} name="birthDate" type="date"
-                  onChange={handleOnChange} placeholder="birth date"
-                  min="1902-01-01" max="2004-01-01" />
+              <input defaultValue={user.birthDate.slice(0, 10)} name="birthDate" type="date"
+                onChange={handleOnChange} placeholder="birth date"
+                min="1902-01-01" max="2004-01-01" />
 
-                <input defaultValue={user.image} name="image" type="text"
-                  onChange={handleOnChange} placeholder="profile image" />
+              <input defaultValue={user.image} name="image" type="text"
+                onChange={handleOnChange} placeholder="profile image" />
 
-                <button>UPDATE</button>
-              </form>
-            </div>
-            :
-            null
+              <button>UPDATE</button>
+            </form>
+          </div>
         }
       </section>
-    </StyledUserProfile>
+    </StyledProfilePage>
   );
 };
 

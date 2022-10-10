@@ -20,19 +20,20 @@ export const StyledAdmin = styled.section`
         left: 15%;
         top: -50px;
         transition: 0.2s ease-in-out;
-    }
-    .add-item-btn:hover{
-        background: ${({ mode }) => mode.color};
-    }
-    .add-item-btn:hover> .add-item-icon{
-        color: ${({ mode }) => mode.background};
-    }
-    .add-item-icon{
-        font-size: 3rem;
-        color: ${({ mode }) => mode.color};
-        transition: 0.2s ease-in-out;
-    }
+        
+        &:hover{
+            background: ${({ mode }) => mode.color};
+        }
+        &:hover> .add-item-icon{
+            color: ${({ mode }) => mode.background};
+        }
 
+        .add-item-icon{
+            font-size: 3rem;
+            color: ${({ mode }) => mode.color};
+            transition: 0.2s ease-in-out;
+        }
+    }
     .popup-dialog-modal{
         width: 60%;
         height: 80%;
@@ -80,9 +81,18 @@ export const StyledAdmin = styled.section`
                 }
             }
             button{
+                background: ${({ mode }) => mode.background};
+                color: ${({ mode }) => mode.color};
+                border: 2px solid ${({ mode }) => mode.color};
                 cursor: pointer;
                 font-size: 2.5rem;
                 padding: 0 10px;
+                transition: 0.2s ease-in-out;
+
+                &:hover{
+                    background: ${({ mode }) => mode.color};
+                    color: ${({ mode }) => mode.background};
+                }
             }
         }
         .close-dialog-btn{
@@ -95,29 +105,33 @@ export const StyledAdmin = styled.section`
             display: flex;
             justify-content: center;
             align-items: center;
+
             .close-dialog-icon{
                 font-size: 4rem;
             }    
         }
-    }
-        .popup-dialog-modal::backdrop{
-            background-color: rgba(0,0,0,0.5);
+        &::backdrop{
+                background-color: rgba(0,0,0,0.5);
         }
-
+    }
     .admin-table-wrapper{
         color: ${({ mode }) => mode.color};
         background: ${({ mode }) => mode.background};
         width: 95%;
         overflow: hidden;
     }
-    .table-head-th{
+    th{
         font-size:1.2rem;
         font-weight:900;
         color: ${({ mode }) => mode.background};
         background: ${({ mode }) => mode.color};
     }
-    .admin-table-td{
+    td{
         height: 50px;
+        max-width: 50px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: auto;
         text-align: center;
         padding: 0;
         overflow: hidden;
@@ -125,37 +139,89 @@ export const StyledAdmin = styled.section`
         border: 1px solid black;
         color: ${({ mode }) => mode.color};
         background: ${({ mode }) => mode.background};
-    }
-    .admin-table-td:last-of-type, .admin-table-td:nth-last-child(2){
-        color: ${({ mode }) => mode.background};
-        background: ${({ mode }) => mode.color};
-        border-color: ${({ mode }) => mode.background};
+
+        &:last-of-type, &:nth-last-child(2){
+            color: ${({ mode }) => mode.background};
+            background: ${({ mode }) => mode.color};
+            border-color: ${({ mode }) => mode.background};
+        }
     }
     .td-btn{
         cursor: pointer;
         border: none;
         background: none;
         transition: 0.2s ease-in-out;
+        
+        &:hover{
+            transform: scale(2);
+        }
+
+        .td-btn-icon{
+            font-size: 2rem;
+            color: ${({ mode }) => mode.background};
+        }
     }
-    .td-btn:hover{
-        transform: scale(2);
-    }
-    .td-btn-icon{
-        font-size: 2rem;
-        color: ${({ mode }) => mode.background};
-    }
-    
     .table-link{
-        text-decoration: underline;
-        color: ${({ mode }) => mode.color};
-        background: ${({ mode }) => mode.background};
-    }
-    .table-img{
         width: 100%;
         height: 100%;
+        color: ${({ mode }) => mode.color};
+        background: ${({ mode }) => mode.background};
+        padding: 5px;
+        transition: 0.2s ease-in-out;
+
+        &:hover{
+            color: ${({ mode }) => mode.background};
+            background: ${({ mode }) => mode.color};
+        }
     }
-    .table-img.activities{
-        width: 100%;
-        height: 15vh;
+
+    @media (max-width: 768px) {
+        td{
+            max-width: 100px;
+        }
+        .popup-dialog-modal{
+            h1{
+                font-size: 2.5rem;
+            } 
+            form{
+                .input-wrapper{
+                    label{
+                        font-size: 1.5rem;
+                    } 
+                    input,select{
+                        font-size: 1.3rem;
+                    }
+                }
+                button{
+                    font-size: 2.2rem;
+                }
+            }
+        }
+    }
+    @media (max-width: 426px) {
+        .add-item-btn{
+            top: initial;
+            bottom:-10%;
+            left: 0;
+            right: 0;
+            width: fit-content;
+            margin: auto;
+        }
+        td{
+            max-width: 150px;
+        }
+        .popup-dialog-modal{
+            width: 80%;
+            h1{
+                font-size: 2rem;
+            }
+            form{
+                .input-wrapper{
+                    input,select{
+                        width: 70%;
+                    }
+                }
+            }
+        }
     }
 `

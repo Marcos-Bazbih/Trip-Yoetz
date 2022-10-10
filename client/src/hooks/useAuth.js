@@ -8,6 +8,7 @@ const useAuth = () => {
     const { setUser } = useContext(DataContext);
     const [formUser, setFormUser] = useState({});
     const [errorMsg, setErrorMsg] = useState("");
+    const [loading, setLoading] = useState(false);
     const [visiblePassword, setVisiblePassword] = useState(false);
     const navigate = useNavigate();
 
@@ -19,6 +20,7 @@ const useAuth = () => {
         setErrorMsg('');
     };
     const decodeAndLoginUser = () => {
+        setLoading(true)
         login(formUser).then(res => {
             if (res.success) {
                 localStorage.setItem('tripYoetz_token', res.token)
@@ -32,8 +34,10 @@ const useAuth = () => {
             }
         })
             .catch(err => setErrorMsg(err.message))
+            .finally(() => { setLoading(false) })
     };
     const registerUser = async () => {
+        setLoading(true)
         register(formUser).then(res => {
             if (res.success) {
                 navigate('/login');
@@ -43,14 +47,27 @@ const useAuth = () => {
             }
         })
             .catch(err => setErrorMsg(err.message))
+            .finally(() => { setLoading(false) })
+
+    };
+    const logoutAndClearLocalStorage = () => {
+        if (localStorage.tripYoetz_token) {
+            if (window.confirm("Are you sure you want to logout ?")) {
+                localStorage.removeItem("tripYoetz_token");
+                setUser({});
+                alert("Hope to see you again !");
+                navigate('/');
+            };
+        };
     };
 
+
     return {
-        decodeAndLoginUser, registerUser,
+        decodeAndLoginUser, registerUser, logoutAndClearLocalStorage,
         navigate, visiblePassword,
         formUser, setFormUser,
         errorMsg, setErrorMsg,
-        visiblePasswordHandle, handleOnChange
+        visiblePasswordHandle, handleOnChange, loading
     }
 };
 

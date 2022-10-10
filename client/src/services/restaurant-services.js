@@ -2,55 +2,43 @@ const BASE_URL = process.env.NODE_ENV === "production"
     ? "https://trip-yoetz.herokuapp.com"
     : "http://localhost:9090";
 
-export const GetRestaurants = async () => {
+export const getRestaurants = async () => {
     return await fetch(`${BASE_URL}/api/restaurants`)
-        .then((res) => res.json())
-        .catch((err) => console.log(err))
+        .then(res => res.json())
+        .catch(err => err)
 };
 export const GetRestaurantById = async (id) => {
     return await fetch(`${BASE_URL}/api/restaurants/${id}`)
         .then(res => res.json())
         .catch(err => err)
 };
-export const AddRestaurant = async (restaurant) => {
+export const addRestaurant = async (restaurant) => {
     const options = {
         method: "POST",
         body: JSON.stringify({ ...restaurant }),
         headers: { 'Content-Type': 'application/json' }
     }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return await fetch(`${BASE_URL}/api/restaurants`, options)
+        .then(res => res.json())
+        .catch(err => err)
 };
-export const UpdateRestaurant = async (id, restaurant) => {
+export const updateRestaurant = async (id, restaurant) => {
     const options = {
         method: "PUT",
         body: JSON.stringify({ ...restaurant }),
         headers: { 'Content-Type': 'application/json' }
     }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
+        .then(res => res.json())
+        .catch(err => err)
 };
-export const DeleteRestaurant = async (id) => {
+export const deleteRestaurant = async (id) => {
     const options = {
         method: "DELETE"
     };
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
+        .then(res => res.json())
+        .catch(err => err)
 };
 export const AddCommentToRestaurants = async (id, restaurant, comments, comment) => {
     const options = {

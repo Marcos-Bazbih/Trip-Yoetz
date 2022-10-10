@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledUserProfile = styled.section`
+export const StyledProfilePage = styled.section`
     width: 100%;
     height: 100%;
 
@@ -12,43 +12,44 @@ export const StyledUserProfile = styled.section`
         display: flex;
         justify-content: flex-end;
 
-        .profile-img_edit-wrapper{
+        div{
             width: 20%;
             height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-evenly;
-        }
-        .profile-img{
-            width: 65%;
-            height: 80%;
-            border-radius: 50%;
-        }
-        .edit-user-btn{
-            color:${({ mode }) => mode.background};
-            background:${({ mode }) => mode.color};
-            cursor: pointer;
-            width: fit-content;
-            height: 10%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            gap: 5px;
-            padding: 5px 10px;
-            border:2px solid black;
-            border-radius: 5px;
-            transition: 0.2s ease-in-out; 
-        }
-        .edit-user-btn:hover{
-            background:${({ mode }) => mode.background};
-            color:${({ mode }) => mode.color};
-        }
-        .edit-user-icon{
-            font-size: 2rem;
-        }
 
+            img{
+                width: 65%;
+                height: 80%;
+                border-radius: 50%;
+            }
+            button{
+                cursor: pointer;
+                color:${({ mode }) => mode.background};
+                background:${({ mode }) => mode.color};
+                width: fit-content;
+                height: 10%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.5rem;
+                gap: 5px;
+                padding: 5px 10px;
+                border:2px solid black;
+                border-radius: 5px;
+                transition: 0.2s ease-in-out; 
+
+                &:hover{
+                    background:${({ mode }) => mode.background};
+                    color:${({ mode }) => mode.color};
+                }
+                .edit-user-icon{
+                    font-size: 2rem;
+                }
+            }
+        }
     }
     .user-info-wrapper{
         width: 100%;
@@ -74,7 +75,6 @@ export const StyledUserProfile = styled.section`
             font-size: 2.2rem;
             text-decoration: underline;
         }
-
         .user-details-body{
             width: 100%;
             height: 90%;
@@ -85,7 +85,6 @@ export const StyledUserProfile = styled.section`
                     font-size: 1.6rem;
                 }
         }
-       
     }   
     .user-favorites{
         grid-area: user-favorites;
@@ -103,20 +102,12 @@ export const StyledUserProfile = styled.section`
             font-size: 2.2rem;
             text-decoration: underline;
         }
-        .favorites-table{
+        table{
             width: 100%;
             border-collapse: collapse;
             text-align: center;
             font-size: 1.5rem;
             border: 2px solid ${({ mode }) => mode.color};
-
-            .delete-favorite{
-                cursor: pointer;
-                font-size: 2.5rem;
-            }
-            .delete-favorite:hover{
-                color:red;
-            }
 
             thead{
                 height: 5vh;
@@ -139,10 +130,15 @@ export const StyledUserProfile = styled.section`
                 font-size: 1.6rem;
                 font-weight: 900;
 
-                .favorite-link{
-                    transition: 0.2s ease-in-out;
-                    text-decoration: underline;
-                    color: ${({ mode }) => mode.color};
+                &.favorite-link{
+                    cursor: pointer;
+                }
+                .delete-favorite{
+                    cursor: pointer;
+                    font-size: 2.5rem;
+                        &:hover{
+                            color:red;
+                        }
                 }
             }
         }
@@ -165,7 +161,7 @@ export const StyledUserProfile = styled.section`
             font-size: 2.2rem;
             text-decoration: underline;
         }
-        .user-update-form{
+        form{
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -185,9 +181,10 @@ export const StyledUserProfile = styled.section`
                 background: ${({ mode }) => mode.background};
                 color: ${({ mode }) => mode.color};
                 transition: 0.2s ease-in-out;
-            }
-            input:focus{
-                outline: none;
+                
+                &:focus{
+                    outline: none;
+                }
             }
             button{
                 cursor: pointer;
@@ -199,32 +196,41 @@ export const StyledUserProfile = styled.section`
                 border: 2px solid ${({ mode }) => mode.color};
                 border-radius: 15px;
                 transition: 0.2s ease-in-out;
-            }
-            button:hover{
-                background: ${({ mode }) => mode.background};
-                color: ${({ mode }) => mode.color};
+                
+                &:hover{
+                    background: ${({ mode }) => mode.background};
+                    color: ${({ mode }) => mode.color};
+                }
             }
         }
     }
-
-
-@media only screen and (max-width:768px){
-    .profile-banner{
-        .profile-img_edit-wrapper{
-            width: 30%;
+    
+    @media (max-width:768px){
+        .profile-banner{
+            div{
+                width: 30%;
+            }
         }
-    }
-    .user-info-wrapper{
-        grid-template-areas:
-        'user-details'
-        'user-favorites'
-        'user-edit'
-        ;
-        grid-template-rows: 100% 100% 100%;
-        grid-template-columns: 100%;
-
+        .user-info-wrapper{
+            grid-template-areas:
+            'user-details'
+            'user-favorites'
+            'user-edit'
+            ;
+            grid-template-rows: 100% 100% 100%;
+            grid-template-columns: 100%;
+    
+            &.responsive{
+                grid-template-areas:
+                'user-edit'
+                'user-details'
+                'user-favorites'
+                ;
+            }
+        }
         .user-details{
             padding:0;
+    
             .user-details-header{
                 text-align: center;
                 width: 100%;
@@ -241,39 +247,34 @@ export const StyledUserProfile = styled.section`
             }
         }
     }
-    .user-info-wrapper.responsive{
-        grid-template-areas:
-        'user-edit'
-        'user-details'
-        'user-favorites'
-        ;
-    }
-}
-@media only screen and (max-width:551px){
-    .profile-banner{
-        .profile-img_edit-wrapper{
-            width: 50%;
-            height: 90%;
+    @media (max-width:551px){
+        .profile-banner{
+            div{
+                width: 50%;
+                height: 90%;
+            }
         }
     }
-}
-@media only screen and (max-width:376px){
+    @media (max-width:376px){
     .profile-banner{
         background: none;
-
-        .profile-img_edit-wrapper{
+        div{
             width: 100%;
 
-            .profile-img{
+            img{
                 width: 50%;
             }
         }
     }
-    .user-favorites .favorites-table td{
-        font-size: 1rem;
+    .user-favorites{
+        table {
+            thead{
+                font-size: 1.3rem;
+            }
+            td{
+                font-size: 1rem;
+            }
+        }
+    } 
     }
-    .user-favorites .favorites-table thead{
-        font-size: 1rem;
-    }
-}
 `;

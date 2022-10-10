@@ -12,7 +12,7 @@ const Register = () => {
   const { registerUser, navigate, visiblePassword,
     errorMsg, setErrorMsg,
     formUser, setFormUser,
-    visiblePasswordHandle, handleOnChange
+    visiblePasswordHandle, handleOnChange, loading
   } = useAuth();
 
   const submitRegisterForm = (event) => {
@@ -90,7 +90,9 @@ const Register = () => {
                 placeholder="" minLength={4} maxLength={14} />
             </div>
             <h2 className="error-msg">{errorMsg}</h2>
-            <button className="register-btn">REGISTER</button>
+            <button className="register-btn" disabled={loading}>
+              {loading ? "..." : "REGISTER"}
+            </button>
           </form>
         </div>
       </section>

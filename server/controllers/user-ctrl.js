@@ -34,7 +34,6 @@ module.exports = {
     },
     UpdateUser: async (req, res) => {
         try {
-
             if (await users.exists({ _id: req.params.id })) {
                 return await users.findByIdAndUpdate(req.params.id, req.body)
                     .then(() => res.status(200).json({ success: true, message: "user updated successfully" }))

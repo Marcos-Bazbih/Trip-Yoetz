@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { DataContext } from "../../../contexts/data-context";
 import ProfileImg from "../../parts/ProfileImg";
-import { logoutAndClearLocalStorage } from "../../../utils/logoutAndClearLocalStorage";
 import LogoutIcon from '@mui/icons-material/Logout';
+import useAuth from "../../../hooks/useAuth.js";
 
 const ProfileActions = () => {
-    const { user, setUser } = useContext(DataContext);
-    const navigate = useNavigate();
+    const { user } = useContext(DataContext);
+    const { logoutAndClearLocalStorage } = useAuth();
 
     return (
         <div className="profile-actions">
@@ -15,7 +15,7 @@ const ProfileActions = () => {
                 user.isLogin ?
                     <>
                         <button className="logout-btn"
-                            onClick={() => logoutAndClearLocalStorage(setUser, navigate)}>
+                            onClick={logoutAndClearLocalStorage}>
                             <LogoutIcon className="logout-icon" />
                         </button>
                         <ProfileImg user={user} />

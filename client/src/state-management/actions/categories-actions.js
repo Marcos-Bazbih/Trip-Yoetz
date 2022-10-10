@@ -4,6 +4,20 @@ export const getAllData = (value) => {
         payload: value
     }
 };
+export const deleteItemFromData = (value, removedItem) => {
+    return {
+        type: "DELETE_ITEM_FROM_DATA",
+        payload: value,
+        removedItem
+    }
+};
+export const addItemToData = (value, addedItem) => {
+    return {
+        type: "ADD_ITEM_TO_DATA",
+        payload: value,
+        addedItem
+    }
+};
 export const getDataByCity = (value) => {
     return {
         type: "GET_DATA_BY_CITY",

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ThemeContext } from "../../contexts/theme-context";
-import { StyledAdminNavbar } from '../styles/layout/StyledAdminNavbar'
+import { StyledAdminNavbar } from '../styles/layout/AdminNavbar.styled'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 const AdminRoutes = () => {
@@ -10,7 +10,7 @@ const AdminRoutes = () => {
   return (
     <>
       <StyledAdminNavbar mode={mode}>
-        <ul className="navbar-list" >
+        <ul>
           <li><SupervisorAccountIcon className="admin-icon" /></li>
           <li><Link className="navbar-link" to="/profile">My Profile</Link></li>
           <li><Link className="navbar-link" to="AdminRestaurants">Restaurants</Link></li>

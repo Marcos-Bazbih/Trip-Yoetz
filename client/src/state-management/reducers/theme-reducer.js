@@ -6,7 +6,7 @@ export const themes = {
         background: "wheat"
     },
     black_gold: {
-        color: "#f5cb5c",
+        color: "LightGrey",
         background: "#242423"
     },
     light_blue: {

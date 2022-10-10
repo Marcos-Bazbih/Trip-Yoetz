@@ -140,6 +140,11 @@ export const StyledRegisterPage = styled.section`
             color: ${({ mode }) => mode.color};
             border-color: ${({ mode }) => mode.color};
         }
+        
+        &:disabled{
+            background: gray;
+            color: black;
+        }
     }
 
     @media (max-width: 768px) {

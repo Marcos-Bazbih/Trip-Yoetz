@@ -15,11 +15,11 @@ import Login from "./components/pages/Login";
 import UserProfile from "./components/pages/UserProfile";
 import NotFound from "./components/pages/NotFound";
 import ItemPage from "./components/pages/ItemPage";
-import AdminRestaurants from "./components/parts/admin/AdminRestaurants";
-import AdminHotels from "./components/parts/admin/AdminHotels";
 import AdminRoutes from "./components/pages/AdminRoutes";
 import AdminProfile from "./components/parts/admin/AdminProfile";
-import AdminActivities from "./components/parts/admin/AdminActivities";
+import AdminRestaurants from "./components/parts/admin/category-page/AdminRestaurants";
+import AdminHotels from "./components/parts/admin/category-page/AdminHotels";
+import AdminActivities from "./components/parts/admin/category-page/AdminActivities";
 
 const AppRouter = () => {
     const { user } = useContext(DataContext);

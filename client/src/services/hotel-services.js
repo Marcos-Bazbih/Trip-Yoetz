@@ -2,55 +2,45 @@ const BASE_URL = process.env.NODE_ENV === 'production'
     ? 'https://trip-yoetz.herokuapp.com'
     : 'http://localhost:9090';
 
-export const GetHotels = async () => {
+export const getHotels = async () => {
     return await fetch(`${BASE_URL}/api/hotels`)
-        .then((res) => res.json())
-        .catch((err) => console.log(err))
+        .then(res => res.json())
+        .catch(err => err)
 };
 export const GetHotelById = async (id) => {
     return await fetch(`${BASE_URL}/api/hotels/${id}`)
         .then(res => res.json())
         .catch(err => err)
 };
-export const AddHotel = async (Hotel) => {
+export const addHotel = async (Hotel) => {
     const options = {
         method: "POST",
         body: JSON.stringify({ ...Hotel }),
         headers: { 'Content-Type': 'application/json' }
     }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return await fetch(`${BASE_URL}/api/hotels`, options)
+        .then(res => res.json())
+        .catch(err => err)
 };
-export const UpdateHotel = async (id, hotel) => {
+export const updateHotel = async (id, hotel) => {
     const options = {
         method: "PUT",
         body: JSON.stringify({ ...hotel }),
         headers: { 'Content-Type': 'application/json' }
     }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
+        .then(res => res.json())
+        .catch(err => err)
+
 };
-export const DeleteHotel = async (id) => {
+export const deleteHotel = async (id) => {
     const options = {
         method: "DELETE"
     };
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
+        .then(res => res.json())
+        .catch(err => err)
+
 };
 export const AddCommentToHotels = async (id, hotel, comments, comment) => {
     const options = {

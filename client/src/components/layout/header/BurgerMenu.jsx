@@ -1,16 +1,16 @@
 import { useContext, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { DataContext } from "../../../contexts/data-context";
-import { logoutAndClearLocalStorage } from "../../../utils/logoutAndClearLocalStorage";
 import ThemeMode from "./ThemeMode";
 import { StyledBurgerMenu } from "../../../components/styles/layout/header/BurgerMenu.styled";
 import { ThemeContext } from "../../../contexts/theme-context";
 import CloseIcon from '@mui/icons-material/Close';
+import useAuth from "../../../hooks/useAuth";
 
 const BurgerMenu = ({ isOpen, setIsOpen }) => {
-    const { user, setUser } = useContext(DataContext);
+    const { user } = useContext(DataContext);
     const { mode } = useContext(ThemeContext);
-    const navigate = useNavigate();
+    const { logoutAndClearLocalStorage } = useAuth();
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }) => {
                         <>
                             <Link to={"/profile"} className="menu-link">My Profile</Link>
                             <button className="menu-link logout"
-                                onClick={() => logoutAndClearLocalStorage(setUser, navigate)}>
+                                onClick={logoutAndClearLocalStorage}>
                                 Logout
                             </button>
                         </>

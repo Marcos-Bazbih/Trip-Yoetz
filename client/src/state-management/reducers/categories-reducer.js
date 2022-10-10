@@ -2,13 +2,17 @@ import { getAvgRating } from "../../utils/getAvgRating";
 import categoriesTypes from "../types/categories-types";
 
 const categoriesReducer = (state = [], action) => {
-    const { type, payload } = action;
+    const { type, payload, removedItem, addedItem } = action;
 
     switch (type) {
         case categoriesTypes.GET_ALL_DATA:
             return payload;
         case categoriesTypes.GET_DATA_BY_CITY:
             return payload;
+        case categoriesTypes.DELETE_ITEM_FROM_DATA:
+            return payload.filter((item) => item._id !== removedItem._id);
+        case categoriesTypes.ADD_ITEM_TO_DATA:
+            return [...payload, addedItem];
         case categoriesTypes.SORT_BY_RATING_HIGH_TO_LOW:
             const ratingHighToLow = payload.sort((a, b) => {
                 return Number(getAvgRating(b.rating)) - Number(getAvgRating(a.rating));

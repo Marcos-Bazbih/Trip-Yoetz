@@ -1,21 +1,14 @@
 import styled from "styled-components";
 
 export const StyledAdminNavbar = styled.nav`
+    backdrop-filter: blur(2px);
     color: ${({ mode }) => mode.color};
     height: 10vh;    
     width: 100%;
     position: fixed;
     z-index: 10;
 
-    .admin-icon{
-        background: ${({ mode }) => mode.color};
-        color: ${({ mode }) => mode.background};
-        border: 2px solid ${({ mode }) => mode.background};
-        border-radius: 50px;
-        font-size: 6rem;
-        padding: 2px;
-    }
-    .navbar-list{
+    ul{
         list-style:none;
         display:flex;
         justify-content:space-evenly;
@@ -23,6 +16,14 @@ export const StyledAdminNavbar = styled.nav`
         width: 60%;
         height: 100%;
         margin: auto;
+    }
+    .admin-icon{
+        background: ${({ mode }) => mode.color};
+        color: ${({ mode }) => mode.background};
+        border: 2px solid ${({ mode }) => mode.background};
+        border-radius: 50px;
+        font-size: 6rem;
+        padding: 2px;
     }
     .navbar-link {
         text-decoration:none;
@@ -34,34 +35,33 @@ export const StyledAdminNavbar = styled.nav`
         font-size:1.8rem;
         font-weight: 900;
         border-radius:10px;
-    }
-    .navbar-link:hover{
-        color: ${({ mode }) => mode.background};
-        background: ${({ mode }) => mode.color};
+        
+        &:hover{
+            color: ${({ mode }) => mode.background};
+            background: ${({ mode }) => mode.color};
+        }
     }
 
-
-    @media only screen and (max-width:768px){
+    @media (max-width:768px){
         .navbar-link{
             font-size:1.2rem;
         }
-    }
-    @media only screen and (max-width:600px){
-    .navbar-list{
-        width: 100%;
+        .admin-icon{
+            font-size: 5rem;
         }
     }
-    @media only screen and (max-width:376px){
-    .navbar-link{
-        padding: 5px 2px;
+    @media (max-width:600px){
+        ul{
+            width: 100%;
+        }
     }
-    .admin-icon{
-        font-size: 3rem;
-    }
-    }
-    @media only screen and (max-width:321px){
+    @media (max-width:376px){
         .navbar-link{
-            font-size:1rem;
+            padding: 5px 2px;
+            font-size: 1rem;
+        }
+        .admin-icon{
+            font-size: 3.5rem;
         }
     }
 `

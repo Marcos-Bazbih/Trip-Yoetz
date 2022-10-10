@@ -11,7 +11,7 @@ const Login = () => {
   const { mode } = useContext(ThemeContext);
   const { decodeAndLoginUser, navigate, visiblePassword,
     errorMsg, formUser, setFormUser,
-    visiblePasswordHandle, handleOnChange
+    visiblePasswordHandle, handleOnChange, loading
   } = useAuth();
 
   const submitLoginForm = (event) => {
@@ -51,7 +51,9 @@ const Login = () => {
                 }
               </button>
             </div>
-            <button className="login-btn">LOGIN</button>
+            <button className="login-btn" disabled={loading}>
+              {loading ? "..." : "LOGIN"}
+            </button>
             <h2 className="error-msg">{errorMsg}</h2>
           </form>
         </div>
