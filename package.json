@@ -29,5 +29,13 @@
     "client": "cd client && npm run start",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marcos-Bazbih/Trip-Yoetz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Marcos-Bazbih/Trip-Yoetz/issues"
+  },
+  "homepage": "https://github.com/Marcos-Bazbih/Trip-Yoetz#readme"
 }
