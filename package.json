@@ -16,7 +16,9 @@
     "mongoose": "^6.2.4",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
-    "path": "^0.12.7",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.15"
   },
   "scripts": {
@@ -27,13 +29,5 @@
     "client": "cd client && npm run start",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Marcos-Bazbih/Trip-Yoetz.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Marcos-Bazbih/Trip-Yoetz/issues"
-  },
-  "homepage": "https://github.com/Marcos-Bazbih/Trip-Yoetz#readme"
+  }
 }

@@ -4,7 +4,7 @@ require("./db")
 const express = require("express")
 const cors = require("cors");
 const path = require('path');
-const PORT = process.env.PORT || 9090;
+const port = process.env.PORT || 9090;
 const passport = require("passport");
 const app = express();
 const citiesRoutes = require("./routes/city-routes");
@@ -23,6 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+app.listen(port, () => console.log(`server up on port ${port}`));
+
 app.use(passport.initialize());
 
 app.use("/api/cities", citiesRoutes);
@@ -34,8 +36,6 @@ app.use("/api/q_a", q_aRoutes);
 app.use("/api/ratings", ratingsRoutes);
 app.use("/api/data", dataRoutes);
 app.use("/auth", usersRoutes);
-
-app.listen(PORT, () => console.log(`server up on port ${PORT}`));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
