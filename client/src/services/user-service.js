@@ -1,5 +1,5 @@
 const BASE_URL = process.env.NODE_ENV === "production"
-  ? "https://trip-yoetz.herokuapp.com/auth"
+  ? "https://trip-yoetz.onrender.com/auth"
   : "http://localhost:9090/auth";
 
 export const register = async (user) => {
