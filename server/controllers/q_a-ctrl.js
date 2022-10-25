@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const activities = require("../models/activity-model");
 const restaurants = require("../models/restaurant-model");
 const hotels = require("../models/hotel-model");
-const Q_A = require("../models/q_a-model");
+const Q_A = require("../models/Q_A-model");
 
 module.exports = {
     getQ_A: async (req, res) => {
