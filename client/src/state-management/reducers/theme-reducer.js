@@ -1,20 +1,20 @@
 import themeTypes from "../types/theme-types";
 
 export const themes = {
-    wheat_black: {
-        color: "black",
-        background: "wheat"
+    white_black: {
+        color: "#000000",
+        background: "#FFFACF"
     },
-    black_gold: {
-        color: "LightGrey",
+    black_grey: {
+        color: "#D3D3DD",
         background: "#242423"
     },
-    light_blue: {
+    light_dark_blue: {
         color: "#14213d",
         background: "#98c1d9"
     },
     black_purple: {
-        color: "black",
+        color: "#000000",
         background: "#9896f1"
     }
 };
@@ -23,12 +23,12 @@ export const themeReducer = (state = {}, action) => {
     const { type } = action;
 
     switch (type) {
-        case themeTypes.WHEAT_BLACK:
-            return themes.wheat_black;
-        case themeTypes.BLACK_GOLD:
-            return themes.black_gold;
-        case themeTypes.LIGHT_BLUE:
-            return themes.light_blue;
+        case themeTypes.WHITE_BLACK:
+            return themes.white_black;
+        case themeTypes.BLACK_GREY:
+            return themes.black_grey;
+        case themeTypes.LIGHT_DARK_BLUE:
+            return themes.light_dark_blue;
         case themeTypes.BLACK_PURPLE:
             return themes.black_purple;
         default:

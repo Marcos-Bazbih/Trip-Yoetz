@@ -4,7 +4,7 @@ import { themeReducer, themes } from "../state-management/reducers/theme-reducer
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = ({ children }) => {
-    const [mode, modeDispatch] = useReducer(themeReducer, JSON.parse(localStorage.getItem("tripYoetz_theme")) || themes.wheat_black);
+    const [mode, modeDispatch] = useReducer(themeReducer, JSON.parse(localStorage.getItem("tripYoetz_theme")) || themes.white_black);
     
     useEffect(() => {
         localStorage.setItem('tripYoetz_theme', JSON.stringify(mode));

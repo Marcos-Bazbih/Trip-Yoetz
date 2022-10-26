@@ -127,11 +127,11 @@ export const StyledBurgerMenu = styled.div`
                 transition:0.2s ease-in-out;
     
                 &:nth-child(1){
-                    background: linear-gradient(120deg, rgba(0,0,0,1) 40%, rgba(245,222,179,1) 60%);
+                    background: linear-gradient(120deg, rgba(0,0,0,1) 40%, rgba(255,250,207,1) 60%);
                     left: 0;
                 }
                 &:nth-child(2){
-                    background: linear-gradient(120deg, rgba(245,203,92,1) 40%, rgba(36,36,35,1) 60%);
+                    background: linear-gradient(120deg, rgba(211,211,221,1) 40%, rgba(36,36,35,1) 60%);
                 }
                 &:nth-child(3){
                     background: linear-gradient(120deg, rgba(20,33,61,1) 40%, rgba(152,193,217,1) 60%);

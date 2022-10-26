@@ -1,5 +1,5 @@
-const BASE_URL = process.env.NODE_ENV === 'production'
-    ? 'https://trip-yoetz.onrender.com'
+const BASE_URL_COMMENTS = process.env.NODE_ENV === 'production'
+    ? 'https://trip-yoetz.onrender.com/api/comments'
     : 'http://localhost:9090/api/comments';
 
 export const addComment = async (comment, itemId) => {
@@ -8,7 +8,7 @@ export const addComment = async (comment, itemId) => {
         body: JSON.stringify({ ...comment }),
         headers: { 'Content-Type': 'application/json' }
     };
-    return await fetch(`${BASE_URL}/${itemId}`, options)
+    return await fetch(`${BASE_URL_COMMENTS}/${itemId}`, options)
         .then(res => res.json())
         .catch(err => err)
 };
@@ -18,7 +18,7 @@ export const updateComment = async (newComment, commentId) => {
         body: JSON.stringify({ ...newComment }),
         headers: { 'Content-Type': 'application/json' }
     };
-    return await fetch(`${BASE_URL}/${commentId}`, options)
+    return await fetch(`${BASE_URL_COMMENTS}/${commentId}`, options)
         .then(res => res.json())
         .catch(err => err)
 };
@@ -26,7 +26,7 @@ export const deleteComment = async (commentId) => {
     const options = {
         method: "DELETE"
     };
-    return await fetch(`${BASE_URL}/${commentId}`, options)
+    return await fetch(`${BASE_URL_COMMENTS}/${commentId}`, options)
         .then(res => res.json())
         .catch(err => err)
 };

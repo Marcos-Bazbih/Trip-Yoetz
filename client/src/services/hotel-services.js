@@ -1,14 +1,14 @@
-const BASE_URL = process.env.NODE_ENV === 'production'
-    ? 'https://trip-yoetz.onrender.com'
-    : 'http://localhost:9090';
+const BASE_URL_HOTELS = process.env.NODE_ENV === 'production'
+    ? 'https://trip-yoetz.onrender.com/api/hotels'
+    : 'http://localhost:9090/api/hotels';
 
 export const getHotels = async () => {
-    return await fetch(`${BASE_URL}/api/hotels`)
+    return await fetch(BASE_URL_HOTELS)
         .then(res => res.json())
         .catch(err => err)
 };
-export const GetHotelById = async (id) => {
-    return await fetch(`${BASE_URL}/api/hotels/${id}`)
+export const getHotelById = async (id) => {
+    return await fetch(`${BASE_URL_HOTELS}/${id}`)
         .then(res => res.json())
         .catch(err => err)
 };
@@ -18,7 +18,7 @@ export const addHotel = async (Hotel) => {
         body: JSON.stringify({ ...Hotel }),
         headers: { 'Content-Type': 'application/json' }
     }
-    return await fetch(`${BASE_URL}/api/hotels`, options)
+    return await fetch(BASE_URL_HOTELS, options)
         .then(res => res.json())
         .catch(err => err)
 };
@@ -28,121 +28,15 @@ export const updateHotel = async (id, hotel) => {
         body: JSON.stringify({ ...hotel }),
         headers: { 'Content-Type': 'application/json' }
     }
-    return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
+    return await fetch(`${BASE_URL_HOTELS}/${id}`, options)
         .then(res => res.json())
         .catch(err => err)
-
 };
 export const deleteHotel = async (id) => {
     const options = {
         method: "DELETE"
     };
-    return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
+    return await fetch(`${BASE_URL_HOTELS}/${id}`, options)
         .then(res => res.json())
         .catch(err => err)
-
-};
-export const AddCommentToHotels = async (id, hotel, comments, comment) => {
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...hotel, comments: [...comments, { ...comment }] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const RemoveCommentFromHotels = async (id, hotel, comments, comment) => {
-    const filterComments = comments.filter((item) => item.id !== comment.id);
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...hotel, comments: [...filterComments] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const LikeCommentHotel = async (id, hotel, comments, commentId, commentWithLike) => {
-    let filteredComments = comments.filter(comment => comment.id !== commentId);
-
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...hotel, comments: [...filteredComments, { ...commentWithLike }] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
-export const RateHotel = async (id, hotel, rating) => {
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...hotel, rating: [...hotel.rating, { ...rating }] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const AnswerToQuestionHotels = async (id, hotel, qId, q_a, answer) => {
-    let filtered_qa = q_a.filter(q => q.id !== qId);
-
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...hotel, q_a: [...filtered_qa, answer] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const AddQuestionToHotels = async (id, hotel, q_a, question) => {
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...hotel, q_a: [...q_a, { ...question }] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const RemoveQuestionFromHotels = async (id, hotel, q_a, question) => {
-    const filterQA = q_a.filter((item) => item.id !== question.id);
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...hotel, q_a: [...filterQA] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/hotels/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
 };

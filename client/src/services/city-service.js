@@ -5,7 +5,7 @@ const BASE_URL_CITIES = process.env.NODE_ENV === "production"
 export const getAllCities = async () => {
   return await fetch(BASE_URL_CITIES)
     .then((res) => res.json())
-    .catch((err) => err)
+    .catch(err => err)
 };
 export const getCityByName = async (name) => {
   return await fetch(`${BASE_URL_CITIES}/${name}`)
@@ -18,13 +18,9 @@ export const addCity = async (activity) => {
     body: JSON.stringify({ ...activity }),
     headers: { "Content-Type": "application/json" },
   };
-  try {
-    return await fetch(BASE_URL_CITIES, options)
-      .then((res) => res.json())
-      .catch((err) => console.log(err))
-  } catch (err) {
-    console.log(err);
-  }
+  return await fetch(BASE_URL_CITIES, options)
+    .then((res) => res.json())
+    .catch(err => err)
 };
 export const updateCity = async (id, city) => {
   const options = {
@@ -32,24 +28,15 @@ export const updateCity = async (id, city) => {
     body: JSON.stringify({ ...city }),
     headers: { 'Content-Type': 'application/json' }
   }
-  try {
-    return await fetch(`${BASE_URL_CITIES}/${id}`, options)
-      .then((res) => res.json())
-      .catch((err) => console.log(err))
-  }
-  catch (err) {
-    console.log(err);
-  }
+  return await fetch(`${BASE_URL_CITIES}/${id}`, options)
+    .then((res) => res.json())
+    .catch(err => err)
 };
 export const deleteCity = async (id) => {
   const options = {
     method: "DELETE"
   };
-  try {
-    return await fetch(`${BASE_URL_CITIES}/${id}`, options)
-      .then((res) => res.json())
-      .catch((err) => console.log(err))
-  } catch (err) {
-    console.log(err);
-  }
+  return await fetch(`${BASE_URL_CITIES}/${id}`, options)
+    .then((res) => res.json())
+    .catch(err => err)
 };

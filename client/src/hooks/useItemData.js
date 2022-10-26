@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DataContext } from '../contexts/data-context';
-import { GetActivityById } from '../services/activity-services';
-import { GetHotelById } from '../services/hotel-services';
-import { GetRestaurantById } from '../services/restaurant-services';
+import { getActivityById } from '../services/activity-services';
+import { getHotelById } from '../services/hotel-services';
+import { getRestaurantById } from '../services/restaurant-services';
 
 const useItemData = () => {
     const { setLoader, item, setItem } = useContext(DataContext);
@@ -45,7 +45,7 @@ const useItemData = () => {
         setLoader(true)
         switch (product.category) {
             case "Restaurant":
-                GetRestaurantById(product._id)
+                getRestaurantById(product._id)
                     .then((res) => {
                         localStorage.setItem("item", JSON.stringify(res.restaurant));
                         setItem(res.restaurant);
@@ -54,7 +54,7 @@ const useItemData = () => {
                     .finally(() => { setLoader(false) })
                 break;
             case "Hotel":
-                GetHotelById(product._id)
+                getHotelById(product._id)
                     .then((res) => {
                         localStorage.setItem("item", JSON.stringify(res.hotel));
                         setItem(res.hotel);
@@ -63,7 +63,7 @@ const useItemData = () => {
                     .finally(() => { setLoader(false) })
                 break;
             case "Activity":
-                GetActivityById(product._id)
+                getActivityById(product._id)
                     .then((res) => {
                         localStorage.setItem("item", JSON.stringify(res.activity));
                         setItem(res.activity)

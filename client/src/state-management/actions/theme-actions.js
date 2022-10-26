@@ -1,20 +1,12 @@
-export const light_blue = () => {
-    return {
-        type: "LIGHT_BLUE"
-    }
+export const white_black = () => {
+    return { type: "WHITE_BLACK" }
 };
-export const black_gold = () => {
-    return {
-        type: "BLACK_GOLD"
-    }
+export const black_grey = () => {
+    return { type: "BLACK_GREY" }
+};
+export const light_dark_blue = () => {
+    return { type: "LIGHT_DARK_BLUE" }
 };
 export const black_purple = () => {
-    return {
-        type: "BLACK_PURPLE"
-    }
-};
-export const wheat_black = () => {
-    return {
-        type: "WHEAT_BLACK"
-    }
+    return { type: "BLACK_PURPLE" }
 };

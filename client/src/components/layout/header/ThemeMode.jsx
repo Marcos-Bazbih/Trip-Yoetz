@@ -1,6 +1,6 @@
 import { useContext, useRef } from 'react';
 import { ThemeContext } from "../../../contexts/theme-context";
-import { light_blue, black_gold, black_purple, wheat_black } from "../../../state-management/actions/theme-actions";
+import { light_dark_blue, black_grey, black_purple, white_black } from "../../../state-management/actions/theme-actions";
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 
 const ThemeMode = () => {
@@ -22,13 +22,13 @@ const ThemeMode = () => {
             </button>
             <div ref={toggleRef} className="theme-palette">
                 <button className="theme-option"
-                    onClick={() => { selectThemeAndSave(wheat_black) }}>
+                    onClick={() => { selectThemeAndSave(white_black) }}>
                 </button>
                 <button className="theme-option"
-                    onClick={() => { selectThemeAndSave(black_gold) }}>
+                    onClick={() => { selectThemeAndSave(black_grey) }}>
                 </button>
                 <button className="theme-option"
-                    onClick={() => { selectThemeAndSave(light_blue) }}>
+                    onClick={() => { selectThemeAndSave(light_dark_blue) }}>
                 </button>
                 <button className="theme-option"
                     onClick={() => { selectThemeAndSave(black_purple) }}>

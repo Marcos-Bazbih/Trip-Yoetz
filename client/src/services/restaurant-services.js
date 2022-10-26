@@ -1,14 +1,14 @@
-const BASE_URL = process.env.NODE_ENV === "production"
-    ? "https://trip-yoetz.onrender.com"
-    : "http://localhost:9090";
+const BASE_URL_RESTAURANTS = process.env.NODE_ENV === "production"
+    ? "https://trip-yoetz.onrender.com/api/restaurants"
+    : "http://localhost:9090/api/restaurants";
 
 export const getRestaurants = async () => {
-    return await fetch(`${BASE_URL}/api/restaurants`)
+    return await fetch(BASE_URL_RESTAURANTS)
         .then(res => res.json())
         .catch(err => err)
 };
-export const GetRestaurantById = async (id) => {
-    return await fetch(`${BASE_URL}/api/restaurants/${id}`)
+export const getRestaurantById = async (id) => {
+    return await fetch(`${BASE_URL_RESTAURANTS}/${id}`)
         .then(res => res.json())
         .catch(err => err)
 };
@@ -18,7 +18,7 @@ export const addRestaurant = async (restaurant) => {
         body: JSON.stringify({ ...restaurant }),
         headers: { 'Content-Type': 'application/json' }
     }
-    return await fetch(`${BASE_URL}/api/restaurants`, options)
+    return await fetch(BASE_URL_RESTAURANTS, options)
         .then(res => res.json())
         .catch(err => err)
 };
@@ -28,7 +28,7 @@ export const updateRestaurant = async (id, restaurant) => {
         body: JSON.stringify({ ...restaurant }),
         headers: { 'Content-Type': 'application/json' }
     }
-    return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
+    return await fetch(`${BASE_URL_RESTAURANTS}/${id}`, options)
         .then(res => res.json())
         .catch(err => err)
 };
@@ -36,111 +36,7 @@ export const deleteRestaurant = async (id) => {
     const options = {
         method: "DELETE"
     };
-    return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
+    return await fetch(`${BASE_URL_RESTAURANTS}/${id}`, options)
         .then(res => res.json())
         .catch(err => err)
-};
-export const AddCommentToRestaurants = async (id, restaurant, comments, comment) => {
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...restaurant, comments: [...comments, { ...comment }] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const RemoveCommentFromRestaurants = async (id, restaurant, comments, comment) => {
-    const filterComments = comments.filter((item) => item.id !== comment.id);
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...restaurant, comments: [...filterComments] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const LikeCommentRestaurant = async (id, restaurant, comments, commentId, commentWithLike) => {
-    let filteredComments = comments.filter(comment => comment.id !== commentId);
-
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...restaurant, comments: [...filteredComments, { ...commentWithLike }] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
-export const RateRestaurant = async (id, restaurant, rating) => {
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...restaurant, rating: [...restaurant.rating, { ...rating }] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const AnswerToQuestionRestaurants = async (id, restaurant, qId, q_a, answer) => {
-    let filtered_qa = q_a.filter(q => q.id !== qId);
-
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...restaurant, q_a: [...filtered_qa, answer] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const AddQuestionToRestaurants = async (id, restaurant, q_a, question) => {
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...restaurant, q_a: [...q_a, { ...question }] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
-export const RemoveQuestionFromRestaurants = async (id, restaurant, q_a, question) => {
-    const filterQA = q_a.filter((item) => item.id !== question.id);
-    const options = {
-        method: "PUT",
-        body: JSON.stringify({ ...restaurant, q_a: [...filterQA] }),
-        headers: { 'Content-Type': 'application/json' }
-    }
-    try {
-        return await fetch(`${BASE_URL}/api/restaurants/${id}`, options)
-            .then((res) => res.json())
-    }
-    catch (err) {
-        console.log(err);
-    }
 };
